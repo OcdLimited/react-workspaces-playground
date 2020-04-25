@@ -1,7 +1,6 @@
 {
 	"name": "@ocdlimited/storybook-typescript",
 	"version": "0.0.2-alpha.0",
-	"private": true,
 	"scripts": {
 		"storybook": "start-storybook -p 9009",
 		"build-storybook": "build-storybook"

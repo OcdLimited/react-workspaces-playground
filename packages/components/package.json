@@ -45,5 +45,6 @@
 			}
 		}
 	},
-	"license": "MIT"
+	"license": "MIT",
+	"gitHead": "be5427d9337e79afc705f3c1d22e3c0c372e965e"
 }

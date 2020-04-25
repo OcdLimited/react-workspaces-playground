@@ -2,7 +2,6 @@
 	"name": "@ocdlimited/app-ant-design-rewired",
 	"version": "0.0.2-alpha.0",
 	"homepage": "https://ocdlimited.github.io/react-workspaces-playground/",
-	"private": true,
 	"scripts": {
 		"start": "react-app-rewired start --scripts-version @react-workspaces/react-scripts",
 		"build": "react-scripts build",

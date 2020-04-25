@@ -1,7 +1,6 @@
 {
 	"name": "@ocdlimited/app-typescript",
 	"version": "0.0.2-alpha.0",
-	"private": true,
 	"dependencies": {
 		"@ocdlimited/components-typescript": "^0.0.2-alpha.0",
 		"@react-workspaces/react-scripts": "^3.3.0-alpha-08",
