@@ -3,6 +3,6 @@ import { themes } from '@storybook/theming';
 
 addParameters({
 	options: {
-		theme: themes.dark,
+		theme: themes.light,
 	},
 });
