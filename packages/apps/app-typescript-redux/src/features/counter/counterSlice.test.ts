@@ -1,17 +1,17 @@
 import reducer, { increment, decrement, incrementByAmount } from './counterSlice';
 
-test('initialState', () => {
+it('initialState', () => {
 	expect(reducer(undefined, {})).toEqual({ value: 0 });
 });
 
-test('increment', () => {
+it('increment', () => {
 	expect(reducer(undefined, increment)).toEqual({ value: 1 });
 });
 
-test('decrement', () => {
+it('decrement', () => {
 	expect(reducer(undefined, decrement)).toEqual({ value: -1 });
 });
 
-test('incrementByAmount', () => {
+it('incrementByAmount', () => {
 	expect(reducer(undefined, incrementByAmount(100))).toEqual({ value: 100 });
 });
