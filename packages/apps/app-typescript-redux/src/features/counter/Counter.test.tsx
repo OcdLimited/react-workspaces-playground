@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { store } from '../../app/store';
 import { Counter } from './Counter';
 
-test('increment', () => {
+it('increment', () => {
 	const { getByText } = render(
 		<Provider store={store}>
 			<Counter />
@@ -15,7 +15,7 @@ test('increment', () => {
 	fireEvent.click(increment);
 });
 
-test('decrement', () => {
+it('decrement', () => {
 	const { getByText } = render(
 		<Provider store={store}>
 			<Counter />
@@ -26,7 +26,7 @@ test('decrement', () => {
 	fireEvent.click(increment);
 });
 
-test('Add Amount', () => {
+it('Add Amount', () => {
 	const { getByText } = render(
 		<Provider store={store}>
 			<Counter />
@@ -37,7 +37,7 @@ test('Add Amount', () => {
 	fireEvent.click(add);
 });
 
-test('Add Async', () => {
+it('Add Async', () => {
 	const { getByText } = render(
 		<Provider store={store}>
 			<Counter />
@@ -48,7 +48,7 @@ test('Add Async', () => {
 	fireEvent.click(add);
 });
 
-test('Set increment amount', () => {
+it('Set increment amount', () => {
 	const { getByLabelText } = render(
 		<Provider store={store}>
 			<Counter />

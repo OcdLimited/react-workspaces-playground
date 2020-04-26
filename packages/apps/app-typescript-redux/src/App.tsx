@@ -1,6 +1,9 @@
 import React from 'react';
 import logo from './logo.svg';
+import { Formik } from 'formik';
 import { Counter } from './features/counter/Counter';
+import { SignInForm } from '@ocdlimited/components-typescript';
+
 import './App.css';
 
 function App() {
@@ -9,6 +12,9 @@ function App() {
 			<header className="App-header">
 				<img src={logo} className="App-logo" alt="logo" />
 				<Counter />
+				<Formik onSubmit={console.log} initialValues={{}}>
+					{() => <SignInForm />}
+				</Formik>
 				<p>
 					Edit <code>src/App.tsx</code> and save to reload.
 				</p>
