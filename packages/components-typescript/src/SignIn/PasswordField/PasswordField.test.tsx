@@ -24,4 +24,5 @@ it('can change to test', () => {
 
 	const toggle = getByLabelText(/toggle password visibility/i);
 	fireEvent.click(toggle);
+	fireEvent.mouseDown(toggle);
 });
