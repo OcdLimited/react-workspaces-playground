@@ -1,12 +1,12 @@
 import React from 'react';
 import { Form, Field } from 'formik';
+import { useTranslation } from 'react-i18next';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { CheckboxWithLabel } from 'formik-material-ui';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -15,17 +15,8 @@ import Container from '@material-ui/core/Container';
 import { PasswordField } from '../PasswordField/PasswordField';
 import { UsernameField } from '../UsernameField/UsernameField';
 
-function Copyright() {
-	return (
-		<Typography variant="body2" color="textSecondary" align="center">
-			{'Copyright © '}
-			<Link color="inherit" href="https://material-ui.com/">
-				Your Website
-			</Link>{' '}
-			{new Date().getFullYear()}
-			{'.'}
-		</Typography>
-	);
+interface SignInFormProps {
+	isSelfRegistrationEnabled: boolean;
 }
 
 const useStyles = makeStyles(theme => ({
@@ -48,8 +39,9 @@ const useStyles = makeStyles(theme => ({
 	},
 }));
 
-export function SignInForm() {
+export function SignInForm(props: SignInFormProps) {
 	const classes = useStyles();
+	const { t } = useTranslation('AbpAccount');
 
 	return (
 		<Container component="main" maxWidth="xs">
@@ -59,7 +51,7 @@ export function SignInForm() {
 					<LockOutlinedIcon />
 				</Avatar>
 				<Typography component="h1" variant="h5">
-					Sign in
+					{t('Login')}
 				</Typography>
 				<Form className={classes.form} noValidate>
 					<React.Fragment>
@@ -70,31 +62,29 @@ export function SignInForm() {
 							color="primary"
 							name="remember"
 							type="checkbox"
-							Label={{ label: 'Remember me' }}
+							Label={{ label: t('RememberMe') }}
 						/>
 						<Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
-							Sign In
+							{t('Login')}
 						</Button>
-						<Grid container>
-							<Grid item xs>
-								<Link href="#" variant="body2">
-									Forgot password?
-								</Link>
+						{props.isSelfRegistrationEnabled && (
+							<Grid container>
+								<Grid item>
+									<Link href="#" variant="body2">
+										{t('AreYouANewUser')} {t('Register')}
+									</Link>
+								</Grid>
 							</Grid>
-							<Grid item>
-								<Link href="#" variant="body2">
-									{"Don't have an account? Sign Up"}
-								</Link>
-							</Grid>
-						</Grid>
+						)}
 					</React.Fragment>
 				</Form>
 			</div>
-			<Box mt={8}>
-				<Copyright />
-			</Box>
 		</Container>
 	);
 }
+
+SignInForm.defaultProps = {
+	isSelfRegistrationEnabled: true,
+};
 
 export default SignInForm;

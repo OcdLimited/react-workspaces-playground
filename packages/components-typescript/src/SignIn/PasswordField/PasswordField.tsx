@@ -1,6 +1,7 @@
 import React from 'react'; // we need this to make JSX compile
 import { Field } from 'formik';
 import { FieldProps } from 'formik';
+import { useTranslation } from 'react-i18next';
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
@@ -17,6 +18,7 @@ export function Password({ required, field }: TextFieldProps) {
 	const [values, setValues] = React.useState({
 		showPassword: false,
 	});
+	const { t } = useTranslation('AbpAccount');
 
 	const handleClickShowPassword = () => {
 		setValues({ ...values, showPassword: !values.showPassword });
@@ -28,7 +30,7 @@ export function Password({ required, field }: TextFieldProps) {
 
 	return (
 		<FormControl variant="outlined" margin="normal" fullWidth required={required}>
-			<InputLabel htmlFor="password">Password</InputLabel>
+			<InputLabel htmlFor="password">{t('Password')}</InputLabel>
 			<OutlinedInput
 				id="password"
 				type={values.showPassword ? 'text' : 'password'}

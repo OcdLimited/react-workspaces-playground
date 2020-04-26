@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 import { Provider } from 'react-redux';
 
 import './index.css';
@@ -8,12 +8,7 @@ import App from './App';
 import { store } from './app/store';
 import * as serviceWorker from './serviceWorker';
 import { CssBaseline } from '@material-ui/core';
-
-const theme = createMuiTheme({
-	palette: {
-		type: 'dark',
-	},
-});
+import { Dark as theme } from './themes';
 
 ReactDOM.render(
 	<React.StrictMode>
