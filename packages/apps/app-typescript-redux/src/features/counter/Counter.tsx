@@ -1,9 +1,25 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { decrement, increment, incrementByAmount, incrementAsync, selectCount } from './counterSlice';
+import { useSaga, useReducer } from '@ocdlimited/abp.react.redux';
+import counter, { decrement, increment, incrementByAmount, incrementAsync, selectCount } from './counterSlice';
+import rootSaga from './sagas';
+
 import styles from './Counter.module.css';
 
-export function Counter() {
+export function Counter(props: any) {
+	useReducer({
+		key: 'counter',
+		reducer: counter,
+	});
+	useSaga({
+		key: 'counter',
+		saga: rootSaga,
+	});
+
+	return <CounterComponent {...props} />;
+}
+
+export function CounterComponent() {
 	const count = useSelector(selectCount);
 	const dispatch = useDispatch();
 	const [incrementAmount, setIncrementAmount] = useState('2');

@@ -3,8 +3,8 @@ import { Provider } from 'react-redux';
 import addons from '@storybook/addons';
 import withRedux from 'addon-redux/withRedux';
 
-import { Counter } from './Counter';
-import { increment, decrement, incrementByAmount } from './counterSlice';
+import { About } from './About';
+import { increment, decrement, incrementByAmount } from '../counter/counterSlice';
 import { store } from '../../app/redux/store';
 
 const withReduxSettings = {
@@ -32,11 +32,11 @@ const withReduxSettings = {
 const withReduxDecorator = withRedux(addons)(withReduxSettings);
 
 export default {
-	title: 'Features/count',
-	component: Counter,
+	title: 'Features/about',
+	component: About,
 };
 
-export const Default = () => <Counter />;
+export const Default = () => <About />;
 
 Default.story = {
 	decorators: [withReduxDecorator],

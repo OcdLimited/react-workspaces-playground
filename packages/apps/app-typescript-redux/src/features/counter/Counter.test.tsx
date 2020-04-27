@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { store } from '../../app/store';
+import { store } from '../../app/redux/store';
 import { Counter } from './Counter';
 
 it('increment', () => {
@@ -57,4 +57,13 @@ it('Set increment amount', () => {
 	const add = getByLabelText(/Set increment amount/i);
 	expect(add).toBeInTheDocument();
 	fireEvent.change(add, { target: { value: 'a' } });
+});
+
+it('snapshot', () => {
+	const { container } = render(
+		<Provider store={store}>
+			<Counter />
+		</Provider>,
+	);
+	expect(container).toMatchSnapshot();
 });

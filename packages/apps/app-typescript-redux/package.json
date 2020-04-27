@@ -4,6 +4,7 @@
 	"homepage": "https://ocdlimited.github.io/react-workspaces-playground/",
 	"private": true,
 	"dependencies": {
+		"@ocdlimited/abp.react.redux": "^0.0.2-alpha.0",
 		"@material-ui/core": "^4.9.11",
 		"@material-ui/icons": "^4.9.1",
 		"@material-ui/styles": "^4.9.1",
@@ -20,7 +21,6 @@
 		"@types/node": "^13.1.6",
 		"@types/react": "^16.9.17",
 		"@types/react-dom": "^16.9.4",
-		"@ocdlimited/components-typescript": "^0.0.2-alpha.0",
 		"@reduxjs/toolkit": "^1.2.5",
 		"@testing-library/jest-dom": "^4.2.4",
 		"@types/react-redux": "^7.1.7",
@@ -32,7 +32,8 @@
 		"react-redux": "^7.2.0",
 		"@react-workspaces/react-scripts": "^3.3.0-alpha-08",
 		"typescript": "~3.8.2",
-		"formik": "^2.1.4"
+		"formik": "^2.1.4",
+		"redux-saga": "1.1.3"
 	},
 	"scripts": {
 		"start": "react-scripts start",
