@@ -32,7 +32,7 @@ export const counterSlice = createSlice({
 
 export const { increment, decrement, incrementByAmount } = counterSlice.actions;
 
-export const incrementAsync = createAction<number>('counter/incrementAsyncSaga');
+export const incrementAsync = createAction<number>('counter/incrementAsync');
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This

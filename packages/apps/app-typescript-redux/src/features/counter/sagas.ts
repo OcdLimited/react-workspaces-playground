@@ -1,14 +1,15 @@
 import { put, takeEvery, all } from 'redux-saga/effects';
+import { incrementByAmount, incrementAsync } from './counterSlice';
 
 const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
 
-export function* incrementAsync() {
+export function* performIncrementAsync(action: any) {
 	yield delay(1000);
-	yield put({ type: 'counter/increment' });
+	yield put(incrementByAmount(action.payload));
 }
 
 export function* watchIncrementAsync() {
-	yield takeEvery('counter/incrementAsyncSaga', incrementAsync);
+	yield takeEvery(incrementAsync, performIncrementAsync);
 }
 
 export default function* rootSaga() {

@@ -58,3 +58,12 @@ it('Set increment amount', () => {
 	expect(add).toBeInTheDocument();
 	fireEvent.change(add, { target: { value: 'a' } });
 });
+
+it('snapshot', () => {
+	const { container } = render(
+		<Provider store={store}>
+			<Counter />
+		</Provider>,
+	);
+	expect(container).toMatchSnapshot();
+});

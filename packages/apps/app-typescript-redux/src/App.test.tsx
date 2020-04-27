@@ -5,9 +5,11 @@ import { store } from './app/redux/store';
 import App from './App';
 
 it('renders', () => {
-	render(
+	const { container } = render(
 		<Provider store={store}>
 			<App />
 		</Provider>,
 	);
+
+	expect(container).toMatchSnapshot();
 });
