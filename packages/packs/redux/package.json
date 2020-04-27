@@ -1,8 +1,8 @@
 {
 	"name": "@ocdlimited/abp.react.redux",
 	"version": "0.0.2-alpha.0",
-	"main": "src/index.tsx",
-	"main:src": "src/index.tsx",
+	"main": "src/index.ts",
+	"main:src": "src/index.ts",
 	"scripts": {
 		"test": "react-scripts test",
 		"lint": "eslint ./src/**/*.ts --max-warnings=0 --format=codeframe"
