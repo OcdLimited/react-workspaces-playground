@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 
 import './index.css';
 import App from './App';
-import { store } from './app/store';
+import { store } from './app/redux/store';
 import * as serviceWorker from './serviceWorker';
 import { CssBaseline } from '@material-ui/core';
 import { Dark as theme } from './themes';
