@@ -1,29 +1,26 @@
-import { Store } from '@reduxjs/toolkit';
+import { InjectableStore } from '../store';
 
-export enum Mode {
-	RESTART_ON_REMOUNT = '@@saga-injector/restart-on-remount',
-	DAEMON = '@@saga-injector/daemon',
-	ONCE_TILL_UNMOUNT = '@@saga-injector/once-till-unmount',
-}
+export const RESTART_ON_REMOUNT = '@@saga-injector/restart-on-remount';
+export const DAEMON = '@@saga-injector/daemon';
+export const ONCE_TILL_UNMOUNT = '@@saga-injector/once-till-unmount';
+
+export const Mode = {
+	RESTART_ON_REMOUNT,
+	DAEMON,
+	ONCE_TILL_UNMOUNT,
+};
 
 export interface SagaDescriptor {
 	key: string;
-	mode?: Mode;
+	mode?: string;
 	saga: any;
 }
 
-export interface InjectableStore extends Store {
-	injectedSagas: any;
-	runSaga(saga: any, args: any): any;
-}
-
 export function injectSagaFactory(store: InjectableStore) {
-	return function injectSaga(key: string, descriptor: SagaDescriptor, args: any) {
-		if (!descriptor) return;
-
+	return function injectSaga(key: string, descriptor: SagaDescriptor, args?: any) {
 		const newDescriptor = {
 			...descriptor,
-			mode: descriptor.mode || Mode.RESTART_ON_REMOUNT,
+			mode: descriptor.mode || RESTART_ON_REMOUNT,
 		};
 		const { saga, mode } = newDescriptor;
 
@@ -38,7 +35,7 @@ export function injectSagaFactory(store: InjectableStore) {
 			}
 		}
 
-		if (!hasSaga || (hasSaga && mode !== Mode.DAEMON && mode !== Mode.ONCE_TILL_UNMOUNT)) {
+		if (!hasSaga || (hasSaga && mode !== DAEMON && mode !== Mode.ONCE_TILL_UNMOUNT)) {
 			/* eslint-disable no-param-reassign */
 			store.injectedSagas[key] = {
 				...newDescriptor,
@@ -56,6 +53,7 @@ export function ejectSagaFactory(store: InjectableStore) {
 			if (descriptor.mode !== Mode.DAEMON) {
 				descriptor.task.cancel();
 				// Clean up in production; in development we need `descriptor.saga` for hot reloading
+				/* istanbul ignore next */
 				if (process.env.NODE_ENV === 'production') {
 					// Need some value to be able to detect `ONCE_TILL_UNMOUNT` sagas in `injectSaga`
 					store.injectedSagas[key] = 'done'; // eslint-disable-line no-param-reassign

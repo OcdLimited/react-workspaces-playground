@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction, createAction } from '@reduxjs/toolkit';
-import { RootState } from '../../app/redux/store';
 
 interface CounterState {
 	value: number;
@@ -44,9 +43,13 @@ export const incrementAsync = createAction<number>('counter/incrementAsync');
 // 	}, 1000);
 // };
 
+export type CounerState = {
+	counter: any;
+};
+
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
-export const selectCount = (state: RootState) => state.counter.value;
+export const selectCount = (state: CounerState) => (state.counter && state.counter.value) || 0;
 
 export default counterSlice.reducer;

@@ -16,6 +16,7 @@
 	"workspaces": {
 		"packages": [
 			"packages/apps/*",
+			"packages/packs/*",
 			"packages/components",
 			"packages/components-typescript",
 			"packages/storybook",
