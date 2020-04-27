@@ -11,6 +11,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { PasswordField } from '../PasswordField/PasswordField';
 import { UsernameField } from '../UsernameField/UsernameField';
@@ -39,7 +40,7 @@ const useStyles = makeStyles(theme => ({
 	},
 }));
 
-export function SignInForm(props: SignInFormProps) {
+export function SignInForm({ isSubmitting, ...props }: SignInFormProps) {
 	const classes = useStyles();
 	const { t } = useTranslation('AbpAccount');
 
@@ -64,8 +65,15 @@ export function SignInForm(props: SignInFormProps) {
 							type="checkbox"
 							Label={{ label: t('RememberMe') }}
 						/>
-						<Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
-							{t('Login')}
+						<Button
+							type="submit"
+							fullWidth
+							variant="contained"
+							color="primary"
+							className={classes.submit}
+							disabled={isSubmitting}
+						>
+							{isSubmitting ? <CircularProgress color="secondary" /> : t('Login')}
 						</Button>
 						{props.isSelfRegistrationEnabled && (
 							<Grid container>
