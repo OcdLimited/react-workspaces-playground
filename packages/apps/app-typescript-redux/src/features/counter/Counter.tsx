@@ -1,9 +1,19 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useSaga } from '../../app/redux/sagas/withSaga';
 import { decrement, increment, incrementByAmount, incrementAsync, selectCount } from './counterSlice';
+import rootSaga from './sagas';
+
 import styles from './Counter.module.css';
 
 export function Counter() {
+	useSaga(
+		{
+			key: 'counter',
+			saga: rootSaga,
+		},
+		{},
+	);
 	const count = useSelector(selectCount);
 	const dispatch = useDispatch();
 	const [incrementAmount, setIncrementAmount] = useState('2');
