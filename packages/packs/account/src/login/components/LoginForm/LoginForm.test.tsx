@@ -12,3 +12,13 @@ it('renders without crashing', () => {
 		</React.Fragment>,
 	);
 });
+
+it('renders without crashing - isSubmitting', () => {
+	render(
+		<React.Fragment>
+			<Formik onSubmit={() => {}} initialValues={{}}>
+				{() => <LoginForm isSubmitting={true} />}
+			</Formik>
+		</React.Fragment>,
+	);
+});

@@ -7,10 +7,31 @@ it('renders without crashing', () => {
 	render(
 		<React.Fragment>
 			<Formik onSubmit={() => {}} initialValues={{}}>
-				{() => <PasswordField />}
+				{() => <PasswordField required />}
 			</Formik>
 		</React.Fragment>,
 	);
+});
+
+it('validation shows', () => {
+	const { getByText } = render(
+		<React.Fragment>
+			<Formik
+				onSubmit={() => {}}
+				initialValues={{}}
+				initialErrors={{
+					password: 'Required',
+				}}
+				initialTouched={{
+					password: true,
+				}}
+			>
+				{() => <PasswordField required />}
+			</Formik>
+		</React.Fragment>,
+	);
+
+	expect(getByText('Required')).toBeInTheDocument();
 });
 
 it('can change to test', () => {

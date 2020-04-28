@@ -1,6 +1,13 @@
 import { AuthService } from './authService';
+import ClientOAuth2 from 'client-oauth2';
 
-it('should work', async () => {
+jest.mock('client-oauth2');
+
+beforeEach(() => {
+	ClientOAuth2.mockClear();
+});
+
+it('error should not be a success', async () => {
 	var auth = new AuthService({
 		clientId: '',
 		clientSecret: '',
@@ -10,5 +17,22 @@ it('should work', async () => {
 		scopes: ['scope'],
 	});
 
-	await auth.login('username', 'password');
+	const result = await auth.login('throw', 'password');
+
+	expect(result.success).toBeFalsy();
+});
+
+it('error should be a success', async () => {
+	var auth = new AuthService({
+		clientId: '',
+		clientSecret: '',
+		accessTokenUri: '',
+		authorizationUri: '',
+		redirectUri: '',
+		scopes: ['scope'],
+	});
+
+	const result = await auth.login('username', 'password');
+
+	expect(result.success).toBeTruthy();
 });

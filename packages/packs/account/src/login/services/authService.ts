@@ -9,19 +9,19 @@ interface LoginResult {
 
 export class AuthService {
 	options: ClientOAuth2.Options;
+	authClient: ClientOAuth2;
 
 	constructor(options: ClientOAuth2.Options) {
 		this.options = options;
-	}
-
-	async login(username: string, password: string, options: ClientOAuth2.Options = {}): Promise<LoginResult> {
-		var authClient = new ClientOAuth2({
+		this.authClient = new ClientOAuth2({
 			...this.options,
 			...options,
 		});
+	}
 
+	async login(username: string, password: string, options: ClientOAuth2.Options = {}): Promise<LoginResult> {
 		try {
-			const accessToken = await authClient.owner.getToken(username, password, {
+			const accessToken = await this.authClient.owner.getToken(username, password, {
 				// TODO: Tenant header
 			});
 

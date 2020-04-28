@@ -1,4 +1,5 @@
 import React from 'react';
+import { action } from '@storybook/addon-actions';
 
 import { LoginPage } from './LoginPage';
 
@@ -7,6 +8,6 @@ export default {
 	component: LoginPage,
 };
 
-export const Default = () => <LoginPage />;
+export const Default = () => <LoginPage onSubmit={action('onSubmit')} />;
 
 Default.story = {};

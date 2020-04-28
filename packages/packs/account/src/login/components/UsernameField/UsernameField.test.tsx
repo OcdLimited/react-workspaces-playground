@@ -12,3 +12,12 @@ it('renders without crashing', () => {
 		</React.Fragment>,
 	);
 });
+
+it('snapshot', () => {
+	const { container } = render(
+		<Formik onSubmit={() => {}} initialValues={{}}>
+			{() => <UsernameField />}
+		</Formik>,
+	);
+	expect(container).toMatchSnapshot();
+});
