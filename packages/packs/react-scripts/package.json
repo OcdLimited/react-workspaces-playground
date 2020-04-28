@@ -1,6 +1,6 @@
 {
 	"name": "@ocdlimited/react-scripts",
-	"version": "3.4.1",
+	"version": "0.0.3-alpha.0",
 	"description": "Configuration and scripts for Create React App.",
 	"repository": {
 		"type": "git",
