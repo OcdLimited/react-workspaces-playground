@@ -4,32 +4,25 @@ import { render } from '@testing-library/react';
 import AccountRoutes from './routes';
 
 it('renders without crashing', () => {
-	render(
+	const { queryByText } = render(
 		<MemoryRouter>
 			<Routes>
 				<Route path={AccountRoutes.path} element={<AccountRoutes />} />
 			</Routes>
 		</MemoryRouter>,
 	);
+
+	expect(queryByText('Password')).toBeNull();
 });
 
 it('renders login without crashing', () => {
-	render(
+	const { getByText } = render(
 		<MemoryRouter initialEntries={['/account/login']}>
 			<Routes>
 				<Route path={AccountRoutes.path} element={<AccountRoutes />} />
 			</Routes>
 		</MemoryRouter>,
 	);
-});
 
-it('snapshot', () => {
-	const { container } = render(
-		<MemoryRouter>
-			<Routes>
-				<Route path={AccountRoutes.path} element={<AccountRoutes />} />
-			</Routes>
-		</MemoryRouter>,
-	);
-	expect(container).toMatchSnapshot();
+	expect(getByText('Password')).toBeInTheDocument();
 });
