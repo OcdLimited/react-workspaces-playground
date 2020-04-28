@@ -4,7 +4,7 @@ module.exports = {
 		{
 			name: '@storybook/preset-create-react-app',
 			options: {
-				scriptsPackageName: '@react-workspaces/react-scripts',
+				scriptsPackageName: '@ocdlimited/react-scripts',
 			},
 		},
 		,

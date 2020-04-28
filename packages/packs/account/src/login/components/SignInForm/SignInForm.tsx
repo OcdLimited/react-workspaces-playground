@@ -3,7 +3,6 @@ import { Form, Field } from 'formik';
 import { useTranslation } from 'react-i18next';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import { CheckboxWithLabel } from 'formik-material-ui';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
@@ -18,6 +17,7 @@ import { UsernameField } from '../UsernameField/UsernameField';
 
 interface SignInFormProps {
 	isSelfRegistrationEnabled: boolean;
+	isSubmitting: boolean;
 }
 
 const useStyles = makeStyles(theme => ({
@@ -92,6 +92,7 @@ export function SignInForm({ isSubmitting, ...props }: SignInFormProps) {
 
 SignInForm.defaultProps = {
 	isSelfRegistrationEnabled: true,
+	isSubmitting: false,
 };
 
 export default SignInForm;

@@ -1,5 +1,5 @@
 {
-	"name": "@ocdlimited/abp.react.redux",
+	"name": "@ocdlimited/abp.react.account",
 	"version": "0.0.3-alpha.0",
 	"main": "src/index.ts",
 	"main:src": "src/index.ts",

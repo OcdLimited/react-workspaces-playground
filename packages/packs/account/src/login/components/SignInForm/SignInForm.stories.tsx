@@ -4,7 +4,7 @@ import { withKnobs, boolean } from '@storybook/addon-knobs';
 import { SignInForm } from './SignInForm';
 
 export default {
-	title: 'SignIn/SignInForm',
+	title: 'Account/Login/Components/SignInForm',
 };
 
 export const Text = () => <SignInForm isSelfRegistrationEnabled={boolean('isSelfRegistrationEnabled', true)} />;
