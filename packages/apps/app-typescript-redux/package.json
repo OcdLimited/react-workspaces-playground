@@ -29,7 +29,7 @@
 		"react-router": "6.0.0-alpha.3",
 		"react-router-dom": "6.0.0-alpha.3",
 		"react-redux": "^7.2.0",
-		"@react-workspaces/react-scripts": "^3.3.0-alpha-08",
+		"@ocdlimited/react-scripts": "^3.4.1",
 		"typescript": "~3.8.2",
 		"formik": "^2.1.4",
 		"redux-saga": "1.1.3"
