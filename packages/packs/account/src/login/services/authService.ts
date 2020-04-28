@@ -7,7 +7,7 @@ interface LoginResult {
 	body?: any;
 }
 
-export default class AuthService {
+export class AuthService {
 	options: ClientOAuth2.Options;
 
 	constructor(options: ClientOAuth2.Options) {
@@ -38,3 +38,5 @@ export default class AuthService {
 		}
 	}
 }
+
+export default AuthService;

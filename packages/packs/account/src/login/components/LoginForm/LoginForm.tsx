@@ -15,7 +15,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { PasswordField } from '../PasswordField/PasswordField';
 import { UsernameField } from '../UsernameField/UsernameField';
 
-interface SignInFormProps {
+interface LoginFormProps {
 	isSelfRegistrationEnabled: boolean;
 	isSubmitting: boolean;
 }
@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
 	},
 }));
 
-export function SignInForm({ isSubmitting, ...props }: SignInFormProps) {
+export function LoginForm({ isSubmitting, ...props }: LoginFormProps) {
 	const classes = useStyles();
 	const { t } = useTranslation('AbpAccount');
 
@@ -90,9 +90,9 @@ export function SignInForm({ isSubmitting, ...props }: SignInFormProps) {
 	);
 }
 
-SignInForm.defaultProps = {
+LoginForm.defaultProps = {
 	isSelfRegistrationEnabled: true,
 	isSubmitting: false,
 };
 
-export default SignInForm;
+export default LoginForm;

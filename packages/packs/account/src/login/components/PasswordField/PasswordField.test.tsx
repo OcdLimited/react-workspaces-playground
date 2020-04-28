@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import { PasswordField } from '.';
 import { Formik } from 'formik';
+import { PasswordField } from '.';
 
 it('renders without crashing', () => {
 	render(

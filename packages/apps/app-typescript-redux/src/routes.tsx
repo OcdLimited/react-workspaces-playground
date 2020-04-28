@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { LoginPage } from './features/login';
+import { LoginPage } from '@ocdlimited/abp.react.account';
 import { About } from './features/about/About';
 
 export default () => (
