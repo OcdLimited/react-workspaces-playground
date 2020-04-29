@@ -3,7 +3,6 @@ import { Form, Field } from 'formik';
 import { useTranslation } from 'react-i18next';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import { CheckboxWithLabel } from 'formik-material-ui';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
@@ -11,12 +10,14 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { PasswordField } from '../PasswordField/PasswordField';
 import { UsernameField } from '../UsernameField/UsernameField';
 
-interface SignInFormProps {
+interface LoginFormProps {
 	isSelfRegistrationEnabled: boolean;
+	isSubmitting: boolean;
 }
 
 const useStyles = makeStyles(theme => ({
@@ -39,7 +40,7 @@ const useStyles = makeStyles(theme => ({
 	},
 }));
 
-export function SignInForm(props: SignInFormProps) {
+export function LoginForm({ isSubmitting, ...props }: LoginFormProps) {
 	const classes = useStyles();
 	const { t } = useTranslation('AbpAccount');
 
@@ -63,8 +64,15 @@ export function SignInForm(props: SignInFormProps) {
 							type="checkbox"
 							Label={{ label: t('RememberMe') }}
 						/>
-						<Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
-							{t('Login')}
+						<Button
+							type="submit"
+							fullWidth
+							variant="contained"
+							color="primary"
+							className={classes.submit}
+							disabled={isSubmitting}
+						>
+							{isSubmitting ? <CircularProgress color="secondary" /> : t('Login')}
 						</Button>
 						{props.isSelfRegistrationEnabled && (
 							<Grid container>
@@ -82,8 +90,9 @@ export function SignInForm(props: SignInFormProps) {
 	);
 }
 
-SignInForm.defaultProps = {
+LoginForm.defaultProps = {
 	isSelfRegistrationEnabled: true,
+	isSubmitting: false,
 };
 
-export default SignInForm;
+export default LoginForm;

@@ -14,5 +14,6 @@ export function useSaga(reg: SagaDescriptor, props?: any) {
 		return function cleanup() {
 			injectSaga.eject(reg.key);
 		};
-	});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 }

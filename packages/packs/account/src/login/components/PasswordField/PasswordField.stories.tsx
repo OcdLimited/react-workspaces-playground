@@ -3,7 +3,7 @@ import withFormik from 'storybook-formik';
 import { PasswordField } from './PasswordField';
 
 export default {
-	title: 'SignIn/PasswordField',
+	title: 'Account/Login/Components/PasswordField',
 };
 
 export const Default = () => <PasswordField />;

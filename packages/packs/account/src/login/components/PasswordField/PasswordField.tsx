@@ -1,20 +1,28 @@
 import React from 'react'; // we need this to make JSX compile
-import { Field } from 'formik';
-import { FieldProps } from 'formik';
+import { Field, getIn, FieldProps } from 'formik';
 import { useTranslation } from 'react-i18next';
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import { InputLabel, OutlinedInput, FormControl } from '@material-ui/core';
+import { InputLabel, OutlinedInput, FormControl, FormHelperText, OutlinedTextFieldProps } from '@material-ui/core';
 
-export interface TextFieldProps extends FieldProps {
+export interface TextFieldProps extends OutlinedTextFieldProps, FieldProps {
 	required: boolean;
 	disabled: boolean;
-	helperTest: string;
+	helperText?: string;
+	id?: string;
 }
 
-export function Password({ required, field }: TextFieldProps) {
+export function Password({
+	required,
+	disabled,
+	field,
+	form: { isSubmitting, touched, errors },
+	id,
+	FormHelperTextProps,
+	...props
+}: TextFieldProps) {
 	const [values, setValues] = React.useState({
 		showPassword: false,
 	});
@@ -28,8 +36,20 @@ export function Password({ required, field }: TextFieldProps) {
 		event.preventDefault();
 	};
 
+	const fieldError = getIn(errors, field.name);
+	const showError = getIn(touched, field.name) && !!fieldError;
+
+	const helperText = showError ? fieldError : props.helperText;
+
+	const meta = {
+		error: showError,
+		disabled: disabled ?? isSubmitting,
+	};
+
+	const helperTextId = props.helperText && id ? `${id}-helper-text` : undefined;
+
 	return (
-		<FormControl variant="outlined" margin="normal" fullWidth required={required}>
+		<FormControl variant="outlined" margin="normal" fullWidth required={required} error={showError}>
 			<InputLabel htmlFor="password">{t('Password')}</InputLabel>
 			<OutlinedInput
 				id="password"
@@ -48,7 +68,13 @@ export function Password({ required, field }: TextFieldProps) {
 				}
 				labelWidth={70}
 				{...field}
+				{...meta}
 			/>
+			{helperText && (
+				<FormHelperText id={helperTextId} {...FormHelperTextProps}>
+					{helperText}
+				</FormHelperText>
+			)}
 		</FormControl>
 	);
 }

@@ -1,12 +1,8 @@
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
-
-import en from './langs/en.json';
+const i18n = require('i18next');
+const { initReactI18next } = require('react-i18next');
 
 const resources = {
-	en: {
-		...en.localization.values,
-	},
+	en: {},
 };
 
 i18n
@@ -19,4 +15,6 @@ i18n
 		},
 	});
 
-export default i18n;
+module.exports = {
+	i18n,
+};

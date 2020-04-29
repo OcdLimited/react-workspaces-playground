@@ -50,8 +50,12 @@ export function ejectSagaFactory(store: InjectableStore) {
 	return function ejectSaga(key: string) {
 		if (Reflect.has(store.injectedSagas, key)) {
 			const descriptor = store.injectedSagas[key];
-			if (descriptor.mode !== Mode.DAEMON) {
-				descriptor.task.cancel();
+			if (descriptor.mode !== Mode.DAEMON && descriptor.task) {
+				/* istanbul ignore next */
+				if (descriptor.task.isRunning()) {
+					descriptor.task.end();
+					descriptor.task.cancel();
+				}
 				// Clean up in production; in development we need `descriptor.saga` for hot reloading
 				/* istanbul ignore next */
 				if (process.env.NODE_ENV === 'production') {

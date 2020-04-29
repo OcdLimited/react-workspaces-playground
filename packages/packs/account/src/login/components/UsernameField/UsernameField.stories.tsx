@@ -3,7 +3,7 @@ import withFormik from 'storybook-formik';
 import { UsernameField } from './UsernameField';
 
 export default {
-	title: 'SignIn/UsernameField',
+	title: 'Account/Login/Components/UsernameField',
 };
 
 export const Default = () => <UsernameField autoFocus />;

@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import logo from './logo.svg';
 import { Counter } from '../counter/Counter';
 
@@ -10,6 +12,9 @@ export function About() {
 			<header className="App-header">
 				<img src={logo} className="App-logo" alt="logo" />
 				<Counter />
+				<p>
+					<Link to="/account/login">Login</Link>
+				</p>
 				<p>ocd.codes react sdk</p>
 				<span>
 					<span>Learn </span>
