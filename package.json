@@ -6,18 +6,22 @@
 		"start:app-multi": "yarn workspace @ocdlimited/app-multi-comps start",
 		"start:app-single": "yarn workspace @ocdlimited/app-single-comp start",
 		"start:app-ts": "yarn workspace @ocdlimited/app-typescript start",
+		"start:app-ts-redux": "yarn workspace @ocdlimited/app-typescript-redux start",
 		"start:storybook": "yarn workspace @ocdlimited/storybook storybook",
 		"start:storybook-ts": "yarn workspace @ocdlimited/storybook-typescript storybook",
+		"start:storybook-ts-redux": "yarn workspace @ocdlimited/app-typescript-redux storybook",
 		"test": "FORCE_COLOR=true lerna run lint && CI=true FORCE_COLOR=true lerna run test -- --coverage",
 		"deploy": "FORCE_COLOR=true lerna run deploy"
 	},
 	"workspaces": {
 		"packages": [
 			"packages/apps/*",
+			"packages/packs/*",
 			"packages/components",
 			"packages/components-typescript",
 			"packages/storybook",
-			"packages/storybook-typescript"
+			"packages/storybook-typescript",
+			"packages/storybook-typescript-redux"
 		],
 		"nohoist": [
 			"packages/apps/**/webpack-dev-server",
@@ -28,7 +32,7 @@
 	"devDependencies": {
 		"@typescript-eslint/eslint-plugin": "^2.15.0",
 		"@typescript-eslint/parser": "^2.15.0",
-		"babel-eslint": "10.0.3",
+		"babel-eslint": "10.1.0",
 		"eslint": "6.8.0",
 		"eslint-config-prettier": "^6.9.0",
 		"eslint-config-react-app": "^5.1.0",
@@ -36,7 +40,7 @@
 		"eslint-plugin-import": "^2.19.1",
 		"eslint-plugin-jsx-a11y": "^6.2.3",
 		"eslint-plugin-prettier": "^3.1.2",
-		"eslint-plugin-react": "^7.17.0",
+		"eslint-plugin-react": "^7.17.2",
 		"eslint-plugin-react-hooks": "^2.3.0",
 		"husky": "^4.0.6",
 		"jest-prop-type-error": "^1.1.0",

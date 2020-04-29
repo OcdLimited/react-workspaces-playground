@@ -1,7 +1,7 @@
 {
 	"name": "@ocdlimited/app-ant-design-rewired",
-	"version": "1.0.0",
-	"homepage": "https://react-workspaces.github.io/react-workspaces-playground",
+	"version": "0.0.3-alpha.0",
+	"homepage": "https://ocdlimited.github.io/react-workspaces-playground/",
 	"private": true,
 	"scripts": {
 		"start": "react-app-rewired start --scripts-version @react-workspaces/react-scripts",
@@ -13,24 +13,24 @@
 		"analyze": "source-map-explorer 'build/static/js/*.js'"
 	},
 	"dependencies": {
-		"@ocdlimited/components": "1.0.0",
-		"@react-workspaces/react-scripts": "^3.3.0-alpha-08",
-		"react": "^16.12.0",
-		"react-dom": "^16.12.0"
+		"@ocdlimited/components": "^0.0.3-alpha.0",
+		"@ocdlimited/react-scripts": "^0.0.3-alpha.0",
+		"react": "^16.13.1",
+		"react-dom": "^16.13.1"
 	},
 	"devDependencies": {
-		"react-app-rewired": "^2.1.5",
 		"antd": "^3.26.6",
 		"babel-plugin-import": "^1.13.0",
+		"cross-env": "7.0.2",
 		"customize-cra": "^0.9.1",
-		"cross-env": "6.0.3",
 		"enzyme": "^3.11.0",
 		"enzyme-adapter-react-16": "^1.15.2",
-		"gh-pages": "^2.2.0",
-		"source-map-explorer": "^2.2.2",
-		"eslint-config-react-app": "^5.1.0",
 		"eslint-config-prettier": "^6.9.0",
-		"eslint-plugin-prettier": "^3.1.2"
+		"eslint-config-react-app": "^5.1.0",
+		"eslint-plugin-prettier": "^3.1.2",
+		"gh-pages": "^2.2.0",
+		"react-app-rewired": "^2.1.5",
+		"source-map-explorer": "^2.2.2"
 	},
 	"browserslist": {
 		"production": [

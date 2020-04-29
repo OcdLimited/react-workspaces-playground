@@ -1,7 +1,7 @@
 {
 	"name": "@ocdlimited/components",
-	"version": "1.0.0",
-	"homepage": "https://react-workspaces.github.io/react-workspaces-playground",
+	"version": "0.0.3-alpha.0",
+	"homepage": "https://ocdlimited.github.io/react-workspaces-playground/",
 	"main": "src/index.js",
 	"main:src": "src/index.js",
 	"scripts": {
@@ -9,19 +9,19 @@
 		"lint": "eslint ./src/**/*.js --max-warnings=0 --format=codeframe"
 	},
 	"dependencies": {
-		"@react-workspaces/react-scripts": "3.3.0-alpha-08",
-		"@storybook/react": "^5.2.8",
-		"react": "^16.12.0",
-		"react-dom": "^16.12.0"
+		"@ocdlimited/react-scripts": "^0.0.3-alpha.0",
+		"@storybook/react": "^5.3.18",
+		"react": "^16.13.1",
+		"react-dom": "^16.13.1"
 	},
 	"devDependencies": {
-		"cross-env": "6.0.3",
+		"cross-env": "7.0.2",
 		"enzyme": "^3.11.0",
 		"enzyme-adapter-react-16": "^1.15.2",
-		"prop-types": "^15.7.2",
 		"eslint-config-prettier": "^6.9.0",
+		"eslint-config-react-app": "^5.1.0",
 		"eslint-plugin-prettier": "^3.1.2",
-		"eslint-config-react-app": "^5.1.0"
+		"prop-types": "^15.7.2"
 	},
 	"browserslist": [
 		">0.2%",
