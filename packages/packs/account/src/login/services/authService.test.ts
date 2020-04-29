@@ -22,7 +22,7 @@ it('error should not be a success', async () => {
 	expect(result.success).toBeFalsy();
 });
 
-it('error should be a success', async () => {
+it('success should be a success', async () => {
 	var auth = new AuthService({
 		clientId: '',
 		clientSecret: '',

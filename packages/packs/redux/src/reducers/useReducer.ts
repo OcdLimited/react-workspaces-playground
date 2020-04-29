@@ -6,9 +6,10 @@ import { InjectableStore } from '../store';
 
 export function useReducer(reg: ReducerDescriptor) {
 	const store = useStore();
-	const injectReducer = useReducerInjector(store as InjectableStore);
+	const { inject } = useReducerInjector(store as InjectableStore);
 
 	useEffect(() => {
-		injectReducer.inject(reg.key, reg.reducer);
-	});
+		inject(reg.key, reg.reducer);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 }

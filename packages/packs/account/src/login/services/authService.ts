@@ -7,19 +7,20 @@ interface LoginResult {
 	body?: any;
 }
 
+export interface AuthOptions extends ClientOAuth2.Options {}
+
 export class AuthService {
-	options: ClientOAuth2.Options;
+	options: AuthOptions;
 	authClient: ClientOAuth2;
 
-	constructor(options: ClientOAuth2.Options) {
+	constructor(options: AuthOptions) {
 		this.options = options;
 		this.authClient = new ClientOAuth2({
 			...this.options,
-			...options,
 		});
 	}
 
-	async login(username: string, password: string, options: ClientOAuth2.Options = {}): Promise<LoginResult> {
+	async login(username: string, password: string): Promise<LoginResult> {
 		try {
 			const accessToken = await this.authClient.owner.getToken(username, password, {
 				// TODO: Tenant header

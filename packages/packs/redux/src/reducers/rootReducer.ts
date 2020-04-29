@@ -5,9 +5,3 @@ export function createRootReducer(injectedReducers: any): any {
 		...injectedReducers,
 	});
 }
-
-const rootReducer = createRootReducer({});
-
-export type RootState = ReturnType<typeof rootReducer>;
-
-export default rootReducer;

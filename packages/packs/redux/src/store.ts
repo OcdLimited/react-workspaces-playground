@@ -20,7 +20,7 @@ export function buildStore(rootReducer: any): InjectableStore {
 
 	const store = {
 		...configureStore({
-			reducer: rootReducer,
+			reducer: createRootReducer(rootReducer),
 			enhancers: enhancers,
 			middleware: [sagaMiddleware],
 		}),

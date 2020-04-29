@@ -1,15 +1,29 @@
 import React from 'react';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import { render } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { configureStore, createReducer } from '@reduxjs/toolkit';
+
 import AccountRoutes from './routes';
+
+const store = {
+	...configureStore({
+		reducer: createReducer(0, {}),
+	}),
+	injectedSagas: [],
+	runSaga: () => {},
+	injectedReducers: [],
+};
 
 it('renders without crashing', () => {
 	const { queryByText } = render(
-		<MemoryRouter>
-			<Routes>
-				<Route path={AccountRoutes.path} element={<AccountRoutes />} />
-			</Routes>
-		</MemoryRouter>,
+		<Provider store={store}>
+			<MemoryRouter>
+				<Routes>
+					<Route path={AccountRoutes.path} element={<AccountRoutes />} />
+				</Routes>
+			</MemoryRouter>
+		</Provider>,
 	);
 
 	expect(queryByText('Password')).toBeNull();
@@ -17,11 +31,13 @@ it('renders without crashing', () => {
 
 it('renders login without crashing', () => {
 	const { getByText } = render(
-		<MemoryRouter initialEntries={['/account/login']}>
-			<Routes>
-				<Route path={AccountRoutes.path} element={<AccountRoutes />} />
-			</Routes>
-		</MemoryRouter>,
+		<Provider store={store}>
+			<MemoryRouter initialEntries={['/account/login']}>
+				<Routes>
+					<Route path={AccountRoutes.path} element={<AccountRoutes />} />
+				</Routes>
+			</MemoryRouter>
+		</Provider>,
 	);
 
 	expect(getByText('Password')).toBeInTheDocument();

@@ -1,14 +1,8 @@
 import React from 'react';
 import { Formik } from 'formik';
 import { LoginForm } from '@ocdlimited/abp.react.account';
-//import AuthService from '../services/authService';
 import * as Yup from 'yup';
 import { useTranslation } from 'react-i18next';
-
-interface LoginData {
-	username: string;
-	password: string;
-}
 
 export function LoginPage({ onSubmit }: any) {
 	var { t } = useTranslation('AbpAccount');
