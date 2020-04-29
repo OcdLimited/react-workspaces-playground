@@ -1,5 +1,5 @@
 {
-	"name": "@ocdlimited/abp.react.redux",
+	"name": "@ocdlimited/abp.react.core",
 	"version": "0.0.4-alpha.0",
 	"main": "src/index.ts",
 	"main:src": "src/index.ts",
@@ -8,7 +8,6 @@
 		"lint": "eslint ./src/**/*.ts --max-warnings=0 --format=codeframe"
 	},
 	"dependencies": {
-		"@ocdlimited/abp.react.core": "^0.0.4-alpha.0",
 		"@ocdlimited/react-scripts": "^0.0.4-alpha.0",
 		"@reduxjs/toolkit": "^1.2.5",
 		"@testing-library/jest-dom": "^4.2.4",
@@ -44,7 +43,8 @@
 			"src/**/*.{ts,tsx}",
 			"!src/setupTests.{ts,tsx}",
 			"!src/serviceWorker.{ts,jsx}",
-			"!src/**/*.(spec|test|stories).{ts,tsx}"
+			"!src/**/*.(spec|test|stories).{ts,tsx}",
+			"!src/models/*.ts"
 		],
 		"coverageThreshold": {
 			"global": {

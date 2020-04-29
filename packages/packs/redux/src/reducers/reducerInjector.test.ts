@@ -8,7 +8,15 @@ it('should inject', () => {
 		empty: createReducer(0, {}),
 	});
 
-	expect(store.getState()).toEqual({ empty: 0 });
+	console.log(store.getState());
+
+	expect(store.getState()).toEqual({
+		empty: 0,
+		api: {
+			inflight: 0,
+		},
+		config: { loaded: false },
+	});
 
 	const testReducer = createReducer(0, {
 		increment: (state, action) => state + action.payload,
@@ -17,14 +25,35 @@ it('should inject', () => {
 
 	useReducerInjector(store).inject('test', testReducer);
 
-	expect(store.getState()).toEqual({ empty: 0, test: 0 });
+	expect(store.getState()).toEqual({
+		empty: 0,
+		test: 0,
+		api: {
+			inflight: 0,
+		},
+		config: { loaded: false },
+	});
 
 	store.dispatch({
 		type: 'increment',
 		payload: 10,
 	});
-	expect(store.getState()).toEqual({ empty: 0, test: 10 });
+	expect(store.getState()).toEqual({
+		empty: 0,
+		test: 10,
+		api: {
+			inflight: 0,
+		},
+		config: { loaded: false },
+	});
 
 	useReducerInjector(store).inject('test', testReducer);
-	expect(store.getState()).toEqual({ empty: 0, test: 10 });
+	expect(store.getState()).toEqual({
+		empty: 0,
+		test: 10,
+		api: {
+			inflight: 0,
+		},
+		config: { loaded: false },
+	});
 });
