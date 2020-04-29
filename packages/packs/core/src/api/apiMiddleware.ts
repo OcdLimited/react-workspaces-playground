@@ -20,6 +20,7 @@ export function createApiMiddleware() {
 		const dataOrParams = ['GET', 'DELETE'].includes(method) ? 'params' : 'data';
 		const BASE_URL = selectApiUrl(state);
 
+		console.log(BASE_URL, state);
 		try {
 			const response = await axios.request({
 				url: `${BASE_URL}${url}`,

@@ -10,7 +10,9 @@ it('setConfig', () => {
 
 it('selectConfigLoaded', () => {
 	const state = reducer(undefined, setConfig({}));
-	const result = selectConfigLoaded(state);
+	const result = selectConfigLoaded({
+		config: state,
+	});
 
 	expect(result).toBeTruthy();
 });
@@ -28,7 +30,9 @@ it('selectApiUrl', () => {
 			},
 		}),
 	);
-	const result = selectApiUrl(state);
+	const result = selectApiUrl({
+		config: state,
+	});
 
 	expect(result).toBeTruthy();
 });

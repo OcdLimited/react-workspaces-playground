@@ -32,12 +32,10 @@ export const appConfigSlice = createSlice({
 export const { setConfig } = appConfigSlice.actions;
 
 export type RootState = {
-	appConfig: AppConfigState;
-	loaded: boolean;
-	environment?: Environment;
+	config: AppConfigState;
 };
 
-export const selectConfigLoaded = (state: RootState) => state.loaded;
-export const selectApiUrl = (state: RootState) => state.environment && state.environment.apis.default.url;
+export const selectConfigLoaded = (state: RootState) => state.config.loaded;
+export const selectApiUrl = (state: RootState) => state.config.environment && state.config.environment.apis.default.url;
 
 export default appConfigSlice.reducer;
