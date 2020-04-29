@@ -1,10 +1,10 @@
 {
 	"name": "@ocdlimited/app-typescript",
-	"version": "0.0.3-alpha.0",
+	"version": "0.0.4-alpha.0",
 	"private": true,
 	"dependencies": {
-		"@ocdlimited/components-typescript": "^0.0.3-alpha.0",
-		"@ocdlimited/react-scripts": "^0.0.3-alpha.0",
+		"@ocdlimited/components-typescript": "^0.0.4-alpha.0",
+		"@ocdlimited/react-scripts": "^0.0.4-alpha.0",
 		"@testing-library/jest-dom": "^4.2.4",
 		"@testing-library/react": "^9.4.0",
 		"@testing-library/user-event": "^8.0.3",

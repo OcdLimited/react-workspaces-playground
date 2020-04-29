@@ -1,6 +1,6 @@
 {
 	"name": "@ocdlimited/abp.react.redux",
-	"version": "0.0.3-alpha.0",
+	"version": "0.0.4-alpha.0",
 	"main": "src/index.ts",
 	"main:src": "src/index.ts",
 	"scripts": {
@@ -8,7 +8,7 @@
 		"lint": "eslint ./src/**/*.ts --max-warnings=0 --format=codeframe"
 	},
 	"dependencies": {
-		"@ocdlimited/react-scripts": "^0.0.3-alpha.0",
+		"@ocdlimited/react-scripts": "^0.0.4-alpha.0",
 		"@reduxjs/toolkit": "^1.2.5",
 		"@testing-library/jest-dom": "^4.2.4",
 		"@testing-library/react": "^9.4.0",
