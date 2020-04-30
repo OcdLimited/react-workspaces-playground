@@ -1,4 +1,3 @@
-import { addDecorator } from '@storybook/react';
-import { MemoryRouter } from 'react-router-dom';
+import { configure } from '@storybook/react';
 
-addDecorator(storyFn => <MemoryRouter>{storyFn()}</MemoryRouter>);
+configure(require.context('@ocdlimited/abp.react.account/src', true, /.stories.tsx$/), module);

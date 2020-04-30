@@ -2,6 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import addons from '@storybook/addons';
 import withRedux from 'addon-redux/withRedux';
+import withRouterDecorator from '../../routerDecorator';
 
 import { About } from './About';
 import { increment, decrement, incrementByAmount } from '../counter/counterSlice';
@@ -39,5 +40,5 @@ export default {
 export const Default = () => <About />;
 
 Default.story = {
-	decorators: [withReduxDecorator],
+	decorators: [withReduxDecorator, withRouterDecorator],
 };
