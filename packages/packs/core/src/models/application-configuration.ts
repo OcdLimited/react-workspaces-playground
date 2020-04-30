@@ -11,6 +11,7 @@ export interface AppConfigResponse {
 export interface Localization {
 	values: LocalizationValue;
 	languages: Language[];
+	currentCulture: any;
 }
 
 export interface LocalizationValue {

@@ -37,5 +37,6 @@ export type RootState = {
 
 export const selectConfigLoaded = (state: RootState) => state.config.loaded;
 export const selectApiUrl = (state: RootState) => state.config.environment && state.config.environment.apis.default.url;
+export const selectLocalization = (state: RootState): any | undefined => state.config.localization;
 
 export default appConfigSlice.reducer;
