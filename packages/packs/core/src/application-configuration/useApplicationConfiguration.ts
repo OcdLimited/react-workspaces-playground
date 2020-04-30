@@ -1,11 +1,11 @@
 /* istanbul ignore file */
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { apiRequest } from '../api/apiSlice';
 import { AppConfigResponse } from '../models';
-import { setConfig } from './appConfigSlice';
+import { setConfig, selectConfigLoaded } from './appConfigSlice';
 
-export function useAppConfig(next: any) {
+export function useAppConfig(next?: any): any {
 	const dispatch = useDispatch();
 	useEffect(() => {
 		dispatch(
@@ -20,4 +20,8 @@ export function useAppConfig(next: any) {
 		);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+
+	const loaded = useSelector(selectConfigLoaded);
+
+	return loaded;
 }
