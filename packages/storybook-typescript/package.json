@@ -7,6 +7,7 @@
 		"build-storybook": "build-storybook"
 	},
 	"dependencies": {
+		"@ocdlimited/abp.react.core": "^0.0.4-alpha.0",
 		"@ocdlimited/abp.react.account": "^0.0.4-alpha.0",
 		"@ocdlimited/components-typescript": "^0.0.4-alpha.0",
 		"@ocdlimited/react-scripts": "^0.0.4-alpha.0",
