@@ -1,8 +1,3 @@
-import { addParameters } from '@storybook/react';
-import { themes } from '@storybook/theming';
-
-addParameters({
-	options: {
-		theme: themes.light,
-	},
-});
+import addons from '@storybook/addons';
+import registerRedux from 'addon-redux/register';
+registerRedux(addons);
