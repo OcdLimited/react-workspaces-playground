@@ -6,9 +6,9 @@ module.exports = {
 				scriptsPackageName: '@ocdlimited/react-scripts',
 			},
 		},
-		'@storybook/addon-knobs',
+		,
 		'@storybook/addon-actions',
 		'@storybook/addon-links',
-		'storybook-formik',
+		'@storybook/addon-knobs',
 	],
 };
