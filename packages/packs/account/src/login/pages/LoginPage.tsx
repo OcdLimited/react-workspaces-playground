@@ -1,6 +1,6 @@
 import React from 'react';
 import { Formik } from 'formik';
-import { LoginForm } from '@ocdlimited/abp.react.account';
+import { LoginForm } from '../components';
 import * as Yup from 'yup';
 import { useTranslation } from 'react-i18next';
 
