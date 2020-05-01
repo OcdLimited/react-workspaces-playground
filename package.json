@@ -4,7 +4,7 @@
 	"scripts": {
 		"start:app-ts-redux": "yarn workspace @ocdlimited/app-typescript-redux start",
 		"test:app-ts-redux": "yarn workspace @ocdlimited/app-typescript-redux test --coverage",
-		"start:storybook-ts": "yarn workspace @ocdlimited/storybook-typescript storybook",
+		"start:storybook-ts": "yarn workspace @ocdlimited/storybook-packs storybook",
 		"start:storybook-ts-redux": "yarn workspace @ocdlimited/app-typescript-redux storybook",
 		"test": "FORCE_COLOR=true lerna run lint && CI=true FORCE_COLOR=true lerna run test -- --coverage",
 		"deploy": "FORCE_COLOR=true lerna run deploy"
@@ -13,7 +13,7 @@
 		"packages": [
 			"packages/apps/*",
 			"packages/packs/*",
-			"packages/storybook-typescript"
+			"packages/storybook-packs"
 		],
 		"nohoist": [
 			"packages/apps/**/webpack-dev-server",
