@@ -19,10 +19,24 @@ interface ClosePayload {
 	key?: any;
 }
 
+const quickSend = (appearance: string) => (state: ToastState, action: PayloadAction<NotificationPayload>) => {
+	state.notifications.push({
+		options: {
+			appearance,
+			autoDismiss: true,
+		},
+		...action.payload,
+	});
+};
+
 export const toastSlice = createSlice({
 	name: 'toast',
 	initialState,
 	reducers: {
+		error: quickSend('error'),
+		success: quickSend('success'),
+		warning: quickSend('warning'),
+		info: quickSend('info'),
 		enqueue: (state: ToastState, action: PayloadAction<NotificationPayload>) => {
 			state.notifications.push(action.payload);
 		},
@@ -46,7 +60,7 @@ export const toastSlice = createSlice({
 	},
 });
 
-export const { enqueue, close, remove } = toastSlice.actions;
+export const { enqueue, close, remove, error, info, success, warning } = toastSlice.actions;
 
 export const toastActions = toastSlice.actions;
 

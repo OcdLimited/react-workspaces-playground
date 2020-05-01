@@ -2,6 +2,7 @@ import { all, takeEvery, call, put } from 'redux-saga/effects';
 import { login, LoginData } from './loginSlice';
 import { DiscoveryService, AuthService } from './services';
 import { toastActions } from '@ocdlimited/abp.react.core';
+import { i18next } from '@ocdlimited/abp.react.core';
 
 interface Action<T> {
 	payload: T;
@@ -27,12 +28,9 @@ export function* performLogin(action: Action<LoginData>) {
 
 	if (!response.success) {
 		yield put(
-			toastActions.enqueue({
-				key: 'login-error' + Date.now(),
-				message: 'error!' + Date.now(),
-				options: {
-					appearance: 'error',
-				},
+			toastActions.error({
+				key: 'login-error ' + Date.now().toFixed(),
+				message: i18next.t('AbpAccount:DefaultErrorMessage'),
 			}),
 		);
 

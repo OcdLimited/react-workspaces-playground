@@ -17,7 +17,7 @@ export interface State {
 	messageInfo?: SnackbarMessage;
 }
 
-const Notifier = () => {
+export const Notifier = () => {
 	const notifications = useSelector(selectNotifications);
 	const { addToast, removeToast } = useToasts();
 	const dispatch = useDispatch();
@@ -41,14 +41,15 @@ const Notifier = () => {
 			if (displayed.includes(key)) return;
 
 			addToast(message, {
+				id: key,
 				...options,
-				onDismiss: id => {
+				onDismiss: key => {
 					dispatch(
 						remove({
-							key: id,
+							key,
 						}),
 					);
-					removeDisplayed(id);
+					removeDisplayed(key);
 				},
 			});
 			storeDisplayed(key);

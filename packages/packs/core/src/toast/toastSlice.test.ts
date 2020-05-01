@@ -1,4 +1,4 @@
-import reducer, { enqueue, remove, close } from './toastSlice';
+import reducer, { enqueue, remove, close, error, warning, success, info } from './toastSlice';
 
 it('initialState', () => {
 	expect(reducer(undefined, {})).toEqual({ notifications: [] });
@@ -6,6 +6,58 @@ it('initialState', () => {
 
 it('enqueue', () => {
 	expect(reducer(undefined, enqueue({}))).toEqual({ notifications: [{}] });
+});
+
+it('error', () => {
+	expect(reducer(undefined, error({}))).toEqual({
+		notifications: [
+			{
+				options: {
+					appearance: 'error',
+					autoDismiss: true,
+				},
+			},
+		],
+	});
+});
+
+it('info', () => {
+	expect(reducer(undefined, info({}))).toEqual({
+		notifications: [
+			{
+				options: {
+					appearance: 'info',
+					autoDismiss: true,
+				},
+			},
+		],
+	});
+});
+
+it('success', () => {
+	expect(reducer(undefined, success({}))).toEqual({
+		notifications: [
+			{
+				options: {
+					appearance: 'success',
+					autoDismiss: true,
+				},
+			},
+		],
+	});
+});
+
+it('warning', () => {
+	expect(reducer(undefined, warning({}))).toEqual({
+		notifications: [
+			{
+				options: {
+					appearance: 'warning',
+					autoDismiss: true,
+				},
+			},
+		],
+	});
 });
 
 it('close', () => {
