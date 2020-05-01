@@ -41,7 +41,7 @@ export function* performLogin(action: Action<LoginData>) {
 		yield putResolve(recieveToken(response.accessToken));
 
 		yield putResolve(requestAppConfig(true));
-		navigate('/');
+		navigate('/home');
 	}
 }
 

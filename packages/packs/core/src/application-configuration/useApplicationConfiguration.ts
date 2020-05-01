@@ -11,7 +11,7 @@ export function useAppConfig(next?: any): any {
 	useEffect(() => {
 		!configLoaded &&
 			dispatch(
-				requestAppConfig((data: AppConfigResponse) => {
+				requestAppConfig(false, (data: AppConfigResponse) => {
 					next && next(data);
 				}),
 			);

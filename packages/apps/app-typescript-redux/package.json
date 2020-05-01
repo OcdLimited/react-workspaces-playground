@@ -7,6 +7,7 @@
 		"@material-ui/icons": "^4.9.1",
 		"@material-ui/styles": "^4.9.1",
 		"@material-ui/lab": "4.0.0-alpha.51",
+		"@ocdlimited/abp.react.theme.shared": "^0.0.4-alpha.0",
 		"@ocdlimited/abp.react.core": "^0.0.4-alpha.0",
 		"@ocdlimited/abp.react.account": "^0.0.4-alpha.0",
 		"@ocdlimited/abp.react.redux": "^0.0.4-alpha.0",
@@ -37,7 +38,8 @@
 		"redux-saga": "1.1.3",
 		"typescript": "~3.8.2",
 		"react-toast-notifications": "2.4.0",
-		"@types/react-toast-notifications": "2.4.0"
+		"@types/react-toast-notifications": "2.4.0",
+		"recharts": "1.8.5"
 	},
 	"scripts": {
 		"start": "react-scripts start",
