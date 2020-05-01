@@ -2,14 +2,60 @@
 
 exports[`snapshot 1`] = `
 <div>
+  <header
+    class="MuiPaper-root MuiAppBar-root MuiAppBar-positionAbsolute MuiAppBar-colorPrimary makeStyles-appBar-374 MuiPaper-elevation4"
+  >
+    <div
+      class="MuiToolbar-root MuiToolbar-regular makeStyles-toolbar-373 MuiToolbar-gutters"
+    >
+      <h1
+        class="MuiTypography-root makeStyles-title-378 MuiTypography-h6 MuiTypography-colorInherit MuiTypography-noWrap"
+      />
+      <button
+        class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
+        tabindex="0"
+        type="button"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <span
+            class="MuiBadge-root"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"
+              />
+            </svg>
+            <span
+              class="MuiBadge-badge MuiBadge-anchorOriginTopRightRectangle MuiBadge-colorSecondary"
+            >
+              4
+            </span>
+          </span>
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </button>
+    </div>
+  </header>
+  <div
+    class="makeStyles-appBarSpacer-371"
+  />
   <main
     class="MuiContainer-root MuiContainer-maxWidthXs"
   >
     <div
-      class="makeStyles-paper-304"
+      class="makeStyles-paper-489"
     >
       <div
-        class="MuiAvatar-root MuiAvatar-circle makeStyles-avatar-305 MuiAvatar-colorDefault"
+        class="MuiAvatar-root MuiAvatar-circle makeStyles-avatar-490 MuiAvatar-colorDefault"
       >
         <svg
           aria-hidden="true"
@@ -29,7 +75,7 @@ exports[`snapshot 1`] = `
       </h1>
       <form
         action="#"
-        class="makeStyles-form-306"
+        class="makeStyles-form-491"
         novalidate=""
       >
         <div
@@ -62,10 +108,10 @@ exports[`snapshot 1`] = `
             />
             <fieldset
               aria-hidden="true"
-              class="PrivateNotchedOutline-root-420 MuiOutlinedInput-notchedOutline"
+              class="PrivateNotchedOutline-root-566 MuiOutlinedInput-notchedOutline"
             >
               <legend
-                class="PrivateNotchedOutline-legendLabelled-422 PrivateNotchedOutline-legendNotched-423"
+                class="PrivateNotchedOutline-legendLabelled-568 PrivateNotchedOutline-legendNotched-569"
               >
                 <span>
                   UserNameOrEmailAddress
@@ -134,11 +180,11 @@ exports[`snapshot 1`] = `
             </div>
             <fieldset
               aria-hidden="true"
-              class="PrivateNotchedOutline-root-420 MuiOutlinedInput-notchedOutline"
+              class="PrivateNotchedOutline-root-566 MuiOutlinedInput-notchedOutline"
               style="padding-left: 8px;"
             >
               <legend
-                class="PrivateNotchedOutline-legend-421"
+                class="PrivateNotchedOutline-legend-567"
                 style="width: 0.01px;"
               >
                 <span>
@@ -153,13 +199,13 @@ exports[`snapshot 1`] = `
         >
           <span
             aria-disabled="false"
-            class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-455 MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-indeterminate MuiIconButton-colorPrimary"
+            class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-589 MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-indeterminate MuiIconButton-colorPrimary"
           >
             <span
               class="MuiIconButton-label"
             >
               <input
-                class="PrivateSwitchBase-input-458"
+                class="PrivateSwitchBase-input-592"
                 data-indeterminate="true"
                 name="remember"
                 type="checkbox"
@@ -187,7 +233,7 @@ exports[`snapshot 1`] = `
           </span>
         </label>
         <button
-          class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-submit-307 MuiButton-containedPrimary MuiButton-fullWidth"
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-submit-492 MuiButton-containedPrimary MuiButton-fullWidth"
           tabindex="0"
           type="submit"
         >
@@ -219,5 +265,6 @@ exports[`snapshot 1`] = `
       </form>
     </div>
   </main>
+  ;
 </div>
 `;

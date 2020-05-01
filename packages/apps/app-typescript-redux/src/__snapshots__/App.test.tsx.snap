@@ -38,7 +38,7 @@ exports[`renders fully 1`] = `
         <h1
           class="MuiTypography-root makeStyles-title-23 MuiTypography-h6 MuiTypography-colorInherit MuiTypography-noWrap"
         >
-          Dashboard
+          AdsDataSpike
         </h1>
         <button
           class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"

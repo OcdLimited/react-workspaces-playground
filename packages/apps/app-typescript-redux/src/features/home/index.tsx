@@ -1,4 +1,3 @@
-/* istanbul ignore file */
 import React from 'react';
 import loadable from '@loadable/component';
 import { Loading } from '@ocdlimited/abp.react.core';
@@ -9,4 +8,6 @@ const fallback = (
 	</div>
 );
 
-export const LoginContainer = loadable(() => import('./LoginContainer'), { fallback });
+export const Home = loadable(() => import('./Home'), {
+	fallback,
+});
