@@ -58,5 +58,6 @@ export const selectApiUrl = (state: RootState) => state.config.environment?.apis
 export const selectLocalization = (state: RootState): Localization | undefined => state.config.localization;
 export const selectAuthSettings = (state: RootState): any | undefined => state.config.environment?.oAuthConfig;
 export const selectIsAuthenticated = (state: RootState) => state.config.currentUser?.isAuthenticated;
+export const selectAppName = (state: RootState) => state.config.environment?.application.name;
 
 export default appConfigSlice.reducer;

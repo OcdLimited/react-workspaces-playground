@@ -18,8 +18,8 @@ const state = {
 	},
 	token: {
 		current: {
-			access_token: '',
-			token_type: '',
+			access_token: 'asd',
+			token_type: 'asd',
 		},
 	},
 };
@@ -68,6 +68,7 @@ it('valid request', async () => {
 			method: 'POST',
 			data: {},
 			onSuccess,
+			successType: () => {},
 		},
 	};
 
@@ -126,6 +127,7 @@ it('failure', async () => {
 			url: '/api/abp/application-configuration',
 			method: 'GET',
 			onFailure,
+			failureType: () => {},
 		},
 	};
 
