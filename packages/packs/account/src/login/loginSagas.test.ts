@@ -26,7 +26,7 @@ describe('performLogin', () => {
 			gen.next(); // set config
 		});
 
-		expect(navigate).toBeCalledWith('/');
+		expect(navigate).toBeCalledWith('/home');
 	});
 
 	it('not success works', () => {

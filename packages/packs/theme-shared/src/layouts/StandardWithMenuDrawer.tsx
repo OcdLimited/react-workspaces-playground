@@ -1,9 +1,9 @@
 import React from 'react';
 import { makeStyles, Theme } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { Container, Box } from '@material-ui/core';
+import { Container, Box, CssBaseline } from '@material-ui/core';
 import { useAuthentication } from '@ocdlimited/abp.react.core';
 import { Copyright, AbpAppBar, MenuDrawer } from '../components';
+import { Outlet } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) => {
 	return {
@@ -33,7 +33,7 @@ export function StandardWithMenuDrawer(props: StandardWithMenuDrawerProps) {
 	const [showContent] = useAuthentication(props.secure || false);
 
 	const classes = useStyles();
-	const [open, setOpen] = React.useState(true);
+	const [open, setOpen] = React.useState(false);
 
 	const handleDrawerOpen = () => {
 		setOpen(true);
@@ -55,7 +55,7 @@ export function StandardWithMenuDrawer(props: StandardWithMenuDrawerProps) {
 			<main className={classes.content}>
 				<div className={classes.appBarSpacer} />
 				<Container maxWidth="lg" className={classes.container}>
-					{props.children}
+					<Outlet />
 					<Box pt={4}>
 						<Copyright />
 					</Box>
