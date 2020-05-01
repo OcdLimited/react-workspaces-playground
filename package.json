@@ -2,13 +2,8 @@
 	"name": "root",
 	"private": true,
 	"scripts": {
-		"start:app-ant-design": "yarn workspace @ocdlimited/app-ant-design-rewired start",
-		"start:app-multi": "yarn workspace @ocdlimited/app-multi-comps start",
-		"start:app-single": "yarn workspace @ocdlimited/app-single-comp start",
-		"start:app-ts": "yarn workspace @ocdlimited/app-typescript start",
 		"start:app-ts-redux": "yarn workspace @ocdlimited/app-typescript-redux start",
 		"test:app-ts-redux": "yarn workspace @ocdlimited/app-typescript-redux test --coverage",
-		"start:storybook": "yarn workspace @ocdlimited/storybook storybook",
 		"start:storybook-ts": "yarn workspace @ocdlimited/storybook-typescript storybook",
 		"start:storybook-ts-redux": "yarn workspace @ocdlimited/app-typescript-redux storybook",
 		"test": "FORCE_COLOR=true lerna run lint && CI=true FORCE_COLOR=true lerna run test -- --coverage",
@@ -18,11 +13,7 @@
 		"packages": [
 			"packages/apps/*",
 			"packages/packs/*",
-			"packages/components",
-			"packages/components-typescript",
-			"packages/storybook",
-			"packages/storybook-typescript",
-			"packages/storybook-typescript-redux"
+			"packages/storybook-typescript"
 		],
 		"nohoist": [
 			"packages/apps/**/webpack-dev-server",

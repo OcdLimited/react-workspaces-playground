@@ -32,7 +32,11 @@
 		"typescript": "~3.8.2",
 		"yup": "^0.28.4",
 		"@loadable/component": "5.12.0",
-		"@types/loadable__component": "5.10.0"
+		"@types/loadable__component": "5.10.0",
+		"i18next": "19.4.3",
+		"react-i18next": "11.3.5",
+		"react-scripts": "3.4.1",
+		"storybook-formik": "^2.1.0"
 	},
 	"eslintConfig": {
 		"extends": "react-app"
