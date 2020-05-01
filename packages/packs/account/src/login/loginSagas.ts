@@ -1,6 +1,7 @@
-import { all, takeEvery, call } from 'redux-saga/effects';
+import { all, takeEvery, call, put } from 'redux-saga/effects';
 import { login, LoginData } from './loginSlice';
 import { DiscoveryService, AuthService } from './services';
+import { toastActions } from '@ocdlimited/abp.react.core';
 
 interface Action<T> {
 	payload: T;
@@ -25,11 +26,18 @@ export function* performLogin(action: Action<LoginData>) {
 	const response = yield call(() => authService.login(username, password));
 
 	if (!response.success) {
-		console.log('error');
+		yield put(
+			toastActions.enqueue({
+				key: 'login-error' + Date.now(),
+				message: 'error!' + Date.now(),
+				options: {
+					appearance: 'error',
+				},
+			}),
+		);
 
 		form.setSubmitting(false);
 	} else {
-		console.log('success');
 		navigate('/');
 	}
 }
