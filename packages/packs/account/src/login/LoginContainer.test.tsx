@@ -8,7 +8,9 @@ import { LoginContainer, buildOnSubmit } from '.';
 
 const store = {
 	...configureStore({
-		reducer: createReducer(0, {}),
+		reducer: createReducer(0, {
+			enviroment: {},
+		}),
 	}),
 	injectedSagas: [],
 	runSaga: () => {},

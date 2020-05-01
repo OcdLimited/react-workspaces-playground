@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import React from 'react';
 import loadable from '@loadable/component';
 import { Loading } from '@ocdlimited/abp.react.core';
