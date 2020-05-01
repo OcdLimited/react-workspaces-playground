@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { Provider } from 'react-redux';
+import { ToastProvider } from 'react-toast-notifications';
+import { Notifier } from '@ocdlimited/abp.react.core';
 
 import './index.css';
 import App from './App';
@@ -15,7 +17,10 @@ ReactDOM.render(
 		<ThemeProvider theme={theme}>
 			<CssBaseline />
 			<Provider store={store}>
-				<App />
+				<ToastProvider placement="top-right">
+					<App />
+					<Notifier />
+				</ToastProvider>
 			</Provider>
 		</ThemeProvider>
 	</React.StrictMode>,

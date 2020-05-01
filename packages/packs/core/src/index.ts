@@ -5,3 +5,5 @@ export * from './application-configuration';
 export * from './localization';
 
 export * from './components/Loading';
+
+export * from './toast';

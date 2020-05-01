@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { LoginPage } from './pages/LoginPage';
 import { login, LoginData } from './loginSlice';
-import rootSaga from './sagas';
+import rootSaga from './loginSagas';
 
 export function buildOnSubmit(dispatch: Dispatch<any>, navigate: any) {
 	return (data: LoginData, form: any) => {

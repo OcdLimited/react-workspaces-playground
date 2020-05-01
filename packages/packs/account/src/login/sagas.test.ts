@@ -1,6 +1,6 @@
 import { act } from 'react-dom/test-utils';
 import { all, takeEvery } from 'redux-saga/effects';
-import rootSaga, { performLogin, watchLogin } from './sagas';
+import rootSaga, { performLogin, watchLogin } from './loginSagas';
 import { login } from './loginSlice';
 
 describe('performLogin', () => {
@@ -47,6 +47,7 @@ describe('performLogin', () => {
 			gen.next(); // setup
 			gen.next({}); // discovery
 			gen.next({ success: false }); // result
+			gen.next({}); // alert
 		});
 
 		expect(navigate).not.toBeCalledWith('/');
