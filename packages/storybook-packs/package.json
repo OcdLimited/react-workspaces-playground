@@ -9,6 +9,7 @@
 		"@ocdlimited/abp.react.core": "^0.0.4-alpha.0",
 		"@ocdlimited/abp.react.account": "^0.0.4-alpha.0",
 		"@ocdlimited/abp.react.redux": "^0.0.4-alpha.0",
+		"@ocdlimited/abp.react.theme.shared": "^0.0.4-alpha.0",
 		"@ocdlimited/react-scripts": "^0.0.4-alpha.0",
 		"@reduxjs/toolkit": "^1.2.5",
 		"@storybook/addon-actions": "^5.3.18",
