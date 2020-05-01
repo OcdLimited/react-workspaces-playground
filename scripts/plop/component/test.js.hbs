@@ -1,0 +1,10 @@
+import React from 'react';
+import { render } from '@testing-library/react';
+import { {{ properCase name }} } from './{{ properCase name }}';
+
+it('should render', () => {
+const { getByText } = render(
+<Test />);
+
+expect(getByText(/{{ properCase name }}/i)).toBeInTheDocument();
+});

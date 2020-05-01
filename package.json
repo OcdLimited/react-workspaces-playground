@@ -7,7 +7,9 @@
 		"start:storybook-ts": "yarn workspace @ocdlimited/storybook-packs storybook",
 		"start:storybook-ts-redux": "yarn workspace @ocdlimited/app-typescript-redux storybook",
 		"test": "FORCE_COLOR=true lerna run lint && CI=true FORCE_COLOR=true lerna run test -- --coverage",
-		"deploy": "FORCE_COLOR=true lerna run deploy"
+		"deploy": "FORCE_COLOR=true lerna run deploy",
+		"generate": "plop --plopfile scripts/plop/index.js",
+		"prettify": "prettier --write"
 	},
 	"workspaces": {
 		"packages": [
@@ -37,7 +39,8 @@
 		"husky": "^4.0.6",
 		"jest-prop-type-error": "^1.1.0",
 		"lerna": "^3.20.2",
-		"prettier": "^1.19.1"
+		"prettier": "^1.19.1",
+		"plop": "2.6.0"
 	},
 	"husky": {
 		"hooks": {

@@ -1,0 +1,12 @@
+import {{ camelCase name }}Reducer from '../reducer';
+import * as actions from '../actons';
+
+describe('{{ camelCase name }}Reducer', () => {
+  it('returns the initial state', () => {
+    expect({{ camelCase name }}Reducer(undefined, {})).toEqual({});
+  });
+
+  it('returns default action', () => {
+    expect({{ camelCase name }}Reducer(undefined, actions.defaultAction())).toEqual({});
+  });
+});
