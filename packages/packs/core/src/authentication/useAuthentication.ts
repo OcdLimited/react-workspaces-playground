@@ -13,7 +13,7 @@ export function useAuthentication(secure: boolean) {
 		if (!isAuthenticated) {
 			navigate('/account/login?returnUrl=');
 		}
-	});
+	}, [isAuthenticated, navigate, secure]);
 
 	const showContent = !secure || (secure && isAuthenticated);
 

@@ -35,13 +35,16 @@ export function StandardWithMenuDrawer(props: StandardWithMenuDrawerProps) {
 	const classes = useStyles();
 	const [open, setOpen] = React.useState(false);
 
+	/* istanbul ignore next */
 	const handleDrawerOpen = () => {
 		setOpen(true);
 	};
+	/* istanbul ignore next */
 	const handleDrawerClose = () => {
 		setOpen(false);
 	};
 
+	/* istanbul ignore next */
 	if (!showContent) {
 		return <React.Fragment />;
 	}

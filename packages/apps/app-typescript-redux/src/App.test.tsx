@@ -2,8 +2,9 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { store } from './app/redux/store';
-import App from './App';
 import { setConfig } from '@ocdlimited/abp.react.core';
+
+import App from './App';
 
 it('renders loading', () => {
 	const { container } = render(
@@ -16,15 +17,21 @@ it('renders loading', () => {
 });
 
 it('renders fully', () => {
-	store.dispatch(setConfig({}));
+	store.dispatch(
+		setConfig({
+			currentUser: {
+				isAuthenticated: true,
+			},
+		}),
+	);
 
-	const { container, getByText } = render(
+	const { container, getAllByText } = render(
 		<Provider store={store}>
 			<App />
 		</Provider>,
 	);
 
-	expect(getByText(/ocd/i)).toBeInTheDocument();
+	expect(getAllByText(/Dashboard/i).length).toBeGreaterThan(0);
 
 	expect(container).toMatchSnapshot();
 });

@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { makeStyles, Theme } from '@material-ui/core/styles';
-import { Chart, StandardWithMenuDrawer } from '@ocdlimited/abp.react.theme.shared';
+import { Chart } from '@ocdlimited/abp.react.theme.shared';
 import { Grid, Paper } from '@material-ui/core';
 import Deposits from './Deposits';
 import Orders from './Orders';

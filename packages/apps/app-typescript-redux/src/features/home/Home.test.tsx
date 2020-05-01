@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { store } from '../../app/redux/store';
 import Home from './Home';
 
-it('renders learn react link', () => {
+it('renders', () => {
 	const { container, getByText } = render(
 		<Provider store={store}>
 			<MemoryRouter>
@@ -14,6 +14,6 @@ it('renders learn react link', () => {
 		</Provider>,
 	);
 
-	expect(getByText(/learn/i)).toBeInTheDocument();
+	expect(getByText(/Today/i)).toBeInTheDocument();
 	expect(container).toMatchSnapshot();
 });

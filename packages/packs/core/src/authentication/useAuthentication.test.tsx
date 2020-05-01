@@ -1,18 +1,17 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { useTranslation } from 'react-i18next';
 import { Provider } from 'react-redux';
+import { MemoryRouter } from 'react-router-dom';
 
 import { buildStore } from '@ocdlimited/abp.react.redux';
-import { useLocalization } from './useLocalization';
+import { useAuthentication } from './useAuthentication';
 
-const ExampleComponent = () => {
-	useLocalization();
-	const { t } = useTranslation();
+const ExampleComponent = ({ secure }: any) => {
+	useAuthentication(secure);
 
 	return (
 		<React.Fragment>
-			<h1>{t('title')}</h1>
+			<h1>title</h1>
 		</React.Fragment>
 	);
 };
@@ -30,18 +29,22 @@ const state = {
 	},
 };
 
-it('should work', () => {
+it('secured should work', () => {
 	render(
 		<Provider store={buildStore({}, state)}>
-			<ExampleComponent />
+			<MemoryRouter initialEntries={['/home']}>
+				<ExampleComponent secure />
+			</MemoryRouter>
 		</Provider>,
 	);
 });
 
-it('no data should work', () => {
+it('unsecured should work', () => {
 	render(
-		<Provider store={buildStore({}, {})}>
-			<ExampleComponent />
+		<Provider store={buildStore({}, state)}>
+			<MemoryRouter>
+				<ExampleComponent />
+			</MemoryRouter>
 		</Provider>,
 	);
 });
