@@ -16,6 +16,12 @@ const state = {
 			},
 		},
 	},
+	token: {
+		current: {
+			access_token: '',
+			token_type: '',
+		},
+	},
 };
 
 beforeEach(() => {
@@ -62,6 +68,36 @@ it('valid request', async () => {
 			method: 'POST',
 			data: {},
 			onSuccess,
+		},
+	};
+
+	(axios.request as jest.Mock).mockReturnValue({
+		data: {},
+	});
+
+	await act(() =>
+		middleware({
+			dispatch,
+			getState: () => state,
+		})(next)(action),
+	);
+
+	expect(onSuccess).toHaveBeenCalled();
+});
+
+it('valid secured request', async () => {
+	const dispatch = jest.fn();
+	const next = jest.fn();
+	const onSuccess = jest.fn();
+
+	const action = {
+		type: 'api/apiRequest',
+		payload: {
+			url: '/api/abp/application-configuration',
+			method: 'POST',
+			data: {},
+			onSuccess,
+			secured: true,
 		},
 	};
 

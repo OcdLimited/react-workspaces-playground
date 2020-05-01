@@ -1,4 +1,11 @@
-import reducer, { setConfig, selectConfigLoaded, selectApiUrl } from './appConfigSlice';
+import reducer, {
+	setConfig,
+	selectConfigLoaded,
+	selectApiUrl,
+	receiveConfig,
+	requestAppConfig,
+	selectAuthSettings,
+} from './appConfigSlice';
 
 it('initialState', () => {
 	expect(reducer(undefined, {})).toEqual({ loaded: false });
@@ -6,6 +13,36 @@ it('initialState', () => {
 
 it('setConfig', () => {
 	expect(reducer(undefined, setConfig({}))).toEqual({ loaded: true });
+});
+
+it('receiveConfig', () => {
+	expect(
+		reducer(
+			undefined,
+			receiveConfig({
+				data: {
+					test: {},
+				},
+			}),
+		),
+	).toEqual({ loaded: true, test: {} });
+});
+
+it('requestAppConfig.successType', () => {
+	const {
+		payload: { successType },
+	} = requestAppConfig();
+
+	expect(
+		reducer(
+			undefined,
+			successType({
+				data: {
+					test: {},
+				},
+			}),
+		),
+	).toEqual({ loaded: true, test: {} });
 });
 
 it('selectConfigLoaded', () => {
@@ -31,6 +68,26 @@ it('selectApiUrl', () => {
 		}),
 	);
 	const result = selectApiUrl({
+		config: state,
+	});
+
+	expect(result).toBeTruthy();
+});
+
+it('selectApiUrl', () => {
+	const state = reducer(
+		undefined,
+		setConfig({
+			environment: {
+				oAuthConfig: {
+					default: {
+						url: 'url',
+					},
+				},
+			},
+		}),
+	);
+	const result = selectAuthSettings({
 		config: state,
 	});
 

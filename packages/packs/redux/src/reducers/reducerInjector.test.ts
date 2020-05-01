@@ -17,6 +17,7 @@ it('should inject', () => {
 		},
 		config: { loaded: false },
 		toast: { notifications: [] },
+		token: { current: {} },
 	});
 
 	const testReducer = createReducer(0, {
@@ -34,6 +35,7 @@ it('should inject', () => {
 		},
 		config: { loaded: false },
 		toast: { notifications: [] },
+		token: { current: {} },
 	});
 
 	store.dispatch({
@@ -48,6 +50,7 @@ it('should inject', () => {
 		},
 		config: { loaded: false },
 		toast: { notifications: [] },
+		token: { current: {} },
 	});
 
 	useReducerInjector(store).inject('test', testReducer);
@@ -59,5 +62,6 @@ it('should inject', () => {
 		},
 		config: { loaded: false },
 		toast: { notifications: [] },
+		token: { current: {} },
 	});
 });
