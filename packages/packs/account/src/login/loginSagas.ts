@@ -1,8 +1,8 @@
-import { all, takeEvery, call, put } from 'redux-saga/effects';
-import { login, LoginData } from './loginSlice';
+import { all, takeEvery, call, put, select, putResolve } from 'redux-saga/effects';
 import { DiscoveryService, AuthService } from './services';
-import { toastActions } from '@ocdlimited/abp.react.core';
+import { toastActions, selectAuthSettings, requestAppConfig, recieveToken } from '@ocdlimited/abp.react.core';
 import { i18next } from '@ocdlimited/abp.react.core';
+import { login, LoginData } from './loginSlice';
 
 interface Action<T> {
 	payload: T;
@@ -11,11 +11,13 @@ interface Action<T> {
 export function* performLogin(action: Action<LoginData>) {
 	const { username, password, form, navigate } = action.payload;
 
+	const settings = yield select(selectAuthSettings);
+
 	const discoveryService = new DiscoveryService({
-		issuer: 'https://localhost:44367',
-		scopes: ['AdsDataSpike'],
-		clientId: 'AdsDataSpike_App',
-		clientSecret: '1q2w3e*',
+		issuer: settings.issuer,
+		scopes: [settings.scope],
+		clientId: settings.clientId,
+		clientSecret: settings.dummyClientSecret,
 	});
 
 	/* istanbul ignore next */
@@ -29,13 +31,16 @@ export function* performLogin(action: Action<LoginData>) {
 	if (!response.success) {
 		yield put(
 			toastActions.error({
-				key: 'login-error ' + Date.now().toFixed(),
+				key: 'login-error-' + Date.now().toFixed(),
 				message: i18next.t('AbpAccount:DefaultErrorMessage'),
 			}),
 		);
 
 		form.setSubmitting(false);
 	} else {
+		yield putResolve(recieveToken(response.accessToken));
+
+		yield putResolve(requestAppConfig(true));
 		navigate('/');
 	}
 }

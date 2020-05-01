@@ -19,8 +19,11 @@ describe('performLogin', () => {
 
 		act(() => {
 			gen.next(); // setup
+			gen.next({}); // get settings
 			gen.next(); // discovery
 			gen.next({ success: true }); // result
+			gen.next(); // set token
+			gen.next(); // set config
 		});
 
 		expect(navigate).toBeCalledWith('/');
@@ -45,6 +48,7 @@ describe('performLogin', () => {
 
 		act(() => {
 			gen.next(); // setup
+			gen.next({}); // get settings
 			gen.next({}); // discovery
 			gen.next({ success: false }); // result
 			gen.next({}); // alert

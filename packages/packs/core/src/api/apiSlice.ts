@@ -38,6 +38,8 @@ export interface HttpRequestDetails {
 	onFailure?: any;
 	label?: string;
 	secured?: boolean;
+	successType?: any;
+	failureType?: any;
 }
 
 export default apiSlice.reducer;

@@ -1,25 +1,22 @@
 /* istanbul ignore file */
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { apiRequest } from '../api/apiSlice';
+import { selectConfigLoaded, requestAppConfig } from './appConfigSlice';
 import { AppConfigResponse } from '../models';
-import { setConfig, selectConfigLoaded } from './appConfigSlice';
 
 export function useAppConfig(next?: any): any {
 	const dispatch = useDispatch();
+	const configLoaded = useSelector(selectConfigLoaded);
+
 	useEffect(() => {
-		dispatch(
-			apiRequest({
-				url: '/api/abp/application-configuration',
-				method: 'GET',
-				onSuccess: (data: AppConfigResponse) => {
-					dispatch(setConfig(data));
-					next && next();
-				},
-			}),
-		);
+		!configLoaded &&
+			dispatch(
+				requestAppConfig((data: AppConfigResponse) => {
+					next && next(data);
+				}),
+			);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [configLoaded]);
 
 	const loaded = useSelector(selectConfigLoaded);
 
