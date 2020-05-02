@@ -42,7 +42,8 @@ module.exports = {
 				type: 'addMany',
 				destination: '../../packages/packs/{{lowerCase name}}',
 				base: templatePath,
-				templateFiles: templateFiles,
+				templateFiles: templatePath,
+				force: true,
 			},
 		];
 	},
