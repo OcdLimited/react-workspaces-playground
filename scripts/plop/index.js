@@ -11,11 +11,13 @@ const { exec } = require('child_process');
 const componentGenerator = require('./component/index.js');
 const containerGenerator = require('./container/index.js');
 const packageGenerator = require('./package/index.js');
+const sliceGenerator = require('./slice/index.js');
 
 module.exports = plop => {
 	plop.setGenerator('component', componentGenerator);
 	plop.setGenerator('container', containerGenerator);
 	plop.setGenerator('package', packageGenerator);
+	plop.setGenerator('slice', sliceGenerator);
 
 	plop.addHelper('directory', comp => {
 		try {

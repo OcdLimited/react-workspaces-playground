@@ -17,32 +17,32 @@ function traverseDir(dir) {
 }
 
 module.exports = {
-	description: 'Add a new package',
+	description: 'Add a new package slice',
 	prompts: [
+		{
+			type: 'input',
+			name: 'package',
+			message: 'What package?',
+			default: 'Form',
+		},
 		{
 			type: 'input',
 			name: 'name',
 			message: 'What should it be called?',
 			default: 'Form',
-			validate: value => {
-				if (/.+/.test(value)) {
-					return componentExists(value) ? 'A package with this name already exists' : true;
-				}
-
-				return 'The name is required';
-			},
 		},
 	],
 	actions: data => {
 		const templatePath = path.join(__dirname, '/template');
-		const destPath = path.join('../../packages/packs/{{name}}');
 
 		return [
 			{
 				type: 'addMany',
-				destination: '../../packages/packs/{{lowerCase name}}',
+				destination: '../../packages/packs/{{lowerCase package}}/src/{{lowerCase name}}',
 				base: templatePath,
-				templateFiles: templateFiles,
+				templateFiles: templatePath,
+				verbose: true,
+				force: true,
 			},
 		];
 	},
