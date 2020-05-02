@@ -8,6 +8,9 @@ import reducer, {
 	selectSettings,
 	selectAppName,
 	selectMultiTenancy,
+	selectCurrentTenant,
+	clearTenant,
+	receiveTenantChange,
 } from './appConfigSlice';
 
 it('initialState', () => {
@@ -176,5 +179,39 @@ describe('selectSettings', () => {
 		});
 
 		expect(result).toEqual([undefined, undefined]);
+	});
+});
+// selectCurrentTenant,
+// 	clearTenant,
+it('tenat', () => {
+	let state = reducer(
+		undefined,
+		receiveTenantChange({
+			data: {
+				tenantId: 'id',
+				name: 'name',
+				success: true,
+			},
+		}),
+	);
+
+	expect(
+		selectCurrentTenant({
+			config: state,
+		}),
+	).toEqual({
+		id: 'id',
+		name: 'name',
+		isAvailable: true,
+	});
+
+	state = reducer(state, clearTenant());
+
+	expect(
+		selectCurrentTenant({
+			config: state,
+		}),
+	).toEqual({
+		isAvailable: false,
 	});
 });

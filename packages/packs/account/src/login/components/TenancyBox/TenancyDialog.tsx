@@ -1,4 +1,4 @@
-import React, { useState, SyntheticEvent, ChangeEvent } from 'react';
+import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -9,7 +9,6 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { useTranslation } from 'react-i18next';
 
 export function TenancyDialog({
-	tenantName,
 	open,
 	onChange,
 	onClose,

@@ -5,9 +5,9 @@ import { Container } from '@material-ui/core';
 import { useSaga, Mode } from '@ocdlimited/abp.react.redux';
 import { AbpAppBar } from '@ocdlimited/abp.react.theme.shared';
 import { useNavigate } from 'react-router-dom';
-import { selectSettings, selectMultiTenancy } from '@ocdlimited/abp.react.core';
+import { selectSettings, selectMultiTenancy, selectCurrentTenant } from '@ocdlimited/abp.react.core';
 
-import { login, LoginData } from './loginSlice';
+import { login, LoginData, switchTenant } from './loginSlice';
 import rootSaga from './loginSagas';
 
 import { LoginPage } from './pages/LoginPage';
@@ -35,6 +35,7 @@ export function LoginContainer() {
 		saga: rootSaga,
 		mode: Mode.ONCE_TILL_UNMOUNT,
 	});
+
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const classes = useStyles();
@@ -43,21 +44,32 @@ export function LoginContainer() {
 		selectSettings('Abp.Account.IsSelfRegistrationEnabled', 'Abp.Account.EnableLocalLogin'),
 	);
 
+	const tenant = useSelector(selectCurrentTenant);
+
 	const multiTenancy = useSelector(selectMultiTenancy);
 
 	if (enableLocalLogin?.toLowerCase() !== 'true') {
 		return <React.Fragment />;
 	}
 
+	/* istanbul ignore next */
+	function onTenantChanged(tenant: string) {
+		dispatch(switchTenant(tenant));
+	}
+
+	const onSubmit = buildOnSubmit(dispatch, navigate);
+
 	return (
 		<React.Fragment>
-			<AbpAppBar open={false} onOpen={() => {}} noMenu />
+			<AbpAppBar noMenu />
 			<div className={classes.appBarSpacer} />
 			<Container component="main" maxWidth="xs">
 				<LoginPage
-					isSelfRegistrationEnabled={!!isSelfRegistrationEnabled}
+					isSelfRegistrationEnabled={isSelfRegistrationEnabled?.toLowerCase() === 'true'}
 					isMultiTenant={!!multiTenancy}
-					onSubmit={buildOnSubmit(dispatch, navigate)}
+					tenantName={tenant.name}
+					onSubmit={onSubmit}
+					onTenantChanged={onTenantChanged}
 					autoFocus
 				/>
 			</Container>

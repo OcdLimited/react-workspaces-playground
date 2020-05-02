@@ -20,6 +20,6 @@ export const Text = () => (
 );
 
 Text.story = {
-	name: 'TenancyBox',
+	name: 'Default',
 	decorators: [withKnobs],
 };

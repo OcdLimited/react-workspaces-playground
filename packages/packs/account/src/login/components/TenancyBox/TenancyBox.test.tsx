@@ -4,13 +4,14 @@ import { TenancyBox } from './TenancyBox';
 import { TenancyDialog } from './TenancyDialog';
 
 jest.mock('./TenancyDialog', () => ({
-	TenancyDialog: jest.fn().mockImplementation(() => 'asdasd'),
+	TenancyDialog: jest.fn().mockImplementation(() => 'TenancyDialog'),
 }));
 
 it('should render', () => {
 	const onChange = jest.fn();
 
 	render(<TenancyBox visible />);
+
 	const { getByText } = render(<TenancyBox visible tenantName="" onTenantChanged={onChange} />);
 
 	const switchButton = getByText(/Switch/i);
@@ -34,5 +35,5 @@ it('should render', () => {
 it('should nothing when visible is false', () => {
 	const { queryByText } = render(<TenancyBox visible={false} tenantName="" onTenantChanged={jest.fn()} />);
 
-	expect(queryByText(/Tenant/i)).not.toBeInTheDocument();
+	expect(queryByText(/TenancyDialog/i)).not.toBeInTheDocument();
 });

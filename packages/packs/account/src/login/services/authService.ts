@@ -20,10 +20,16 @@ export class AuthService {
 		});
 	}
 
-	async login(username: string, password: string): Promise<LoginResult> {
+	async login(username: string, password: string, tenantId?: string): Promise<LoginResult> {
 		try {
+			const headers: any = {};
+
+			if (tenantId) {
+				headers.__tenant = tenantId;
+			}
+
 			const accessToken = await this.authClient.owner.getToken(username, password, {
-				// TODO: Tenant header
+				headers,
 			});
 
 			return {

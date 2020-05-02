@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useTranslation } from 'react-i18next';
@@ -10,9 +10,10 @@ interface LoginPageProps {
 	isSelfRegistrationEnabled: boolean;
 	autoFocus: boolean;
 	onTenantChanged?: any;
+	tenantName?: string | undefined | null;
 }
 
-export function LoginPage({ onSubmit, isMultiTenant, autoFocus, onTenantChanged }: LoginPageProps) {
+export function LoginPage({ onSubmit, isMultiTenant, autoFocus, onTenantChanged, tenantName }: LoginPageProps) {
 	const { t } = useTranslation('AbpAccount');
 
 	const loginSchema = Yup.object().shape({
@@ -22,7 +23,7 @@ export function LoginPage({ onSubmit, isMultiTenant, autoFocus, onTenantChanged 
 
 	return (
 		<React.Fragment>
-			<TenancyBox visible={isMultiTenant} tenantName="" onTenantChanged={onTenantChanged} />
+			<TenancyBox visible={isMultiTenant} tenantName={tenantName} onTenantChanged={onTenantChanged} />
 			<Formik
 				initialValues={{
 					username: '',

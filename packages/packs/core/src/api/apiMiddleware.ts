@@ -1,6 +1,6 @@
 import { Middleware, Dispatch, MiddlewareAPI } from '@reduxjs/toolkit';
 import { apiSlice, apiRequest } from './apiSlice';
-import { selectApiUrl } from '../application-configuration';
+import { selectApiUrl, selectCurrentTenant } from '../application-configuration';
 import { selectToken } from '../token';
 import axios from 'axios';
 
@@ -17,7 +17,17 @@ export function createApiMiddleware() {
 		const state = getState();
 		next(apiStart());
 
-		const { url, method, data, onSuccess, onFailure, headers = {}, successType, failureType, secured } = action.payload;
+		const {
+			url,
+			method,
+			data,
+			onSuccess,
+			onFailure,
+			headers = {},
+			successType,
+			failureType,
+			secured,
+		} = action.payload;
 		const dataOrParams = ['GET', 'DELETE'].includes(method) ? 'params' : 'data';
 		const BASE_URL = selectApiUrl(state);
 
@@ -26,6 +36,12 @@ export function createApiMiddleware() {
 			if (access_token && token_type) {
 				headers.Authorization = `${token_type} ${access_token}`;
 			}
+		}
+
+		const tenant = selectCurrentTenant(state);
+
+		if (tenant.isAvailable) {
+			headers.__tenant = tenant.id;
 		}
 
 		try {

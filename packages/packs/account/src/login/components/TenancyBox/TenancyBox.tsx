@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Paper, makeStyles, Grid, Button, Box, Typography } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import { TenancyDialog } from './TenancyDialog';
@@ -23,12 +23,16 @@ export function TenancyBox({
 	onTenantChanged,
 }: {
 	visible?: boolean;
-	tenantName?: string;
+	tenantName?: string | undefined | null;
 	onTenantChanged?: any;
 }) {
 	const classes = useStyles();
 	const { t } = useTranslation('AbpUiMultiTenancy');
 	const [open, setOpen] = useState(false);
+
+	useEffect(() => {
+		setOpen(false);
+	}, [setOpen, tenantName]);
 
 	if (!visible) return <React.Fragment />;
 
