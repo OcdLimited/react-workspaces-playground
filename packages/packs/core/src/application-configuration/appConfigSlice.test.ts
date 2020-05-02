@@ -5,6 +5,9 @@ import reducer, {
 	receiveConfig,
 	requestAppConfig,
 	selectAuthSettings,
+	selectSettings,
+	selectAppName,
+	selectMultiTenancy,
 } from './appConfigSlice';
 
 it('initialState', () => {
@@ -92,4 +95,86 @@ it('selectApiUrl', () => {
 	});
 
 	expect(result).toBeTruthy();
+});
+
+it('selectAppName', () => {
+	const state = reducer(
+		undefined,
+		setConfig({
+			environment: {
+				application: {
+					name: 'test app',
+				},
+			},
+		}),
+	);
+	const result = selectAppName({
+		config: state,
+	});
+
+	expect(result).toEqual('test app');
+});
+
+it('selectMultiTenancy', () => {
+	const state = reducer(
+		undefined,
+		setConfig({
+			multiTenancy: {
+				isEnabled: true,
+			},
+		}),
+	);
+	const result = selectMultiTenancy({
+		config: state,
+	});
+
+	expect(result).toEqual(true);
+});
+
+describe('selectSettings', () => {
+	var state = {};
+
+	beforeEach(() => {
+		state = reducer(
+			undefined,
+			setConfig({
+				setting: {
+					values: {
+						'Abp.Account.IsSelfRegistrationEnabled': 'true',
+						'Abp.Account.EnableLocalLogin': 'true',
+					},
+				},
+			}),
+		);
+	});
+
+	it('should get a multi value', () => {
+		const [result] = selectSettings('Abp.Account.EnableLocalLogin')({
+			config: state,
+		});
+
+		expect(result).toBe('true');
+	});
+
+	it('should get a single value', () => {
+		const result = selectSettings(
+			'Abp.Account.EnableLocalLogin',
+			'Abp.Account.IsSelfRegistrationEnabled',
+		)({
+			config: state,
+		});
+
+		expect(result).toEqual(['true', 'true']);
+	});
+
+	it('not settings should work', () => {
+		const result = selectSettings(
+			'Abp.Account.EnableLocalLogin',
+			'Abp.Account.IsSelfRegistrationEnabled',
+		)({
+			config: reducer(undefined, setConfig({})),
+		});
+
+		expect(result).toEqual([undefined, undefined]);
+	});
 });
