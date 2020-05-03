@@ -59,6 +59,10 @@ export function LoginContainer() {
 
 	const multiTenancy = useSelector(selectMultiTenancy);
 
+	if (enableLocalLogin?.toLowerCase() !== 'true') {
+		return <React.Fragment />;
+	}
+
 	/* istanbul ignore next */
 	function onTenantChanged(tenant: string) {
 		dispatch(switchTenant(tenant));
@@ -67,10 +71,6 @@ export function LoginContainer() {
 	/* istanbul ignore next */
 	function onLanguageChange(culture: any) {
 		dispatch(changeCurrentCulture(culture));
-	}
-
-	if (enableLocalLogin?.toLowerCase() !== 'true') {
-		return <React.Fragment />;
 	}
 
 	const onSubmit = buildOnSubmit(dispatch, navigate);
