@@ -28,6 +28,7 @@ export function LoginPage({ onSubmit, isMultiTenant, autoFocus, onTenantChanged,
 				initialValues={{
 					username: '',
 					password: '',
+					remember: false,
 				}}
 				validationSchema={loginSchema}
 				onSubmit={onSubmit}
