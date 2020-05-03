@@ -5,12 +5,20 @@ import { Container } from '@material-ui/core';
 import { useSaga, Mode } from '@ocdlimited/abp.react.redux';
 import { AbpAppBar } from '@ocdlimited/abp.react.theme.shared';
 import { useNavigate } from 'react-router-dom';
-import { selectSettings, selectMultiTenancy, selectCurrentTenant } from '@ocdlimited/abp.react.core';
+import {
+	selectSettings,
+	selectMultiTenancy,
+	selectCurrentTenant,
+	changeCurrentCulture,
+	selectLanguages,
+	selectCurrentCulture,
+} from '@ocdlimited/abp.react.core';
 
 import { login, LoginData, switchTenant } from './loginSlice';
 import rootSaga from './loginSagas';
 
 import { LoginPage } from './pages/LoginPage';
+import { LoginTopBarActions } from './components';
 
 const useStyles = makeStyles((theme: Theme) => {
 	return {
@@ -40,6 +48,9 @@ export function LoginContainer() {
 	const dispatch = useDispatch();
 	const classes = useStyles();
 
+	const languages = useSelector(selectLanguages);
+	const currentCulture = useSelector(selectCurrentCulture);
+
 	const [isSelfRegistrationEnabled, enableLocalLogin] = useSelector(
 		selectSettings('Abp.Account.IsSelfRegistrationEnabled', 'Abp.Account.EnableLocalLogin'),
 	);
@@ -48,20 +59,34 @@ export function LoginContainer() {
 
 	const multiTenancy = useSelector(selectMultiTenancy);
 
-	if (enableLocalLogin?.toLowerCase() !== 'true') {
-		return <React.Fragment />;
-	}
-
 	/* istanbul ignore next */
 	function onTenantChanged(tenant: string) {
 		dispatch(switchTenant(tenant));
+	}
+
+	/* istanbul ignore next */
+	function onLanguageChange(culture: any) {
+		dispatch(changeCurrentCulture(culture));
+	}
+
+	if (enableLocalLogin?.toLowerCase() !== 'true') {
+		return <React.Fragment />;
 	}
 
 	const onSubmit = buildOnSubmit(dispatch, navigate);
 
 	return (
 		<React.Fragment>
-			<AbpAppBar noMenu />
+			<AbpAppBar
+				noMenu
+				barActions={() => (
+					<LoginTopBarActions
+						onLanguageChange={onLanguageChange}
+						languages={languages}
+						currentCulture={currentCulture}
+					/>
+				)}
+			/>
 			<div className={classes.appBarSpacer} />
 			<Container component="main" maxWidth="xs">
 				<LoginPage

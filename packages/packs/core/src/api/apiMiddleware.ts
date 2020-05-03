@@ -1,6 +1,6 @@
 import { Middleware, Dispatch, MiddlewareAPI } from '@reduxjs/toolkit';
 import { apiSlice, apiRequest } from './apiSlice';
-import { selectApiUrl, selectCurrentTenant } from '../application-configuration';
+import { selectApiUrl, selectCurrentTenant, selectCurrentCulture } from '../application-configuration';
 import { selectToken } from '../token';
 import axios from 'axios';
 
@@ -28,11 +28,13 @@ export function createApiMiddleware() {
 			failureType,
 			secured,
 		} = action.payload;
+
 		const dataOrParams = ['GET', 'DELETE'].includes(method) ? 'params' : 'data';
 		const BASE_URL = selectApiUrl(state);
 
 		if (secured) {
 			const { access_token, token_type } = selectToken(state);
+
 			if (access_token && token_type) {
 				headers.Authorization = `${token_type} ${access_token}`;
 			}
@@ -42,6 +44,12 @@ export function createApiMiddleware() {
 
 		if (tenant.isAvailable) {
 			headers.__tenant = tenant.id;
+		}
+
+		if (!Reflect.has(headers, 'Accept-Language')) {
+			const { cultureName } = selectCurrentCulture(state);
+
+			if (cultureName) headers['Accept-Language'] = cultureName;
 		}
 
 		try {
