@@ -3,13 +3,13 @@
 exports[`snapshot 1`] = `
 <div>
   <header
-    class="MuiPaper-root MuiAppBar-root MuiAppBar-positionAbsolute MuiAppBar-colorPrimary makeStyles-appBar-774 MuiPaper-elevation4"
+    class="MuiPaper-root MuiAppBar-root MuiAppBar-positionAbsolute MuiAppBar-colorPrimary makeStyles-appBar-1149 MuiPaper-elevation4"
   >
     <div
-      class="MuiToolbar-root MuiToolbar-regular makeStyles-toolbar-773 MuiToolbar-gutters"
+      class="MuiToolbar-root MuiToolbar-regular makeStyles-toolbar-1148 MuiToolbar-gutters"
     >
       <h1
-        class="MuiTypography-root makeStyles-title-778 MuiTypography-h6 MuiTypography-colorInherit MuiTypography-noWrap"
+        class="MuiTypography-root makeStyles-title-1153 MuiTypography-h6 MuiTypography-colorInherit MuiTypography-noWrap"
       >
         Untitled
       </h1>
@@ -48,16 +48,16 @@ exports[`snapshot 1`] = `
     </div>
   </header>
   <div
-    class="makeStyles-appBarSpacer-771"
+    class="makeStyles-appBarSpacer-1146"
   />
   <main
     class="MuiContainer-root MuiContainer-maxWidthXs"
   >
     <div
-      class="MuiPaper-root makeStyles-paper-903 MuiPaper-elevation2 MuiPaper-rounded"
+      class="MuiPaper-root makeStyles-paper-1278 MuiPaper-elevation2 MuiPaper-rounded"
     >
       <div
-        class="MuiAvatar-root MuiAvatar-circle makeStyles-avatar-904 MuiAvatar-colorDefault"
+        class="MuiAvatar-root MuiAvatar-circle makeStyles-avatar-1279 MuiAvatar-colorDefault"
       >
         <svg
           aria-hidden="true"
@@ -77,7 +77,7 @@ exports[`snapshot 1`] = `
       </h1>
       <form
         action="#"
-        class="makeStyles-form-905"
+        class="makeStyles-form-1280"
         novalidate=""
       >
         <div
@@ -110,10 +110,10 @@ exports[`snapshot 1`] = `
             />
             <fieldset
               aria-hidden="true"
-              class="PrivateNotchedOutline-root-972 MuiOutlinedInput-notchedOutline"
+              class="PrivateNotchedOutline-root-1347 MuiOutlinedInput-notchedOutline"
             >
               <legend
-                class="PrivateNotchedOutline-legendLabelled-974 PrivateNotchedOutline-legendNotched-975"
+                class="PrivateNotchedOutline-legendLabelled-1349 PrivateNotchedOutline-legendNotched-1350"
               >
                 <span>
                   UserNameOrEmailAddress
@@ -182,11 +182,11 @@ exports[`snapshot 1`] = `
             </div>
             <fieldset
               aria-hidden="true"
-              class="PrivateNotchedOutline-root-972 MuiOutlinedInput-notchedOutline"
+              class="PrivateNotchedOutline-root-1347 MuiOutlinedInput-notchedOutline"
               style="padding-left: 8px;"
             >
               <legend
-                class="PrivateNotchedOutline-legend-973"
+                class="PrivateNotchedOutline-legend-1348"
                 style="width: 0.01px;"
               >
                 <span>
@@ -201,13 +201,13 @@ exports[`snapshot 1`] = `
         >
           <span
             aria-disabled="false"
-            class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-995 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
+            class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1370 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
           >
             <span
               class="MuiIconButton-label"
             >
               <input
-                class="PrivateSwitchBase-input-998"
+                class="PrivateSwitchBase-input-1373"
                 data-indeterminate="false"
                 name="remember"
                 type="checkbox"
@@ -235,7 +235,7 @@ exports[`snapshot 1`] = `
           </span>
         </label>
         <button
-          class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-submit-906 MuiButton-containedPrimary MuiButton-fullWidth"
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-submit-1281 MuiButton-containedPrimary MuiButton-fullWidth"
           tabindex="0"
           type="submit"
         >
