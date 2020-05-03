@@ -18,5 +18,6 @@ export function useLocalization() {
 			},
 			lng: currentCulture.cultureName,
 		});
-	}, [localization]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [localization?.currentCulture]);
 }

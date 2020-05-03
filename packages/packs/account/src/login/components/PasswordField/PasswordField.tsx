@@ -62,7 +62,7 @@ export function Password({
 							onMouseDown={handleMouseDownPassword}
 							edge="end"
 						>
-							{values.showPassword ? <Visibility /> : <VisibilityOff />}
+							{!values.showPassword ? <Visibility /> : <VisibilityOff />}
 						</IconButton>
 					</InputAdornment>
 				}

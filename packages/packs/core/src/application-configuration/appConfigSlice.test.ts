@@ -11,6 +11,7 @@ import reducer, {
 	selectCurrentTenant,
 	clearTenant,
 	receiveTenantChange,
+	selectCurrentCulture,
 } from './appConfigSlice';
 
 it('initialState', () => {
@@ -181,8 +182,7 @@ describe('selectSettings', () => {
 		expect(result).toEqual([undefined, undefined]);
 	});
 });
-// selectCurrentTenant,
-// 	clearTenant,
+
 it('tenat', () => {
 	let state = reducer(
 		undefined,
@@ -213,5 +213,26 @@ it('tenat', () => {
 		}),
 	).toEqual({
 		isAvailable: false,
+	});
+});
+
+it('selectCurrentCulture', () => {
+	let state = reducer(
+		undefined,
+		setConfig({
+			localization: {
+				currentCulture: {
+					twoLetterIsoLanguageName: 'en',
+				},
+			},
+		}),
+	);
+
+	expect(
+		selectCurrentCulture({
+			config: state,
+		}),
+	).toEqual({
+		twoLetterIsoLanguageName: 'en',
 	});
 });

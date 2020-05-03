@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction, createAction } from '@reduxjs/toolkit';
 import { AppConfigResponse, Localization, Auth, Value, CurrentUser, Environment } from '../models';
 import { apiRequest } from '../api/apiSlice';
 
@@ -66,11 +66,14 @@ export const appConfigSlice = createSlice({
 });
 
 export const { setConfig, receiveConfig, receiveTenantChange } = appConfigSlice.actions;
+
+export const changeCurrentCulture = createAction<any>('appConfig/changeCurrentCulture');
+
 export const clearTenant = () => ({
 	type: 'appConfig/clearTenant',
 });
 
-export const requestAppConfig = (secured?: boolean, onSuccess?: any, onFailure?: any) =>
+export const requestAppConfig = (secured?: boolean, onSuccess?: any, onFailure?: any, headers?: any) =>
 	apiRequest({
 		url: '/api/abp/application-configuration',
 		method: 'GET',
@@ -78,6 +81,7 @@ export const requestAppConfig = (secured?: boolean, onSuccess?: any, onFailure?:
 		onFailure,
 		successType: receiveConfig,
 		secured,
+		headers,
 	});
 
 export type RootState = {
@@ -100,5 +104,7 @@ export const selectCurrentTenant = (state: RootState): CurrentTenant =>
 	state.config.currentTenant || {
 		isAvailable: false,
 	};
+export const selectCurrentCulture = (state: RootState) => state.config.localization?.currentCulture || {};
+export const selectLanguages = (state: RootState) => state.config.localization?.languages || [];
 
 export default appConfigSlice.reducer;

@@ -15,6 +15,15 @@ const state = {
 				},
 			},
 		},
+		localization: {
+			currentCulture: {
+				cultureName: 'en',
+			},
+		},
+		currentTenant: {
+			isAvailable: true,
+			id: 'id',
+		},
 	},
 	token: {
 		current: {
@@ -60,6 +69,7 @@ it('valid request', async () => {
 	const dispatch = jest.fn();
 	const next = jest.fn();
 	const onSuccess = jest.fn();
+	const headers = {};
 
 	const action = {
 		type: 'api/apiRequest',
@@ -69,6 +79,7 @@ it('valid request', async () => {
 			data: {},
 			onSuccess,
 			successType: () => {},
+			headers,
 		},
 	};
 
@@ -84,12 +95,57 @@ it('valid request', async () => {
 	);
 
 	expect(onSuccess).toHaveBeenCalled();
+	expect(headers).toEqual({ __tenant: 'id', 'Accept-Language': 'en' });
+});
+
+it('valid request - empty', async () => {
+	const dispatch = jest.fn();
+	const next = jest.fn();
+	const onSuccess = jest.fn();
+	const headers = {};
+
+	const action = {
+		type: 'api/apiRequest',
+		payload: {
+			url: '/api/abp/application-configuration',
+			method: 'POST',
+			data: {},
+			onSuccess,
+			successType: () => {},
+			headers,
+		},
+	};
+
+	(axios.request as jest.Mock).mockReturnValue({
+		data: {},
+	});
+
+	await act(() =>
+		middleware({
+			dispatch,
+			getState: () => ({
+				config: {
+					environment: {
+						apis: {
+							default: {
+								url: 'url',
+							},
+						},
+					},
+				},
+			}),
+		})(next)(action),
+	);
+
+	expect(onSuccess).toHaveBeenCalled();
+	expect(headers).toEqual({});
 });
 
 it('valid secured request', async () => {
 	const dispatch = jest.fn();
 	const next = jest.fn();
 	const onSuccess = jest.fn();
+	const headers = {};
 
 	const action = {
 		type: 'api/apiRequest',
@@ -99,6 +155,7 @@ it('valid secured request', async () => {
 			data: {},
 			onSuccess,
 			secured: true,
+			headers,
 		},
 	};
 
@@ -114,6 +171,51 @@ it('valid secured request', async () => {
 	);
 
 	expect(onSuccess).toHaveBeenCalled();
+	expect(headers).toEqual({ __tenant: 'id', 'Accept-Language': 'en', Authorization: 'asd asd' });
+});
+
+it('valid secured request - not token', async () => {
+	const dispatch = jest.fn();
+	const next = jest.fn();
+	const onSuccess = jest.fn();
+	const headers = {};
+
+	const action = {
+		type: 'api/apiRequest',
+		payload: {
+			url: '/api/abp/application-configuration',
+			method: 'POST',
+			data: {},
+			onSuccess,
+			secured: true,
+			headers,
+		},
+	};
+
+	(axios.request as jest.Mock).mockReturnValue({
+		data: {},
+	});
+
+	await act(() =>
+		middleware({
+			dispatch,
+			getState: () => ({
+				config: {
+					environment: {
+						apis: {
+							default: {
+								url: 'url',
+							},
+						},
+					},
+				},
+				token: { current: {} },
+			}),
+		})(next)(action),
+	);
+
+	expect(onSuccess).toHaveBeenCalled();
+	expect(headers).toEqual({});
 });
 
 it('failure', async () => {

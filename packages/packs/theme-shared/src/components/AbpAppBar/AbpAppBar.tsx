@@ -5,9 +5,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
 import MenuIcon from '@material-ui/icons/Menu';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import { useSelector } from 'react-redux';
 import { selectAppName } from '@ocdlimited/abp.react.core';
 
@@ -51,11 +49,14 @@ interface AbpAppBarProps {
 	open: boolean;
 	onOpen: any;
 	noMenu?: boolean;
+	barActions: any;
 }
 
-export const AbpAppBar = ({ open, onOpen, noMenu }: any) => {
+export const AbpAppBar = ({ open, onOpen, noMenu, barActions }: AbpAppBarProps) => {
 	const classes = useStyles();
 	const appName = useSelector(selectAppName);
+
+	const BarActions = barActions || (() => <React.Fragment />);
 
 	return (
 		<AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
@@ -74,11 +75,7 @@ export const AbpAppBar = ({ open, onOpen, noMenu }: any) => {
 				<Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
 					{appName}
 				</Typography>
-				<IconButton color="inherit">
-					<Badge badgeContent={4} color="secondary">
-						<NotificationsIcon />
-					</Badge>
-				</IconButton>
+				{BarActions({})}
 			</Toolbar>
 		</AppBar>
 	);

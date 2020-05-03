@@ -1,7 +1,7 @@
 import { configureStore, StoreEnhancer, Store, AnyAction } from '@reduxjs/toolkit';
 import withReduxEnhancer from 'addon-redux/enhancer';
 import createSagaMiddleware from 'redux-saga';
-import { createApiMiddleware } from '@ocdlimited/abp.react.core';
+import { createApiMiddleware, appConfigSaga } from '@ocdlimited/abp.react.core';
 import { createRootReducer } from './reducers/rootReducer';
 
 export interface InjectableStore extends Store<any, AnyAction> {
@@ -30,6 +30,8 @@ export function buildStore(rootReducer: any, preloadedState?: any): InjectableSt
 		injectedReducers: { ...rootReducer },
 		runSaga: sagaMiddleware.run,
 	};
+
+	sagaMiddleware.run(appConfigSaga);
 
 	/* istanbul ignore next */
 	if (process.env.NODE_ENV === 'development' && module.hot) {
