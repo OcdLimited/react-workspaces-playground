@@ -1,6 +1,6 @@
 import { Middleware, Dispatch, MiddlewareAPI } from '@reduxjs/toolkit';
 import { apiSlice, apiRequest } from './apiSlice';
-import { selectApiUrl, selectCurrentTenant, selectCurrentCulture } from '../application-configuration';
+import { selectApiUrl, buildSelectCurrentTenant, buildSelectCurrentCulture } from '../application-configuration';
 import { selectToken } from '../token';
 import axios from 'axios';
 
@@ -40,14 +40,16 @@ export function createApiMiddleware() {
 			}
 		}
 
-		const tenant = selectCurrentTenant(state);
+		const tenant = buildSelectCurrentTenant()(state);
 
 		if (tenant.isAvailable) {
 			headers.__tenant = tenant.id;
 		}
 
 		if (!Reflect.has(headers, 'Accept-Language')) {
-			const { cultureName } = selectCurrentCulture(state);
+			const result = buildSelectCurrentCulture()(state);
+
+			const cultureName = result?.cultureName;
 
 			if (cultureName) headers['Accept-Language'] = cultureName;
 		}

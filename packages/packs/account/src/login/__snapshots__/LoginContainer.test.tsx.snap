@@ -10,7 +10,9 @@ exports[`snapshot 1`] = `
     >
       <h1
         class="MuiTypography-root makeStyles-title-778 MuiTypography-h6 MuiTypography-colorInherit MuiTypography-noWrap"
-      />
+      >
+        Untitled
+      </h1>
       <button
         aria-haspopup="true"
         class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"

@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { selectLocalization } from '../application-configuration/appConfigSlice';
+import { buildSelectLocalization } from '../application-configuration/appConfigSlice';
 import { reinit } from './i18next';
 
 export function useLocalization() {
-	const localization = useSelector(selectLocalization);
+	const localization = useSelector(buildSelectLocalization());
 
 	useEffect(() => {
 		if (!localization) {

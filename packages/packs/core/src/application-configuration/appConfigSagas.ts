@@ -1,8 +1,8 @@
 import { all, takeEvery, put, select } from 'redux-saga/effects';
-import { changeCurrentCulture, requestAppConfig, selectIsAuthenticated } from './appConfigSlice';
+import { changeCurrentCulture, requestAppConfig, buildSelectIsAuthenticated } from './appConfigSlice';
 
 export function* performCurrentCultureChange(action: any) {
-	const secured = yield select(selectIsAuthenticated);
+	const secured = yield select(buildSelectIsAuthenticated());
 	yield put(
 		requestAppConfig(secured, null, null, {
 			'Accept-Language': action.payload.cultureName,
