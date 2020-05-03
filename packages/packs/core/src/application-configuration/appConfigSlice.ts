@@ -8,8 +8,20 @@ interface AppConfigState {
 	auth?: Auth;
 	setting?: Value;
 	currentUser?: CurrentUser;
+	currentTenant?: CurrentTenant;
 	features?: Value;
 	loaded: boolean;
+	multiTenancy?: MultiTenancy;
+}
+
+interface MultiTenancy {
+	isEnabled: boolean;
+}
+
+interface CurrentTenant {
+	id?: string | null;
+	name?: string | undefined | null;
+	isAvailable: boolean;
 }
 
 const initialState: AppConfigState = {
@@ -34,10 +46,29 @@ export const appConfigSlice = createSlice({
 				loaded: true,
 			};
 		},
+		receiveTenantChange: (state, { payload }) => {
+			const {
+				data: { tenantId: id, name, success: isAvailable },
+			} = payload;
+
+			state.currentTenant = {
+				id,
+				name,
+				isAvailable,
+			};
+		},
+		clearTenant: state => {
+			state.currentTenant = {
+				isAvailable: false,
+			};
+		},
 	},
 });
 
-export const { setConfig, receiveConfig } = appConfigSlice.actions;
+export const { setConfig, receiveConfig, receiveTenantChange } = appConfigSlice.actions;
+export const clearTenant = () => ({
+	type: 'appConfig/clearTenant',
+});
 
 export const requestAppConfig = (secured?: boolean, onSuccess?: any, onFailure?: any) =>
 	apiRequest({
@@ -59,5 +90,15 @@ export const selectLocalization = (state: RootState): Localization | undefined =
 export const selectAuthSettings = (state: RootState): any | undefined => state.config.environment?.oAuthConfig;
 export const selectIsAuthenticated = (state: RootState) => state.config.currentUser?.isAuthenticated;
 export const selectAppName = (state: RootState) => state.config?.environment?.application?.name;
+export const selectSettings = (...paths: string[]) => (state: RootState) => {
+	const values = state.config.setting?.values || {};
+
+	return paths.map(s => values[s]);
+};
+export const selectMultiTenancy = (state: RootState) => state.config.multiTenancy?.isEnabled;
+export const selectCurrentTenant = (state: RootState): CurrentTenant =>
+	state.config.currentTenant || {
+		isAvailable: false,
+	};
 
 export default appConfigSlice.reducer;

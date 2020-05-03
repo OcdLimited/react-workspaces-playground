@@ -40,6 +40,7 @@ export interface HttpRequestDetails {
 	secured?: boolean;
 	successType?: any;
 	failureType?: any;
+	headers?: any;
 }
 
 export default apiSlice.reducer;

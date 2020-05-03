@@ -17,7 +17,7 @@ ReactDOM.render(
 		<ThemeProvider theme={theme}>
 			<CssBaseline />
 			<Provider store={store}>
-				<ToastProvider placement="top-right">
+				<ToastProvider placement="bottom-right">
 					<App />
 					<Notifier />
 				</ToastProvider>

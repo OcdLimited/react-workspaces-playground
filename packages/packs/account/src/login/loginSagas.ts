@@ -1,8 +1,15 @@
 import { all, takeEvery, call, put, select, putResolve } from 'redux-saga/effects';
 import { DiscoveryService, AuthService } from './services';
-import { toastActions, selectAuthSettings, requestAppConfig, recieveToken } from '@ocdlimited/abp.react.core';
+import {
+	toastActions,
+	selectAuthSettings,
+	requestAppConfig,
+	recieveToken,
+	clearTenant,
+	selectCurrentTenant,
+} from '@ocdlimited/abp.react.core';
 import { i18next } from '@ocdlimited/abp.react.core';
-import { login, LoginData } from './loginSlice';
+import { login, LoginData, switchTenant, requestChangeTenant } from './loginSlice';
 
 interface Action<T> {
 	payload: T;
@@ -25,8 +32,10 @@ export function* performLogin(action: Action<LoginData>) {
 
 	var authService = new AuthService(data);
 
+	const tenant = yield select(selectCurrentTenant);
+
 	/* istanbul ignore next */
-	const response = yield call(() => authService.login(username, password));
+	const response = yield call(() => authService.login(username, password, tenant.id));
 
 	if (!response.success) {
 		yield put(
@@ -45,10 +54,26 @@ export function* performLogin(action: Action<LoginData>) {
 	}
 }
 
+export function* performSwitchTenant(action: Action<string>) {
+	const tenantName = action.payload;
+
+	if (!tenantName) {
+		yield putResolve(clearTenant());
+	} else {
+		yield putResolve(requestChangeTenant(tenantName));
+	}
+
+	yield putResolve(requestAppConfig(false));
+}
+
 export function* watchLogin() {
 	yield takeEvery(login, performLogin);
 }
 
+export function* watchSwitchTenant() {
+	yield takeEvery(switchTenant, performSwitchTenant);
+}
+
 export default function* rootSaga() {
-	yield all([watchLogin()]);
+	yield all([watchLogin(), watchSwitchTenant()]);
 }
