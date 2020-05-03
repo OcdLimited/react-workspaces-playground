@@ -6,7 +6,7 @@ import {
 	requestAppConfig,
 	recieveToken,
 	clearTenant,
-	selectCurrentTenant,
+	buildSelectCurrentTenant,
 } from '@ocdlimited/abp.react.core';
 import { i18next } from '@ocdlimited/abp.react.core';
 import { login, LoginData, switchTenant, requestChangeTenant } from './loginSlice';
@@ -32,7 +32,7 @@ export function* performLogin(action: Action<LoginData>) {
 
 	var authService = new AuthService(data);
 
-	const tenant = yield select(selectCurrentTenant);
+	const tenant = yield select(buildSelectCurrentTenant());
 
 	/* istanbul ignore next */
 	const response = yield call(() => authService.login(username, password, tenant.id));

@@ -1,17 +1,17 @@
 import reducer, {
 	setConfig,
-	selectConfigLoaded,
+	buildSelectConfigLoaded,
 	selectApiUrl,
 	receiveConfig,
 	requestAppConfig,
 	selectAuthSettings,
 	selectSettings,
 	selectAppName,
-	selectMultiTenancy,
-	selectCurrentTenant,
+	buildMelectMultiTenancyIsEnabled,
+	buildSelectCurrentTenant,
 	clearTenant,
 	receiveTenantChange,
-	selectCurrentCulture,
+	buildSelectCurrentCulture,
 } from './appConfigSlice';
 
 it('initialState', () => {
@@ -54,7 +54,7 @@ it('requestAppConfig.successType', () => {
 
 it('selectConfigLoaded', () => {
 	const state = reducer(undefined, setConfig({}));
-	const result = selectConfigLoaded({
+	const result = buildSelectConfigLoaded({
 		config: state,
 	});
 
@@ -128,7 +128,7 @@ it('selectMultiTenancy', () => {
 			},
 		}),
 	);
-	const result = selectMultiTenancy({
+	const result = buildMelectMultiTenancyIsEnabled()({
 		config: state,
 	});
 
@@ -196,7 +196,7 @@ it('tenat', () => {
 	);
 
 	expect(
-		selectCurrentTenant({
+		buildSelectCurrentTenant()({
 			config: state,
 		}),
 	).toEqual({
@@ -208,7 +208,7 @@ it('tenat', () => {
 	state = reducer(state, clearTenant());
 
 	expect(
-		selectCurrentTenant({
+		buildSelectCurrentTenant()({
 			config: state,
 		}),
 	).toEqual({
@@ -229,7 +229,7 @@ it('selectCurrentCulture', () => {
 	);
 
 	expect(
-		selectCurrentCulture({
+		buildSelectCurrentCulture()({
 			config: state,
 		}),
 	).toEqual({

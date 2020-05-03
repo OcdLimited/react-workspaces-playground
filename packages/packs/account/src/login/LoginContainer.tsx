@@ -7,11 +7,11 @@ import { AbpAppBar } from '@ocdlimited/abp.react.theme.shared';
 import { useNavigate } from 'react-router-dom';
 import {
 	selectSettings,
-	selectMultiTenancy,
-	selectCurrentTenant,
+	buildMelectMultiTenancyIsEnabled,
+	buildSelectCurrentTenant,
 	changeCurrentCulture,
-	selectLanguages,
-	selectCurrentCulture,
+	buildSelectLanguages,
+	buildSelectCurrentCulture,
 } from '@ocdlimited/abp.react.core';
 
 import { login, LoginData, switchTenant } from './loginSlice';
@@ -48,16 +48,16 @@ export function LoginContainer() {
 	const dispatch = useDispatch();
 	const classes = useStyles();
 
-	const languages = useSelector(selectLanguages);
-	const currentCulture = useSelector(selectCurrentCulture);
+	const languages = useSelector(buildSelectLanguages());
+	const currentCulture = useSelector(buildSelectCurrentCulture());
 
 	const [isSelfRegistrationEnabled, enableLocalLogin] = useSelector(
 		selectSettings('Abp.Account.IsSelfRegistrationEnabled', 'Abp.Account.EnableLocalLogin'),
 	);
 
-	const tenant = useSelector(selectCurrentTenant);
+	const tenant = useSelector(buildSelectCurrentTenant());
 
-	const multiTenancy = useSelector(selectMultiTenancy);
+	const multiTenancy = useSelector(buildMelectMultiTenancyIsEnabled());
 
 	if (enableLocalLogin?.toLowerCase() !== 'true') {
 		return <React.Fragment />;

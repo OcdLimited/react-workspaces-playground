@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction, createAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction, createAction, createSelector } from '@reduxjs/toolkit';
 import { AppConfigResponse, Localization, Auth, Value, CurrentUser, Environment } from '../models';
 import { apiRequest } from '../api/apiSlice';
 
@@ -88,23 +88,35 @@ export type RootState = {
 	config: AppConfigState;
 };
 
-export const selectConfigLoaded = (state: RootState) => state.config.loaded;
-export const selectApiUrl = (state: RootState) => state.config.environment?.apis.default.url;
-export const selectLocalization = (state: RootState): Localization | undefined => state.config.localization;
-export const selectAuthSettings = (state: RootState): any | undefined => state.config.environment?.oAuthConfig;
-export const selectIsAuthenticated = (state: RootState) => state.config.currentUser?.isAuthenticated;
-export const selectAppName = (state: RootState) => state.config?.environment?.application?.name;
-export const selectSettings = (...paths: string[]) => (state: RootState) => {
-	const values = state.config.setting?.values || {};
+export const selectConfig = (state: RootState) => state.config;
 
-	return paths.map(s => values[s]);
-};
-export const selectMultiTenancy = (state: RootState) => state.config.multiTenancy?.isEnabled;
-export const selectCurrentTenant = (state: RootState): CurrentTenant =>
-	state.config.currentTenant || {
-		isAvailable: false,
-	};
-export const selectCurrentCulture = (state: RootState) => state.config.localization?.currentCulture || {};
-export const selectLanguages = (state: RootState) => state.config.localization?.languages || [];
+export const buildSelectConfigLoaded = () => createSelector(selectConfig, c => c.loaded);
+export const buildSelectLocalization = () => createSelector(selectConfig, c => c.localization);
+export const buildSelectIsAuthenticated = () => createSelector(selectConfig, c => c.currentUser?.isAuthenticated);
+export const selectSettings = (...paths: string[]) =>
+	createSelector([selectConfig], c => {
+		const values = c.setting?.values || {};
+
+		return paths.map(s => values[s]);
+	});
+export const buildMelectMultiTenancyIsEnabled = () => createSelector(selectConfig, c => c.multiTenancy?.isEnabled);
+
+export const buildSelectCurrentTenant = () =>
+	createSelector(
+		selectConfig,
+		c =>
+			c.currentTenant || {
+				isAvailable: false,
+			},
+	);
+
+export const buildSelectCurrentCulture = () => createSelector(buildSelectLocalization(), l => l?.currentCulture);
+export const buildSelectLanguages = () => createSelector(buildSelectLocalization(), l => (l?.languages || []) as any[]);
+
+// Shared selectors as enviroment never changes during runtime
+export const selectEnviroment = (state: RootState) => state.config.environment;
+export const selectAuthSettings = createSelector(selectEnviroment, e => e?.oAuthConfig);
+export const selectApiUrl = createSelector(selectEnviroment, e => e?.apis.default.url);
+export const selectAppName = createSelector(selectEnviroment, e => e?.application?.name || 'Untitled');
 
 export default appConfigSlice.reducer;
