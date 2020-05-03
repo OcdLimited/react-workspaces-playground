@@ -1,8 +1,4 @@
-import React from 'react';
-import { action } from '@storybook/addon-actions';
-import { LoginTopBarActions } from './LoginTopBarActions';
-
-const languages = [
+export const languages = [
 	{
 		cultureName: 'cs',
 		uiCultureName: 'cs',
@@ -47,7 +43,7 @@ const languages = [
 	},
 ];
 
-const currentCulture = {
+export const currentCulture = {
 	displayName: 'English',
 	englishName: 'English',
 	threeLetterIsoLanguageName: 'eng',
@@ -65,20 +61,4 @@ const currentCulture = {
 		shortTimePattern: 'h:mm tt',
 		longTimePattern: 'h:mm:ss tt',
 	},
-};
-
-export default {
-	title: 'account/Login/Components/LoginTopBarActions',
-};
-
-export const Default = () => (
-	<LoginTopBarActions
-		onLanguageChange={action('onLanguageChange')}
-		languages={languages}
-		currentCulture={currentCulture}
-	/>
-);
-
-Default.story = {
-	name: 'Default',
 };
