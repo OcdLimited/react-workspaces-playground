@@ -5,16 +5,9 @@ import { Container } from '@material-ui/core';
 import { useSaga, Mode } from '@ocdlimited/abp.react.redux';
 import { AbpAppBar } from '@ocdlimited/abp.react.theme.shared';
 import { useNavigate } from 'react-router-dom';
-import {
-	selectSettings,
-	buildMelectMultiTenancyIsEnabled,
-	buildSelectCurrentTenant,
-	changeCurrentCulture,
-	buildSelectLanguages,
-	buildSelectCurrentCulture,
-} from '@ocdlimited/abp.react.core';
+import { changeCurrentCulture } from '@ocdlimited/abp.react.core';
 
-import { login, LoginData, switchTenant } from './loginSlice';
+import { login, LoginData, switchTenant, buildSelectLoginSettings } from './loginSlice';
 import rootSaga from './loginSagas';
 
 import { LoginPage } from './pages/LoginPage';
@@ -48,18 +41,16 @@ export function LoginContainer() {
 	const dispatch = useDispatch();
 	const classes = useStyles();
 
-	const languages = useSelector(buildSelectLanguages());
-	const currentCulture = useSelector(buildSelectCurrentCulture());
+	const {
+		languages,
+		currentCulture,
+		isSelfRegistrationEnabled,
+		enableLocalLogin,
+		tenant,
+		multiTenancy,
+	} = useSelector(buildSelectLoginSettings());
 
-	const [isSelfRegistrationEnabled, enableLocalLogin] = useSelector(
-		selectSettings('Abp.Account.IsSelfRegistrationEnabled', 'Abp.Account.EnableLocalLogin'),
-	);
-
-	const tenant = useSelector(buildSelectCurrentTenant());
-
-	const multiTenancy = useSelector(buildMelectMultiTenancyIsEnabled());
-
-	if (enableLocalLogin?.toLowerCase() !== 'true') {
+	if (!enableLocalLogin) {
 		return <React.Fragment />;
 	}
 
@@ -90,8 +81,8 @@ export function LoginContainer() {
 			<div className={classes.appBarSpacer} />
 			<Container component="main" maxWidth="xs">
 				<LoginPage
-					isSelfRegistrationEnabled={isSelfRegistrationEnabled?.toLowerCase() === 'true'}
-					isMultiTenant={!!multiTenancy}
+					isSelfRegistrationEnabled={isSelfRegistrationEnabled}
+					isMultiTenant={multiTenancy}
 					tenantName={tenant.name}
 					onSubmit={onSubmit}
 					onTenantChanged={onTenantChanged}

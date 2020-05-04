@@ -1,6 +1,14 @@
-import { createAction } from '@reduxjs/toolkit';
+import { createAction, createSelector } from '@reduxjs/toolkit';
 import { FormikProps } from 'formik';
-import { apiRequest, receiveTenantChange } from '@ocdlimited/abp.react.core';
+import {
+	apiRequest,
+	receiveTenantChange,
+	selectSettings,
+	buildMelectMultiTenancyIsEnabled,
+	buildSelectCurrentTenant,
+	buildSelectLanguages,
+	buildSelectCurrentCulture,
+} from '@ocdlimited/abp.react.core';
 
 export interface LoginData {
 	username: string;
@@ -21,3 +29,22 @@ export const requestChangeTenant = (name: string, onSuccess?: any, onFailure?: a
 		onFailure,
 		successType: receiveTenantChange,
 	});
+
+export const buildSelectLoginSettings = () =>
+	createSelector(
+		[
+			buildSelectLanguages(),
+			buildSelectCurrentCulture(),
+			selectSettings('Abp.Account.IsSelfRegistrationEnabled', 'Abp.Account.EnableLocalLogin'),
+			buildSelectCurrentTenant(),
+			buildMelectMultiTenancyIsEnabled(),
+		],
+		(languages, currentCulture, [isSelfRegistrationEnabled, enableLocalLogin], tenant, multiTenancy) => ({
+			languages,
+			currentCulture,
+			isSelfRegistrationEnabled: isSelfRegistrationEnabled?.toLowerCase() === 'true',
+			enableLocalLogin,
+			tenant,
+			multiTenancy: !!multiTenancy,
+		}),
+	);

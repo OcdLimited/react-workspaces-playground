@@ -47,9 +47,9 @@ const useStyles = makeStyles(theme => ({
 
 interface AbpAppBarProps {
 	open: boolean;
-	onOpen: any;
+	onOpen?: any;
 	noMenu?: boolean;
-	barActions: any;
+	barActions?: any;
 }
 
 export const AbpAppBar = ({ open, onOpen, noMenu, barActions }: AbpAppBarProps) => {
@@ -79,6 +79,10 @@ export const AbpAppBar = ({ open, onOpen, noMenu, barActions }: AbpAppBarProps) 
 			</Toolbar>
 		</AppBar>
 	);
+};
+
+AbpAppBar.defaultProps = {
+	open: false,
 };
 
 export default AbpAppBar;
