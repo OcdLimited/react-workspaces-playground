@@ -88,6 +88,9 @@ it('disabled when EnableLocalLogin is false', () => {
 								'Abp.Account.EnableLocalLogin': 'false',
 							},
 						},
+						multiTenancy: {
+							isEnabled: true,
+						},
 					},
 					{},
 				),

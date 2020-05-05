@@ -11,7 +11,7 @@ export interface LanguageSwitcherProps {
 }
 
 export function LanguageSwitcher({ onLanguageChange, languages, currentCulture }: LanguageSwitcherProps) {
-	const popupState = usePopupState({ popupId: 'demoMenu', variant: 'popover' });
+	const popupState = usePopupState({ popupId: 'language', variant: 'popover' });
 
 	function handleLanguageClick(e: any) {
 		const cultureName = e.currentTarget.dataset?.language;

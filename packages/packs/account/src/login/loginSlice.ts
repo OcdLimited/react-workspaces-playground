@@ -43,7 +43,7 @@ export const buildSelectLoginSettings = () =>
 			languages,
 			currentCulture,
 			isSelfRegistrationEnabled: isSelfRegistrationEnabled?.toLowerCase() === 'true',
-			enableLocalLogin,
+			enableLocalLogin: enableLocalLogin?.toLowerCase() === 'true',
 			tenant,
 			multiTenancy: !!multiTenancy,
 		}),
