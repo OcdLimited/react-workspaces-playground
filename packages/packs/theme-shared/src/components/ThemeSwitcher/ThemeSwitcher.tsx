@@ -3,7 +3,7 @@ import { IconButton, Badge, MenuItem } from '@material-ui/core';
 import PaletteIcon from '@material-ui/icons/Palette';
 import { CascadingMenu } from '../CascadingMenu';
 
-interface ThemeSwitcherProps {
+export interface ThemeSwitcherProps {
 	themes: string[];
 	currentTheme: string;
 	onSelectTheme(theme: string): void;
