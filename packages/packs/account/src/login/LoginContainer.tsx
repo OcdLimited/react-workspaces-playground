@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import { Container } from '@material-ui/core';
 import { useSaga, Mode } from '@ocdlimited/abp.react.redux';
-import { AbpAppBar } from '@ocdlimited/abp.react.theme.shared';
+import { AbpAppBar, setCurrentTheme } from '@ocdlimited/abp.react.theme.shared';
 import { useNavigate } from 'react-router-dom';
 import { changeCurrentCulture } from '@ocdlimited/abp.react.core';
 
@@ -48,20 +48,36 @@ export function LoginContainer() {
 		enableLocalLogin,
 		tenant,
 		multiTenancy,
+		availableThemes,
+		currentTheme,
 	} = useSelector(buildSelectLoginSettings());
+
+	/* istanbul ignore next */
+	const onSelectTheme = React.useCallback(
+		theme => {
+			dispatch(setCurrentTheme(theme));
+		},
+		[dispatch],
+	);
+
+	/* istanbul ignore next */
+	const onTenantChanged = React.useCallback(
+		tenant => {
+			dispatch(switchTenant(tenant));
+		},
+		[dispatch],
+	);
+
+	/* istanbul ignore next */
+	const onLanguageChange = React.useCallback(
+		culture => {
+			dispatch(changeCurrentCulture(culture));
+		},
+		[dispatch],
+	);
 
 	if (!enableLocalLogin) {
 		return <React.Fragment />;
-	}
-
-	/* istanbul ignore next */
-	function onTenantChanged(tenant: string) {
-		dispatch(switchTenant(tenant));
-	}
-
-	/* istanbul ignore next */
-	function onLanguageChange(culture: any) {
-		dispatch(changeCurrentCulture(culture));
 	}
 
 	const onSubmit = buildOnSubmit(dispatch, navigate);
@@ -72,9 +88,12 @@ export function LoginContainer() {
 				noMenu
 				barActions={() => (
 					<LoginTopBarActions
-						onLanguageChange={onLanguageChange}
+						onSelectLanguage={onLanguageChange}
 						languages={languages}
 						currentCulture={currentCulture}
+						onSelectTheme={onSelectTheme}
+						themes={availableThemes}
+						currentTheme={currentTheme}
 					/>
 				)}
 			/>

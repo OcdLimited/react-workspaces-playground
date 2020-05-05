@@ -1,17 +1,25 @@
 import React from 'react';
-import { LanguageSwitcher, LanguageSwitcherProps, SettingsCog } from '@ocdlimited/abp.react.theme.shared';
+import { LanguageSwitcher, LanguageSwitcherProps, ThemeSwitcher } from '@ocdlimited/abp.react.theme.shared';
+import { ThemeSwitcherProps } from '@ocdlimited/abp.react.theme.shared/src/components/ThemeSwitcher/ThemeSwitcher';
 
-interface LoginTopBarActionsProps extends LanguageSwitcherProps {}
+interface LoginTopBarActionsProps extends LanguageSwitcherProps, ThemeSwitcherProps {}
 
-export function LoginTopBarActions({ onLanguageChange, languages, currentCulture }: LoginTopBarActionsProps) {
+export function LoginTopBarActions({
+	onSelectLanguage: onLanguageChange,
+	languages,
+	currentCulture,
+	themes,
+	currentTheme,
+	onSelectTheme,
+}: LoginTopBarActionsProps) {
 	return (
 		<React.Fragment>
 			<LanguageSwitcher
-				onLanguageChange={onLanguageChange}
+				onSelectLanguage={onLanguageChange}
 				languages={languages}
 				currentCulture={currentCulture}
 			/>
-			<SettingsCog />
+			<ThemeSwitcher themes={themes} currentTheme={currentTheme} onSelectTheme={onSelectTheme} />
 		</React.Fragment>
 	);
 }

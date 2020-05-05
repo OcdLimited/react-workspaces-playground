@@ -3,13 +3,13 @@
 exports[`snapshot 1`] = `
 <div>
   <header
-    class="MuiPaper-root MuiAppBar-root MuiAppBar-positionAbsolute MuiAppBar-colorPrimary makeStyles-appBar-774 MuiPaper-elevation4"
+    class="MuiPaper-root MuiAppBar-root MuiAppBar-positionAbsolute MuiAppBar-colorPrimary makeStyles-appBar-778 MuiPaper-elevation4"
   >
     <div
-      class="MuiToolbar-root MuiToolbar-regular makeStyles-toolbar-773 MuiToolbar-gutters"
+      class="MuiToolbar-root MuiToolbar-regular makeStyles-toolbar-777 MuiToolbar-gutters"
     >
       <h1
-        class="MuiTypography-root makeStyles-title-778 MuiTypography-h6 MuiTypography-colorInherit MuiTypography-noWrap"
+        class="MuiTypography-root makeStyles-title-782 MuiTypography-h6 MuiTypography-colorInherit MuiTypography-noWrap"
       >
         Untitled
       </h1>
@@ -46,9 +46,8 @@ exports[`snapshot 1`] = `
         />
       </button>
       <button
-        aria-haspopup="true"
         class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
-        data-testid="open-language"
+        data-testid="open-menu"
         tabindex="0"
         type="button"
       >
@@ -65,8 +64,7 @@ exports[`snapshot 1`] = `
               viewBox="0 0 24 24"
             >
               <path
-                d="M15.95 10.78c.03-.25.05-.51.05-.78s-.02-.53-.06-.78l1.69-1.32c.15-.12.19-.34.1-.51l-1.6-2.77c-.1-.18-.31-.24-.49-.18l-1.99.8c-.42-.32-.86-.58-1.35-.78L12 2.34c-.03-.2-.2-.34-.4-.34H8.4c-.2 0-.36.14-.39.34l-.3 2.12c-.49.2-.94.47-1.35.78l-1.99-.8c-.18-.07-.39 0-.49.18l-1.6 2.77c-.1.18-.06.39.1.51l1.69 1.32c-.04.25-.07.52-.07.78s.02.53.06.78L2.37 12.1c-.15.12-.19.34-.1.51l1.6 2.77c.1.18.31.24.49.18l1.99-.8c.42.32.86.58 1.35.78l.3 2.12c.04.2.2.34.4.34h3.2c.2 0 .37-.14.39-.34l.3-2.12c.49-.2.94-.47 1.35-.78l1.99.8c.18.07.39 0 .49-.18l1.6-2.77c.1-.18.06-.39-.1-.51l-1.67-1.32zM10 13c-1.65 0-3-1.35-3-3s1.35-3 3-3 3 1.35 3 3-1.35 3-3 3z"
-                transform="scale(1.2, 1.2)"
+                d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"
               />
             </svg>
             <span
@@ -81,16 +79,16 @@ exports[`snapshot 1`] = `
     </div>
   </header>
   <div
-    class="makeStyles-appBarSpacer-771"
+    class="makeStyles-appBarSpacer-775"
   />
   <main
     class="MuiContainer-root MuiContainer-maxWidthXs"
   >
     <div
-      class="MuiPaper-root makeStyles-paper-903 MuiPaper-elevation2 MuiPaper-rounded"
+      class="MuiPaper-root makeStyles-paper-909 MuiPaper-elevation2 MuiPaper-rounded"
     >
       <div
-        class="MuiAvatar-root MuiAvatar-circle makeStyles-avatar-904 MuiAvatar-colorDefault"
+        class="MuiAvatar-root MuiAvatar-circle makeStyles-avatar-910 MuiAvatar-colorDefault"
       >
         <svg
           aria-hidden="true"
@@ -110,7 +108,7 @@ exports[`snapshot 1`] = `
       </h1>
       <form
         action="#"
-        class="makeStyles-form-905"
+        class="makeStyles-form-911"
         novalidate=""
       >
         <div
@@ -143,10 +141,10 @@ exports[`snapshot 1`] = `
             />
             <fieldset
               aria-hidden="true"
-              class="PrivateNotchedOutline-root-972 MuiOutlinedInput-notchedOutline"
+              class="PrivateNotchedOutline-root-978 MuiOutlinedInput-notchedOutline"
             >
               <legend
-                class="PrivateNotchedOutline-legendLabelled-974 PrivateNotchedOutline-legendNotched-975"
+                class="PrivateNotchedOutline-legendLabelled-980 PrivateNotchedOutline-legendNotched-981"
               >
                 <span>
                   UserNameOrEmailAddress
@@ -215,11 +213,11 @@ exports[`snapshot 1`] = `
             </div>
             <fieldset
               aria-hidden="true"
-              class="PrivateNotchedOutline-root-972 MuiOutlinedInput-notchedOutline"
+              class="PrivateNotchedOutline-root-978 MuiOutlinedInput-notchedOutline"
               style="padding-left: 8px;"
             >
               <legend
-                class="PrivateNotchedOutline-legend-973"
+                class="PrivateNotchedOutline-legend-979"
                 style="width: 0.01px;"
               >
                 <span>
@@ -235,13 +233,13 @@ exports[`snapshot 1`] = `
         >
           <span
             aria-disabled="false"
-            class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-995 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
+            class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1001 MuiCheckbox-root MuiCheckbox-colorPrimary MuiIconButton-colorPrimary"
           >
             <span
               class="MuiIconButton-label"
             >
               <input
-                class="PrivateSwitchBase-input-998"
+                class="PrivateSwitchBase-input-1004"
                 data-indeterminate="false"
                 name="remember"
                 type="checkbox"
@@ -269,7 +267,7 @@ exports[`snapshot 1`] = `
           </span>
         </label>
         <button
-          class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-submit-906 MuiButton-containedPrimary MuiButton-fullWidth"
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-submit-912 MuiButton-containedPrimary MuiButton-fullWidth"
           tabindex="0"
           type="submit"
         >

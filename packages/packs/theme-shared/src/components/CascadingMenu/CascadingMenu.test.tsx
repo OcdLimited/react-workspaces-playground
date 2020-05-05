@@ -133,11 +133,6 @@ it('should render with function', () => {
 	expect(action).toBeCalled();
 });
 
-it('should render with Component', () => {
-	runTest(<Component action={() => action} />);
-	expect(action).toBeCalled();
-});
-
 it('render empty', () => {
 	render(<CascadingMenu action={() => action} />);
 });

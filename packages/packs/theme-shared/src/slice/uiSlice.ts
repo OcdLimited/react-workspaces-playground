@@ -44,10 +44,8 @@ export type RootState = {
 	ui: UiState;
 };
 
-export const buildSelectCurrentTheme = () =>
-	createSelector(
-		(state: RootState) => state.ui,
-		u => u?.currentTheme,
-	);
+export const selectUi = (state: RootState) => state.ui;
+export const buildSelectCurrentTheme = () => createSelector(selectUi, u => u?.currentTheme);
+export const buildSelectAvailableThemes = () => createSelector(selectUi, u => u?.availableThemes);
 
 export default uiSlice.reducer;

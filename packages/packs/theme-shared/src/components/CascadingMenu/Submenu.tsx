@@ -98,3 +98,5 @@ export const Submenu = withStyles(submenuStyles)(
 		},
 	),
 );
+
+export default Submenu;

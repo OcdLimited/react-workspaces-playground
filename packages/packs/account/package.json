@@ -37,7 +37,9 @@
 		"react-i18next": "11.3.5",
 		"react-scripts": "3.4.1",
 		"storybook-formik": "^2.1.0",
-		"material-ui-popup-state": "1.5.4"
+		"material-ui-popup-state": "1.5.4",
+		"reselect": "4.0.0",
+		"@types/reselect": "2.2.0"
 	},
 	"eslintConfig": {
 		"extends": "react-app"

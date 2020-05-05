@@ -7,7 +7,7 @@ it('should render', () => {
 	const onLanguageChange = jest.fn();
 
 	const { getByText, getByTestId } = render(
-		<LanguageSwitcher onLanguageChange={onLanguageChange} languages={languages} currentCulture={currentCulture} />,
+		<LanguageSwitcher onSelectLanguage={onLanguageChange} languages={languages} currentCulture={currentCulture} />,
 	);
 
 	act(() => {

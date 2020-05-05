@@ -75,8 +75,6 @@ export const CascadingMenu = ({
 			>
 				{menu
 					? renderForMenu(menu, popupState)
-					: component
-					? React.createElement(component as any, popupbag)
 					: children // children come last, always called
 					? isFunction(children)
 						? (children as (bag: Popupbag) => React.ReactNode)(popupbag as Popupbag)
