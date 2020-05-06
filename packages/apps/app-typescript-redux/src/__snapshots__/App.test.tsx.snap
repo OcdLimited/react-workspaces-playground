@@ -373,8 +373,29 @@ exports[`renders fully 1`] = `
       <div
         class="MuiContainer-root makeStyles-container-16 MuiContainer-maxWidthLg"
       >
+        <div>
+          <div
+            class="MuiCircularProgress-root loading-content MuiCircularProgress-colorSecondary MuiCircularProgress-indeterminate"
+            role="progressbar"
+            style="width: 40px; height: 40px;"
+          >
+            <svg
+              class="MuiCircularProgress-svg"
+              viewBox="22 22 44 44"
+            >
+              <circle
+                class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
+                cx="44"
+                cy="44"
+                fill="none"
+                r="20.2"
+                stroke-width="3.6"
+              />
+            </svg>
+          </div>
+        </div>
         <div
-          class="MuiBox-root MuiBox-root-179"
+          class="MuiBox-root MuiBox-root-191"
         >
           <p
             class="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary MuiTypography-alignCenter"
