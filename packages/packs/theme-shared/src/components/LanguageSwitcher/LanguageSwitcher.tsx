@@ -5,13 +5,17 @@ import { bindTrigger, bindMenu } from 'material-ui-popup-state';
 import { usePopupState } from 'material-ui-popup-state/hooks';
 
 export interface LanguageSwitcherProps {
-	onLanguageChange: (culture: any) => void;
+	onSelectLanguage: (culture: any) => void;
 	languages: any[];
 	currentCulture: any;
 }
 
-export function LanguageSwitcher({ onLanguageChange, languages, currentCulture }: LanguageSwitcherProps) {
-	const popupState = usePopupState({ popupId: 'demoMenu', variant: 'popover' });
+export function LanguageSwitcher({
+	onSelectLanguage: onLanguageChange,
+	languages,
+	currentCulture,
+}: LanguageSwitcherProps) {
+	const popupState = usePopupState({ popupId: 'language', variant: 'popover' });
 
 	function handleLanguageClick(e: any) {
 		const cultureName = e.currentTarget.dataset?.language;

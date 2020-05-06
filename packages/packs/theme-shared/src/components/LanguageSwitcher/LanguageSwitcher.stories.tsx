@@ -12,8 +12,8 @@ export const Default = () => {
 
 	return (
 		<LanguageSwitcher
-			onLanguageChange={c => {
-				action('onLanguageChange')(c);
+			onSelectLanguage={c => {
+				action('onSelectLanguage')(c);
 				setCulture(c);
 			}}
 			languages={languages}

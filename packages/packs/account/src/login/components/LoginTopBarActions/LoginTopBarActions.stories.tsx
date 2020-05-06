@@ -73,7 +73,7 @@ export default {
 
 export const Default = () => (
 	<LoginTopBarActions
-		onLanguageChange={action('onLanguageChange')}
+		onSelectLanguage={action('onLanguageChange')}
 		languages={languages}
 		currentCulture={currentCulture}
 	/>

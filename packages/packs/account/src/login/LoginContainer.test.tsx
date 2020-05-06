@@ -23,6 +23,13 @@ beforeEach(() => {
 					},
 					{},
 				),
+				ui: createReducer(
+					{
+						currentTheme: 'test',
+						availableThemes: ['test'],
+					},
+					{},
+				),
 			},
 		}),
 		injectedSagas: [],
@@ -59,6 +66,13 @@ it('renders tenacy selector', () => {
 					},
 					{},
 				),
+				ui: createReducer(
+					{
+						currentTheme: 'test',
+						availableThemes: ['test'],
+					},
+					{},
+				),
 			},
 		}),
 		injectedSagas: [],
@@ -88,6 +102,16 @@ it('disabled when EnableLocalLogin is false', () => {
 								'Abp.Account.EnableLocalLogin': 'false',
 							},
 						},
+						multiTenancy: {
+							isEnabled: true,
+						},
+					},
+					{},
+				),
+				ui: createReducer(
+					{
+						currentTheme: 'test',
+						availableThemes: ['test'],
 					},
 					{},
 				),

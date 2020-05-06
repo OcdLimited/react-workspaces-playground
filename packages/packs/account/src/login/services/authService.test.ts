@@ -32,7 +32,7 @@ it('success should be a success', async () => {
 		scopes: ['scope'],
 	});
 
-	const result = await auth.login('username', 'password');
+	const result = await auth.login('username', 'password', 'tenantid');
 
 	expect(result.success).toBeTruthy();
 });

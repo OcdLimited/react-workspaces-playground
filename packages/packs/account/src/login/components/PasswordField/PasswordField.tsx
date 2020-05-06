@@ -52,7 +52,7 @@ export function Password({
 		<FormControl variant="outlined" margin="normal" fullWidth required={required} error={showError}>
 			<InputLabel htmlFor="password">{t('Password')}</InputLabel>
 			<OutlinedInput
-				id="password"
+				id={id}
 				type={values.showPassword ? 'text' : 'password'}
 				endAdornment={
 					<InputAdornment position="end">
@@ -89,7 +89,8 @@ export const PasswordField = (props: PasswordProps) => (
 
 PasswordField.defaultProps = {
 	required: false,
-	helperText: null,
+	helperText: '',
+	id: 'password',
 };
 
 export default PasswordField;

@@ -26,7 +26,7 @@ it('validation shows', () => {
 					password: true,
 				}}
 			>
-				{() => <PasswordField required />}
+				{() => <PasswordField required helperText="This is helper text" />}
 			</Formik>
 		</React.Fragment>,
 	);

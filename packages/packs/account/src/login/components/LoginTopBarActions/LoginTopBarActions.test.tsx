@@ -4,7 +4,13 @@ import { LoginTopBarActions } from './LoginTopBarActions';
 
 it('should render', () => {
 	const { container } = render(
-		<LoginTopBarActions onLanguageChange={jest.fn()} languages={[]} currentCulture={{}} />,
+		<LoginTopBarActions
+			onSelectLanguage={jest.fn()}
+			languages={[]}
+			currentCulture={{}}
+			currentTheme=""
+			themes={[]}
+		/>,
 	);
 
 	expect(container).toMatchSnapshot();

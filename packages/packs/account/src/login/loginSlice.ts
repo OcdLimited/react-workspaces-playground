@@ -9,6 +9,7 @@ import {
 	buildSelectLanguages,
 	buildSelectCurrentCulture,
 } from '@ocdlimited/abp.react.core';
+import { buildSelectCurrentTheme, buildSelectAvailableThemes } from '@ocdlimited/abp.react.theme.shared';
 
 export interface LoginData {
 	username: string;
@@ -38,13 +39,25 @@ export const buildSelectLoginSettings = () =>
 			selectSettings('Abp.Account.IsSelfRegistrationEnabled', 'Abp.Account.EnableLocalLogin'),
 			buildSelectCurrentTenant(),
 			buildMelectMultiTenancyIsEnabled(),
+			buildSelectAvailableThemes(),
+			buildSelectCurrentTheme(),
 		],
-		(languages, currentCulture, [isSelfRegistrationEnabled, enableLocalLogin], tenant, multiTenancy) => ({
+		(
+			languages,
+			currentCulture,
+			[isSelfRegistrationEnabled, enableLocalLogin],
+			tenant,
+			multiTenancy,
+			availableThemes,
+			currentTheme,
+		) => ({
 			languages,
 			currentCulture,
 			isSelfRegistrationEnabled: isSelfRegistrationEnabled?.toLowerCase() === 'true',
-			enableLocalLogin,
+			enableLocalLogin: enableLocalLogin?.toLowerCase() === 'true',
 			tenant,
 			multiTenancy: !!multiTenancy,
+			availableThemes,
+			currentTheme,
 		}),
 	);
