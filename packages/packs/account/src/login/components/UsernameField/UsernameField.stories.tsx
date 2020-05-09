@@ -13,7 +13,7 @@ Default.story = {
 	decorators: [withFormik],
 };
 
-export const Required = () => <UsernameField required></UsernameField>;
+export const Required = () => <UsernameField required />;
 
 Required.story = {
 	name: 'Required',

@@ -1,10 +1,12 @@
 import React, { Dispatch } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { FormikHelpers } from 'formik';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import { Container } from '@material-ui/core';
+import { NavigateFunction } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { useSaga, Mode } from '@ocdlimited/abp.react.redux';
 import { AbpAppBar, setCurrentTheme } from '@ocdlimited/abp.react.theme.shared';
-import { useNavigate } from 'react-router-dom';
 import { changeCurrentCulture } from '@ocdlimited/abp.react.core';
 
 import { login, LoginData, switchTenant, buildSelectLoginSettings } from './loginSlice';
@@ -19,8 +21,8 @@ const useStyles = makeStyles((theme: Theme) => {
 	};
 });
 
-export function buildOnSubmit(dispatch: Dispatch<any>, navigate: any) {
-	return (data: LoginData, form: any) => {
+export function buildOnSubmit(dispatch: Dispatch<unknown>, navigate: NavigateFunction) {
+	return (data: LoginData, form: FormikHelpers<LoginData>) => {
 		const payload = {
 			...data,
 			form,
@@ -62,8 +64,8 @@ export function LoginContainer() {
 
 	/* istanbul ignore next */
 	const onTenantChanged = React.useCallback(
-		tenant => {
-			dispatch(switchTenant(tenant));
+		newTenant => {
+			dispatch(switchTenant(newTenant));
 		},
 		[dispatch],
 	);
@@ -77,13 +79,13 @@ export function LoginContainer() {
 	);
 
 	if (!enableLocalLogin) {
-		return <React.Fragment />;
+		return <></>;
 	}
 
 	const onSubmit = buildOnSubmit(dispatch, navigate);
 
 	return (
-		<React.Fragment>
+		<>
 			<AbpAppBar
 				noMenu
 				barActions={() => (
@@ -108,7 +110,7 @@ export function LoginContainer() {
 					autoFocus
 				/>
 			</Container>
-		</React.Fragment>
+		</>
 	);
 }
 

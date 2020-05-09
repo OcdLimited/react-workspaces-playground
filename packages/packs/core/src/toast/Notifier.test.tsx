@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { useToasts } from 'react-toast-notifications';
 
 import reducer, { enqueue, close } from './toastSlice';
-import Notifier from './Notifier';
+import { Notifier } from './Notifier';
 
 jest.mock('react-toast-notifications', () => ({
 	useToasts: jest.fn().mockImplementation(() => ({

@@ -7,19 +7,19 @@ import { useMountEffect } from '@ocdlimited/abp.react.core';
 import reducer, { buildSelectCurrentTheme, setUi, Theme } from './uiSlice';
 import * as themes from '../themes';
 
-interface UseThemeResult extends Array<any> {
+interface UseThemeResult extends Array<MuiTheme> {
 	currentTheme: MuiTheme;
 }
 
 export interface UseThemeOptions {
-	onSelectInitialTheme?(): any;
+	onSelectInitialTheme?(themes: Theme[]): Theme;
 	onSelectAvailableThemes?(themes: Theme[]): Theme[];
 }
 
 export function useTheme(options?: UseThemeOptions): UseThemeResult {
 	const finalOptions = {
 		...{
-			onSelectInitialTheme: (_: Theme[]) => themes.dark,
+			onSelectInitialTheme: (t: Theme[]) => t.find(x => x.themeName === themes.dark.themeName),
 			onSelectAvailableThemes: (_: Theme[]) => _,
 		},
 		...(options || {}),
@@ -52,9 +52,9 @@ export function useTheme(options?: UseThemeOptions): UseThemeResult {
 		);
 	});
 
-	const muiTheme = createMuiTheme(themes.all.find(t => t.themeName === currentThemeName) as ThemeOptions);
-	const result = [muiTheme] as UseThemeResult;
-	result.currentTheme = muiTheme;
+	const currentTheme = createMuiTheme(themes.all.find(t => t.themeName === currentThemeName) as ThemeOptions);
+	const result = [currentTheme] as UseThemeResult;
+	result.currentTheme = currentTheme;
 
 	return result;
 }

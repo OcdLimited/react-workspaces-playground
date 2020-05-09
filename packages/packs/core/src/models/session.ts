@@ -1,4 +1,4 @@
-import * as ABP from '../models';
+import * as ABP from '.';
 
 export interface State {
 	language: string;

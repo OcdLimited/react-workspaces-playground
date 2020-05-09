@@ -1,14 +1,8 @@
-import { configureStore, StoreEnhancer, Store, AnyAction } from '@reduxjs/toolkit';
+import { configureStore, StoreEnhancer, Reducer } from '@reduxjs/toolkit';
 import withReduxEnhancer from 'addon-redux/enhancer';
-import createSagaMiddleware from 'redux-saga';
-import { createApiMiddleware, appConfigSaga } from '@ocdlimited/abp.react.core';
-import { createRootReducer } from './reducers/rootReducer';
-
-export interface InjectableStore extends Store<any, AnyAction> {
-	injectedReducers: any;
-	injectedSagas: any;
-	runSaga(saga: any, args: any): any;
-}
+import createSagaMiddleware, { Saga } from 'redux-saga';
+// import { createRootReducer } from './reducers/rootReducer';
+import { InjectableStore, AbpSagaTask } from './types';
 
 const enhancers: StoreEnhancer[] = [];
 
@@ -16,22 +10,36 @@ if (process.env.NODE_ENV !== 'production') {
 	enhancers.push(withReduxEnhancer);
 }
 
-export function buildStore(rootReducer: any, preloadedState?: any): InjectableStore {
+export function buildStore(
+	rootReducer: Reducer,
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	createRootReducer: any,
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	preloadedState?: any,
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	middlewares: any[] = [],
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	sagas: any[] = [],
+): InjectableStore {
 	const sagaMiddleware = createSagaMiddleware();
+
+	const { run } = sagaMiddleware;
 
 	const store = {
 		...configureStore({
-			reducer: createRootReducer(rootReducer),
-			enhancers: enhancers,
-			middleware: [createApiMiddleware(), sagaMiddleware],
+			reducer: rootReducer,
+			enhancers,
+			middleware: [...middlewares, sagaMiddleware],
 			preloadedState,
 		}),
-		injectedSagas: [],
-		injectedReducers: { ...rootReducer },
-		runSaga: sagaMiddleware.run,
+		injectedSagas: {},
+		injectedReducers: {},
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		runSaga: (saga: Saga, ...args: any[]) => run(saga, ...args) as AbpSagaTask,
+		createRootReducer,
 	};
 
-	sagaMiddleware.run(appConfigSaga);
+	sagas.forEach(s => run(s));
 
 	/* istanbul ignore next */
 	if (process.env.NODE_ENV === 'development' && module.hot) {

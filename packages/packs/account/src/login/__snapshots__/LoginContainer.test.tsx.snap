@@ -288,7 +288,7 @@ exports[`snapshot 1`] = `
           >
             <a
               class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorTextPrimary"
-              href="#"
+              href="/account/register"
             >
               AreYouANewUser
                

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react';
 import { Form, Field } from 'formik';
 import { useTranslation } from 'react-i18next';
@@ -42,7 +43,7 @@ const useStyles = makeStyles(theme => ({
 	},
 }));
 
-export function LoginForm({ isSubmitting, autoFocus, ...props }: LoginFormProps) {
+export function LoginForm({ isSubmitting, autoFocus, isSelfRegistrationEnabled }: LoginFormProps) {
 	const classes = useStyles();
 	const { t } = useTranslation('AbpAccount');
 
@@ -55,7 +56,7 @@ export function LoginForm({ isSubmitting, autoFocus, ...props }: LoginFormProps)
 				{t('Login')}
 			</Typography>
 			<Form className={classes.form} noValidate>
-				<React.Fragment>
+				<>
 					<UsernameField required autoFocus={autoFocus} />
 					<PasswordField required />
 					<Field
@@ -75,16 +76,16 @@ export function LoginForm({ isSubmitting, autoFocus, ...props }: LoginFormProps)
 					>
 						{isSubmitting ? <CircularProgress color="secondary" /> : t('Login')}
 					</Button>
-					{props.isSelfRegistrationEnabled && (
+					{isSelfRegistrationEnabled && (
 						<Grid container>
 							<Grid item>
-								<Link href="#" variant="inherit" color="textPrimary">
+								<Link href="/account/register" variant="inherit" color="textPrimary">
 									{t('AreYouANewUser')} {t('Register')}
 								</Link>
 							</Grid>
 						</Grid>
 					)}
-				</React.Fragment>
+				</>
 			</Form>
 		</Paper>
 	);

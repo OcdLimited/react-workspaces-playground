@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, SyntheticEvent } from 'react';
 import { IconButton, Badge, MenuItem } from '@material-ui/core';
 import PaletteIcon from '@material-ui/icons/Palette';
 import { CascadingMenu } from '../CascadingMenu';
@@ -12,10 +12,6 @@ export interface ThemeSwitcherProps {
 export function ThemeSwitcher({ themes, currentTheme, onSelectTheme }: ThemeSwitcherProps) {
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 	const [open, setOpen] = React.useState(false);
-
-	useEffect(() => {
-		handleClose();
-	}, [currentTheme]);
 
 	const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
 		/* istanbul ignore if */
@@ -31,16 +27,20 @@ export function ThemeSwitcher({ themes, currentTheme, onSelectTheme }: ThemeSwit
 		setOpen(false);
 	};
 
-	const handleClick = (e: any) => {
+	function handleClick<T extends HTMLElement>(e: SyntheticEvent<T>) {
 		const theme = themes.find(x => x === e.currentTarget.dataset.theme);
 
 		if (!theme || theme === currentTheme) return;
 
 		onSelectTheme(theme);
-	};
+	}
+
+	useEffect(() => {
+		handleClose();
+	}, [currentTheme]);
 
 	return (
-		<React.Fragment>
+		<>
 			<IconButton color="inherit" onClick={handleOpen} data-testid="open-menu">
 				<Badge color="secondary">
 					<PaletteIcon />
@@ -58,7 +58,7 @@ export function ThemeSwitcher({ themes, currentTheme, onSelectTheme }: ThemeSwit
 					</MenuItem>
 				))}
 			</CascadingMenu>
-		</React.Fragment>
+		</>
 	);
 }
 

@@ -1,10 +1,12 @@
 /* istanbul ignore file */
+import { useEffect, EffectCallback } from 'react';
 import { useStore } from 'react-redux';
-import { useMountEffect } from '@ocdlimited/abp.react.core';
-import { SagaDescriptor, useSagaInjector } from './sagaInjector';
-import { InjectableStore } from '../store';
+import { useSagaInjector } from './sagaInjector';
+import { InjectableStore, SagaDescriptor } from '../types';
 
-export function useSaga(reg: SagaDescriptor, props?: any) {
+const useMountEffect = (fun: EffectCallback) => useEffect(fun, []);
+
+export function useSaga(reg: SagaDescriptor, props?: unknown) {
 	const store = useStore();
 	const injectSaga = useSagaInjector(store as InjectableStore);
 

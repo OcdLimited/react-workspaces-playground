@@ -11,9 +11,9 @@ const ExampleComponent = () => {
 	const { t } = useTranslation();
 
 	return (
-		<React.Fragment>
+		<>
 			<h1>{t('title')}</h1>
-		</React.Fragment>
+		</>
 	);
 };
 

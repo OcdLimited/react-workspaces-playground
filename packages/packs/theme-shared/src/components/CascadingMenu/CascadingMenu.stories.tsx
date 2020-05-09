@@ -1,11 +1,8 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { ListItemIcon, ListItemText, MenuItem, Button, Grid } from '@material-ui/core';
+import { ListItemIcon, ListItemText } from '@material-ui/core';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import { PopupState } from 'material-ui-popup-state/hooks';
 
-import { CascadingMenu } from './CascadingMenu';
-import { Submenu } from './Submenu';
 import { MenuProp, Children as ChildrenProp, ChildrenFunction, Component as ComponentProp } from './TestComponents';
 
 const menu = [
@@ -15,12 +12,12 @@ const menu = [
 	},
 	{
 		text: (
-			<React.Fragment>
+			<>
 				<ListItemIcon>
 					<InboxIcon fontSize="small" />
 				</ListItemIcon>
 				<ListItemText primary="Inbox" />
-			</React.Fragment>
+			</>
 		),
 		onClick: action('inbox clicked'),
 	},

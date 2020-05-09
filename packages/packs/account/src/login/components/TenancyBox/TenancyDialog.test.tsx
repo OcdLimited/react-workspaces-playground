@@ -6,7 +6,7 @@ it('should render', () => {
 	const onClose = jest.fn();
 	const onChange = jest.fn();
 
-	const { getByText, getByTestId } = render(<TenancyDialog open={true} onClose={onClose} onChange={onChange} />);
+	const { getByText, getByTestId } = render(<TenancyDialog open onClose={onClose} onChange={onChange} />);
 
 	const textField = getByTestId('name');
 

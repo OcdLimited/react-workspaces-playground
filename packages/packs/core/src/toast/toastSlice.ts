@@ -1,25 +1,33 @@
+/* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Options, AppearanceTypes } from 'react-toast-notifications';
 
+export interface SnackbarMessageOptions extends Options {
+	autoDismiss: boolean;
+}
+
+export interface SnackbarMessage {
+	message: string;
+	key: string;
+	options?: SnackbarMessageOptions;
+	dismissed?: boolean;
+}
 interface ToastState {
-	notifications: any[];
+	notifications: SnackbarMessage[];
 }
 
 const initialState: ToastState = {
 	notifications: [],
 };
 
-interface NotificationPayload {
-	key: string;
-	message?: string;
-	options?: any;
-}
+type NotificationPayload = SnackbarMessage;
 
 interface ClosePayload {
 	all?: boolean;
-	key?: any;
+	key: string;
 }
 
-const quickSend = (appearance: string) => (state: ToastState, action: PayloadAction<NotificationPayload>) => {
+const quickSend = (appearance: AppearanceTypes) => (state: ToastState, action: PayloadAction<NotificationPayload>) => {
 	state.notifications.push({
 		options: {
 			appearance,

@@ -1,8 +1,8 @@
 import { act } from 'react-dom/test-utils';
 import { all, takeEvery, putResolve } from 'redux-saga/effects';
+import { requestAppConfig, clearTenant } from '@ocdlimited/abp.react.core';
 import rootSaga, { performLogin, watchLogin, watchSwitchTenant, performSwitchTenant } from './loginSagas';
 import { login, switchTenant, requestChangeTenant } from './loginSlice';
-import { requestAppConfig, clearTenant } from '@ocdlimited/abp.react.core';
 
 describe('performLogin', () => {
 	it('success works', () => {
@@ -93,7 +93,8 @@ describe('performSwitchTenant', () => {
 			payload: 'name',
 		});
 
-		var requestChange, updateConfig;
+		let requestChange;
+		let updateConfig;
 
 		act(() => {
 			requestChange = gen.next().value;
@@ -110,7 +111,8 @@ describe('performSwitchTenant', () => {
 			payload: '',
 		});
 
-		var requestChange, updateConfig;
+		let requestChange;
+		let updateConfig;
 
 		act(() => {
 			requestChange = gen.next().value;

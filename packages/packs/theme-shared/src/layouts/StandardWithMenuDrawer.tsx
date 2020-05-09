@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import { Container, Box, CssBaseline } from '@material-ui/core';
 import { useAuthentication } from '@ocdlimited/abp.react.core';
-import { Copyright, AbpAppBar, MenuDrawer } from '../components';
 import { Outlet } from 'react-router-dom';
+import { Copyright, AbpAppBar, MenuDrawer } from '../components';
 
 const useStyles = makeStyles((theme: Theme) => {
 	return {
@@ -25,28 +25,29 @@ const useStyles = makeStyles((theme: Theme) => {
 });
 
 interface StandardWithMenuDrawerProps {
-	children: any;
 	secure?: boolean;
+	children: ReactNode[];
 }
 
-export function StandardWithMenuDrawer(props: StandardWithMenuDrawerProps) {
-	const [showContent] = useAuthentication(props.secure || false);
+export function StandardWithMenuDrawer({ secure }: StandardWithMenuDrawerProps) {
+	const [showContent] = useAuthentication(secure || false);
 
 	const classes = useStyles();
 	const [open, setOpen] = React.useState(false);
 
 	/* istanbul ignore next */
-	const handleDrawerOpen = () => {
+	const handleDrawerOpen = React.useCallback(() => {
 		setOpen(true);
-	};
+	}, [setOpen]);
+
 	/* istanbul ignore next */
-	const handleDrawerClose = () => {
+	const handleDrawerClose = React.useCallback(() => {
 		setOpen(false);
-	};
+	}, [setOpen]);
 
 	/* istanbul ignore next */
 	if (!showContent) {
-		return <React.Fragment />;
+		return <></>;
 	}
 
 	return (

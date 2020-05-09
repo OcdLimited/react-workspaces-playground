@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import { Middleware, Dispatch, MiddlewareAPI } from '@reduxjs/toolkit';
+import axios from 'axios';
 import { apiSlice, apiRequest } from './apiSlice';
 import { selectApiUrl, buildSelectCurrentTenant, buildSelectCurrentCulture } from '../application-configuration';
 import { selectToken } from '../token';
-import axios from 'axios';
 
 const { apiStart, apiCompleted } = apiSlice.actions;
 
@@ -43,6 +44,7 @@ export function createApiMiddleware() {
 		const tenant = buildSelectCurrentTenant()(state);
 
 		if (tenant.isAvailable) {
+			// eslint-disable-next-line no-underscore-dangle
 			headers.__tenant = tenant.id;
 		}
 
@@ -64,17 +66,25 @@ export function createApiMiddleware() {
 				},
 				[dataOrParams]: data,
 			});
-			successType &&
+			if (successType) {
 				next(
 					successType({
 						data: response.data,
 						response,
 					}),
 				);
-			onSuccess && onSuccess(response.data);
+			}
+			if (onSuccess) {
+				onSuccess(response.data);
+			}
 		} catch (error) {
-			failureType && next(failureType(error));
-			onFailure && onFailure(error);
+			if (failureType) {
+				next(failureType(error));
+			}
+
+			if (onFailure) {
+				onFailure(error);
+			}
 		} finally {
 			next(apiCompleted());
 		}

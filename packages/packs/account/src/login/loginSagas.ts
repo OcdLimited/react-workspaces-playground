@@ -1,5 +1,4 @@
 import { all, takeEvery, call, put, select, putResolve } from 'redux-saga/effects';
-import { DiscoveryService, AuthService } from './services';
 import {
 	toastActions,
 	selectAuthSettings,
@@ -7,15 +6,17 @@ import {
 	recieveToken,
 	clearTenant,
 	buildSelectCurrentTenant,
+	i18next,
 } from '@ocdlimited/abp.react.core';
-import { i18next } from '@ocdlimited/abp.react.core';
-import { login, LoginData, switchTenant, requestChangeTenant } from './loginSlice';
+
+import { DiscoveryService, AuthService } from './services';
+import { login, switchTenant, requestChangeTenant, LoginPayload } from './loginSlice';
 
 interface Action<T> {
 	payload: T;
 }
 
-export function* performLogin(action: Action<LoginData>) {
+export function* performLogin(action: Action<LoginPayload>) {
 	const { username, password, form, navigate } = action.payload;
 
 	const settings = yield select(selectAuthSettings);
@@ -30,7 +31,7 @@ export function* performLogin(action: Action<LoginData>) {
 	/* istanbul ignore next */
 	const data = yield call(() => discoveryService.getDiscovery());
 
-	var authService = new AuthService(data);
+	const authService = new AuthService(data);
 
 	const tenant = yield select(buildSelectCurrentTenant());
 
@@ -40,7 +41,7 @@ export function* performLogin(action: Action<LoginData>) {
 	if (!response.success) {
 		yield put(
 			toastActions.error({
-				key: 'login-error-' + Date.now().toFixed(),
+				key: `login-error-${Date.now().toFixed()}`,
 				message: i18next.t('AbpAccount:DefaultErrorMessage'),
 			}),
 		);

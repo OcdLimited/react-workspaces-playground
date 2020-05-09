@@ -1,1 +1,1 @@
-export { default as UsernameField } from "./UsernameField";
+export { default as UsernameField } from './UsernameField';

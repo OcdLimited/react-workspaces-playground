@@ -24,7 +24,7 @@ export function TenancyBox({
 }: {
 	visible?: boolean;
 	tenantName?: string | undefined | null;
-	onTenantChanged?: any;
+	onTenantChanged: (value: string) => void;
 }) {
 	const classes = useStyles();
 	const { t } = useTranslation('AbpUiMultiTenancy');
@@ -34,7 +34,7 @@ export function TenancyBox({
 		setOpen(false);
 	}, [setOpen, tenantName]);
 
-	if (!visible) return <React.Fragment />;
+	if (!visible) return <></>;
 
 	const handleClose = () => {
 		setOpen(false);

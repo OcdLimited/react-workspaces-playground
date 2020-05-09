@@ -1,7 +1,13 @@
+/* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 
+type TokenType = {
+	access_token?: string;
+	token_type?: string;
+};
+
 interface TokenSessionState {
-	current: any;
+	current: TokenType;
 }
 
 const initialState: TokenSessionState = {

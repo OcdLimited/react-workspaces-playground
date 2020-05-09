@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 
 import { useBasicTheme, UseThemeOptions } from './useUi';
@@ -10,9 +10,9 @@ const ExampleComponent = ({ options }: { options?: UseThemeOptions }) => {
 	useBasicTheme(options);
 
 	return (
-		<React.Fragment>
+		<>
 			<h1>title</h1>
-		</React.Fragment>
+		</>
 	);
 };
 
@@ -25,6 +25,7 @@ const store = {
 	injectedSagas: [],
 	runSaga: () => {},
 	injectedReducers: [],
+	createRootReducer: combineReducers,
 };
 
 it('should work', () => {

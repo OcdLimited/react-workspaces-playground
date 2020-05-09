@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react'; // we need this to make JSX compile
 import { Field } from 'formik';
 import { TextField } from 'formik-material-ui';

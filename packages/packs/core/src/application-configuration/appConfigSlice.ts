@@ -1,6 +1,7 @@
+/* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction, createAction, createSelector } from '@reduxjs/toolkit';
 import { AppConfigResponse, Localization, Auth, Value, CurrentUser, Environment } from '../models';
-import { apiRequest } from '../api/apiSlice';
+import { apiRequest, ApiRequestHeaders } from '../api/apiSlice';
 
 interface AppConfigState {
 	environment?: Environment;
@@ -67,14 +68,19 @@ export const appConfigSlice = createSlice({
 
 export const { setConfig, receiveConfig, receiveTenantChange } = appConfigSlice.actions;
 
-export const changeCurrentCulture = createAction<any>('appConfig/changeCurrentCulture');
+export const changeCurrentCulture = createAction<string>('appConfig/changeCurrentCulture');
 
 export const clearTenant = () => ({
 	type: 'appConfig/clearTenant',
 });
 
-export const requestAppConfig = (secured?: boolean, onSuccess?: any, onFailure?: any, headers?: any) =>
-	apiRequest({
+export function requestAppConfig<T>(
+	secured?: boolean,
+	onSuccess?: (data: T) => void,
+	onFailure?: (error: Error) => void,
+	headers?: ApiRequestHeaders,
+) {
+	return apiRequest({
 		url: '/api/abp/application-configuration',
 		method: 'GET',
 		onSuccess,
@@ -83,12 +89,13 @@ export const requestAppConfig = (secured?: boolean, onSuccess?: any, onFailure?:
 		secured,
 		headers,
 	});
+}
 
 export type RootState = {
 	config: AppConfigState;
 };
 
-export const selectConfig = (state: RootState) => state.config;
+export const selectConfig = (state: RootState) => state.config || {};
 
 export const buildSelectConfigLoaded = () => createSelector(selectConfig, c => c.loaded);
 export const buildSelectLocalization = () => createSelector(selectConfig, c => c.localization);
@@ -111,7 +118,7 @@ export const buildSelectCurrentTenant = () =>
 	);
 
 export const buildSelectCurrentCulture = () => createSelector(buildSelectLocalization(), l => l?.currentCulture);
-export const buildSelectLanguages = () => createSelector(buildSelectLocalization(), l => (l?.languages || []) as any[]);
+export const buildSelectLanguages = () => createSelector(buildSelectLocalization(), l => l?.languages || []);
 
 // Shared selectors as enviroment never changes during runtime
 export const selectEnviroment = (state: RootState) => state.config.environment;

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
@@ -9,8 +10,7 @@ export function Copyright() {
 			<Link color="inherit" href="https://material-ui.com/">
 				Your Website
 			</Link>{' '}
-			{new Date().getFullYear()}
-			{'.'}
+			{new Date().getFullYear()}.
 		</Typography>
 	);
 }

@@ -1,4 +1,5 @@
-import { AnyAction, createSlice, createAction } from '@reduxjs/toolkit';
+/* eslint-disable no-param-reassign */
+import { createSlice, createAction, Action, ActionCreatorWithPayload } from '@reduxjs/toolkit';
 import { Method } from 'axios';
 
 interface ApiState {
@@ -24,23 +25,32 @@ export const apiSlice = createSlice({
 
 export const { apiStart, apiCompleted } = apiSlice.actions;
 
-export interface ApiAction extends AnyAction {
-	payload: HttpRequestDetails;
+export interface ApiAction<T> extends Action {
+	payload: HttpRequestDetails<T>;
 }
 
-export const apiRequest = createAction<HttpRequestDetails>('api/apiRequest');
+export function apiRequest<T>(payload: HttpRequestDetails<T>): ApiAction<T> {
+	return createAction<HttpRequestDetails<T>>('api/apiRequest')(payload);
+}
+apiRequest.type = 'api/apiRequest';
 
-export interface HttpRequestDetails {
+export type ApiRequestHeaders = {
+	[key: string]: unknown;
+};
+
+type SuccessPayload<T> = {};
+
+export interface HttpRequestDetails<T> {
 	url: string;
 	method: Method;
-	data?: any;
-	onSuccess: any;
-	onFailure?: any;
+	data?: unknown;
+	onSuccess?: (data: T) => void;
+	onFailure?: (error: Error) => void;
 	label?: string;
 	secured?: boolean;
-	successType?: any;
-	failureType?: any;
-	headers?: any;
+	successType?: ActionCreatorWithPayload<SuccessPayload<T>>;
+	failureType?: ActionCreatorWithPayload<Error>;
+	headers?: ApiRequestHeaders;
 }
 
 export default apiSlice.reducer;

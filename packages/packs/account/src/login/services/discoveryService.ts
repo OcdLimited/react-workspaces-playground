@@ -1,13 +1,6 @@
 import axios from 'axios';
 import { AuthOptions } from './authService';
 
-interface LoginResult {
-	success: boolean;
-	accessToken?: any;
-	error?: string;
-	body?: any;
-}
-
 interface Settings {
 	scopes: string[];
 	issuer: string;
@@ -17,7 +10,8 @@ interface Settings {
 
 export class DiscoveryService {
 	options: Settings;
-	API_PATH: string = '/.well-known/openid-configuration';
+
+	API_PATH = '/.well-known/openid-configuration';
 
 	constructor(options: Settings) {
 		this.options = options;
@@ -30,7 +24,10 @@ export class DiscoveryService {
 		return result;
 	}
 
-	transformResult(data: any, options: Settings = this.options): AuthOptions {
+	transformResult(
+		data: { token_endpoint: string; authorization_endpoint: string },
+		options: Settings = this.options,
+	): AuthOptions {
 		if (data) {
 			return {
 				accessTokenUri: data.token_endpoint,

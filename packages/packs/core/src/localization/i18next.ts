@@ -5,8 +5,7 @@ const resources = {
 	en: {},
 };
 
-i18n
-	.use(initReactI18next) // passes i18n down to react-i18next
+i18n.use(initReactI18next) // passes i18n down to react-i18next
 	.init({
 		resources,
 		lng: 'en',
@@ -17,7 +16,9 @@ i18n
 
 export default i18n;
 
-export function reinit(options: any) {
+type i18Options = {};
+
+export function reinit(options: i18Options) {
 	i18n.init({
 		interpolation: {
 			escapeValue: false, // react already safes from xss
