@@ -24,7 +24,7 @@ export function Home() {
 	const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
 	return (
-		<React.Fragment>
+		<>
 			<Grid container spacing={3}>
 				{/* Chart */}
 				<Grid item xs={12} md={8} lg={9}>
@@ -45,7 +45,7 @@ export function Home() {
 					</Paper>
 				</Grid>
 			</Grid>
-		</React.Fragment>
+		</>
 	);
 }
 

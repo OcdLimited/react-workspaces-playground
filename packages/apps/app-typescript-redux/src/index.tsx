@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { Provider } from 'react-redux';
@@ -12,7 +12,7 @@ import App from './App';
 import { store } from './app/redux/store';
 import * as serviceWorker from './serviceWorker';
 
-const AbpThemedApp = ({ children }: any) => {
+const AbpThemedApp = ({ children }: { children: ReactNode }) => {
 	const { currentTheme } = useBasicTheme();
 
 	return (
@@ -26,7 +26,7 @@ const AbpThemedApp = ({ children }: any) => {
 ReactDOM.render(
 	<React.StrictMode>
 		<Provider store={store}>
-			<AbpThemedApp defaultThemeName="dark">
+			<AbpThemedApp>
 				<ToastProvider placement="bottom-right">
 					<App />
 					<Notifier />

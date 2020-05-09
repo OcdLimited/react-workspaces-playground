@@ -1,4 +1,4 @@
-import { buildStore } from '@ocdlimited/abp.react.redux';
+import { buildStore } from '@ocdlimited/abp.react.core';
 import { environment } from '../../environments/environment';
 
 export const store = buildStore(

@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { store } from '../../app/redux/store';
-import Home from './Home';
+import { Home } from './Home';
 
 it('renders', () => {
 	const { container, getByText } = render(

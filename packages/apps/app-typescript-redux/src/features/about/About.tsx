@@ -30,7 +30,12 @@ export function About() {
 						Material UI
 					</a>
 					<span>, </span>
-					<a className="App-link" href="https://jaredpalmer.com/formik/" target="_blank" rel="noopener noreferrer">
+					<a
+						className="App-link"
+						href="https://jaredpalmer.com/formik/"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
 						Formik
 					</a>
 					<span>, </span>
@@ -38,14 +43,24 @@ export function About() {
 						Redux
 					</a>
 					<span>, </span>
-					<a className="App-link" href="https://redux-toolkit.js.org/" target="_blank" rel="noopener noreferrer">
+					<a
+						className="App-link"
+						href="https://redux-toolkit.js.org/"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
 						Redux Toolkit
 					</a>
 					<span>, </span>
-					<a className="App-link" href="https://react-redux.js.org/" target="_blank" rel="noopener noreferrer">
+					<a
+						className="App-link"
+						href="https://react-redux.js.org/"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
 						React Redux
 					</a>
-					,<span> and </span>
+					<span> and </span>
 					<a className="App-link" href="https://redux-saga.js.org" target="_blank" rel="noopener noreferrer">
 						Redux Sagas
 					</a>
