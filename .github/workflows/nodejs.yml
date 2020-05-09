@@ -24,7 +24,12 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: GitHub Action for Yarn
+    - name: Install
+      uses: Borales/actions-yarn@v2.1.0
+      with:
+        # Yarn command
+        cmd: yarn
+    - name: Test
       uses: Borales/actions-yarn@v2.1.0
       with:
         # Yarn command
