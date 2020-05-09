@@ -1,0 +1,6 @@
+export { default } from './{{properCase name}}';
+{{#if wantActionsAndReducer}}
+export * from './actions';
+export { default as reducer } from './reducer';
+export * from './selectors';
+{{/if}}

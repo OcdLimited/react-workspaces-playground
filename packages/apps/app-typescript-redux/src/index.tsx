@@ -1,23 +1,38 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { Provider } from 'react-redux';
+import { ToastProvider } from 'react-toast-notifications';
+import { Notifier } from '@ocdlimited/abp.react.core';
+import { CssBaseline } from '@material-ui/core';
+import { useBasicTheme } from '@ocdlimited/abp.react.theme.shared';
 
 import './index.css';
 import App from './App';
 import { store } from './app/redux/store';
 import * as serviceWorker from './serviceWorker';
-import { CssBaseline } from '@material-ui/core';
-import { Dark as theme } from './themes';
+
+const AbpThemedApp = ({ children }: { children: ReactNode }) => {
+	const { currentTheme } = useBasicTheme();
+
+	return (
+		<ThemeProvider theme={currentTheme}>
+			<CssBaseline />
+			{children}
+		</ThemeProvider>
+	);
+};
 
 ReactDOM.render(
 	<React.StrictMode>
-		<ThemeProvider theme={theme}>
-			<CssBaseline />
-			<Provider store={store}>
-				<App />
-			</Provider>
-		</ThemeProvider>
+		<Provider store={store}>
+			<AbpThemedApp>
+				<ToastProvider placement="bottom-right">
+					<App />
+					<Notifier />
+				</ToastProvider>
+			</AbpThemedApp>
+		</Provider>
 	</React.StrictMode>,
 	document.getElementById('root'),
 );

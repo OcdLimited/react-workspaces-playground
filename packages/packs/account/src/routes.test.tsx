@@ -6,6 +6,10 @@ import { configureStore, createReducer } from '@reduxjs/toolkit';
 
 import AccountRoutes from './routes';
 
+jest.mock('./login/loadable.tsx', () => ({
+	LoginContainer: () => <div>Password</div>,
+}));
+
 const store = {
 	...configureStore({
 		reducer: createReducer(0, {}),
@@ -29,7 +33,7 @@ it('renders without crashing', () => {
 	expect(queryByText('Password')).toBeNull();
 });
 
-it('renders login without crashing', () => {
+it('renders login without crashing', async () => {
 	const { getByText } = render(
 		<Provider store={store}>
 			<MemoryRouter initialEntries={['/account/login']}>

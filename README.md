@@ -78,7 +78,7 @@ All available `start` scripts
     "start:app-single": "yarn workspace @ocdlimited/app-single-comp start",
     "start:app-ts": "yarn workspace @ocdlimited/app-typescript start",
     "start:storybook": "yarn workspace @ocdlimited/storybook storybook",
-    "start:storybook-ts": "yarn workspace @ocdlimited/storybook-typescript storybook",
+    "start:storybook-ts": "yarn workspace @ocdlimited/storybook-packs storybook",
     ...
   }
 ```

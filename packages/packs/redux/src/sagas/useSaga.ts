@@ -1,19 +1,20 @@
 /* istanbul ignore file */
-import { useEffect } from 'react';
+import { useEffect, EffectCallback } from 'react';
 import { useStore } from 'react-redux';
-import { SagaDescriptor, useSagaInjector } from './sagaInjector';
-import { InjectableStore } from '../store';
+import { useSagaInjector } from './sagaInjector';
+import { InjectableStore, SagaDescriptor } from '../types';
 
-export function useSaga(reg: SagaDescriptor, props?: any) {
+const useMountEffect = (fun: EffectCallback) => useEffect(fun, []);
+
+export function useSaga(reg: SagaDescriptor, props?: unknown) {
 	const store = useStore();
 	const injectSaga = useSagaInjector(store as InjectableStore);
 
-	useEffect(() => {
+	useMountEffect(() => {
 		injectSaga.inject(reg.key, reg, props);
 
 		return function cleanup() {
 			injectSaga.eject(reg.key);
 		};
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	});
 }

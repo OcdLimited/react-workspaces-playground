@@ -1,14 +1,12 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { LoginContainer } from './login/LoginContainer';
+import { LoginContainer } from './login/loadable';
 
 const routes = () => (
-	<React.Fragment>
-		<Routes>
-			<Route path="/login" element={<LoginContainer />} />
-			<Route path="/forgot-password" element={<LoginContainer />} />
-		</Routes>
-	</React.Fragment>
+	<Routes>
+		<Route path="/login" element={<LoginContainer />} />
+		<Route path="/forgot-password" element={<LoginContainer />} />
+	</Routes>
 );
 routes.path = 'account/*';
 

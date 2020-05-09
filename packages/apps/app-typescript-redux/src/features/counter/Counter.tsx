@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useSaga, useReducer } from '@ocdlimited/abp.react.redux';
@@ -42,10 +43,16 @@ export function CounterComponent() {
 					value={incrementAmount}
 					onChange={e => setIncrementAmount(e.target.value)}
 				/>
-				<button className={styles.button} onClick={() => dispatch(incrementByAmount(Number(incrementAmount) || 0))}>
+				<button
+					className={styles.button}
+					onClick={() => dispatch(incrementByAmount(Number(incrementAmount) || 0))}
+				>
 					Add Amount
 				</button>
-				<button className={styles.asyncButton} onClick={() => dispatch(incrementAsync(Number(incrementAmount) || 0))}>
+				<button
+					className={styles.asyncButton}
+					onClick={() => dispatch(incrementAsync(Number(incrementAmount) || 0))}
+				>
 					Add Async
 				</button>
 			</div>

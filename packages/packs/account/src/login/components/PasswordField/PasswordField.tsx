@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react'; // we need this to make JSX compile
 import { Field, getIn, FieldProps } from 'formik';
 import { useTranslation } from 'react-i18next';
@@ -21,7 +22,7 @@ export function Password({
 	form: { isSubmitting, touched, errors },
 	id,
 	FormHelperTextProps,
-	...props
+	helperText,
 }: TextFieldProps) {
 	const [values, setValues] = React.useState({
 		showPassword: false,
@@ -39,40 +40,42 @@ export function Password({
 	const fieldError = getIn(errors, field.name);
 	const showError = getIn(touched, field.name) && !!fieldError;
 
-	const helperText = showError ? fieldError : props.helperText;
+	const errorText = showError ? fieldError : helperText;
 
 	const meta = {
 		error: showError,
 		disabled: disabled ?? isSubmitting,
 	};
 
-	const helperTextId = props.helperText && id ? `${id}-helper-text` : undefined;
+	const helperTextId = helperText && id ? `${id}-helper-text` : undefined;
+
+	const endAdornment = (
+		<InputAdornment position="end">
+			<IconButton
+				aria-label="toggle password visibility"
+				onClick={handleClickShowPassword}
+				onMouseDown={handleMouseDownPassword}
+				edge="end"
+			>
+				{!values.showPassword ? <Visibility /> : <VisibilityOff />}
+			</IconButton>
+		</InputAdornment>
+	);
 
 	return (
 		<FormControl variant="outlined" margin="normal" fullWidth required={required} error={showError}>
 			<InputLabel htmlFor="password">{t('Password')}</InputLabel>
 			<OutlinedInput
-				id="password"
+				id={id}
 				type={values.showPassword ? 'text' : 'password'}
-				endAdornment={
-					<InputAdornment position="end">
-						<IconButton
-							aria-label="toggle password visibility"
-							onClick={handleClickShowPassword}
-							onMouseDown={handleMouseDownPassword}
-							edge="end"
-						>
-							{values.showPassword ? <Visibility /> : <VisibilityOff />}
-						</IconButton>
-					</InputAdornment>
-				}
+				endAdornment={endAdornment}
 				labelWidth={70}
 				{...field}
 				{...meta}
 			/>
-			{helperText && (
+			{errorText && (
 				<FormHelperText id={helperTextId} {...FormHelperTextProps}>
-					{helperText}
+					{errorText}
 				</FormHelperText>
 			)}
 		</FormControl>
@@ -89,7 +92,8 @@ export const PasswordField = (props: PasswordProps) => (
 
 PasswordField.defaultProps = {
 	required: false,
-	helperText: null,
+	helperText: '',
+	id: 'password',
 };
 
 export default PasswordField;

@@ -1,16 +1,17 @@
-import ClientOAuth2 from 'client-oauth2';
+import ClientOAuth2, { Token } from 'client-oauth2';
 
 interface LoginResult {
 	success: boolean;
-	accessToken?: any;
+	accessToken?: Token;
 	error?: string;
-	body?: any;
+	body?: unknown;
 }
 
-export interface AuthOptions extends ClientOAuth2.Options {}
+export type AuthOptions = ClientOAuth2.Options;
 
 export class AuthService {
 	options: AuthOptions;
+
 	authClient: ClientOAuth2;
 
 	constructor(options: AuthOptions) {
@@ -20,10 +21,17 @@ export class AuthService {
 		});
 	}
 
-	async login(username: string, password: string): Promise<LoginResult> {
+	async login(username: string, password: string, tenantId?: string): Promise<LoginResult> {
 		try {
+			const headers: { [key: string]: string } = {};
+
+			if (tenantId) {
+				// eslint-disable-next-line no-underscore-dangle
+				headers.__tenant = tenantId;
+			}
+
 			const accessToken = await this.authClient.owner.getToken(username, password, {
-				// TODO: Tenant header
+				headers,
 			});
 
 			return {

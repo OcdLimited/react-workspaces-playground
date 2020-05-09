@@ -1,0 +1,276 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders 1`] = `
+<div>
+  <div
+    class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"
+  >
+    <div
+      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8 MuiGrid-grid-lg-9"
+    >
+      <div
+        class="MuiPaper-root makeStyles-paper-1 makeStyles-fixedHeight-2 MuiPaper-elevation1 MuiPaper-rounded"
+      >
+        <h1
+          class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
+        >
+          Today
+        </h1>
+        <div
+          class="recharts-responsive-container"
+          style="width: 100%; height: 100%;"
+        >
+          <div
+            style="position: absolute; width: 0px; height: 0px; visibility: hidden; display: none;"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 MuiGrid-grid-lg-3"
+    >
+      <div
+        class="MuiPaper-root makeStyles-paper-1 makeStyles-fixedHeight-2 MuiPaper-elevation1 MuiPaper-rounded"
+      >
+        <h1
+          class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
+        >
+          Recent Deposits
+        </h1>
+        <p
+          class="MuiTypography-root MuiTypography-h4"
+        >
+          $3,024.00
+        </p>
+        <p
+          class="MuiTypography-root makeStyles-depositContext-164 MuiTypography-body1 MuiTypography-colorTextSecondary"
+        >
+          on 15 March, 2019
+        </p>
+        <div>
+          <a
+            class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
+            href="#"
+          >
+            View balance
+          </a>
+        </div>
+      </div>
+    </div>
+    <div
+      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+    >
+      <div
+        class="MuiPaper-root makeStyles-paper-1 MuiPaper-elevation1 MuiPaper-rounded"
+      >
+        <h1
+          class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
+        >
+          Recent Orders
+        </h1>
+        <table
+          class="MuiTable-root"
+        >
+          <thead
+            class="MuiTableHead-root"
+          >
+            <tr
+              class="MuiTableRow-root MuiTableRow-head"
+            >
+              <th
+                class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeSmall"
+                scope="col"
+              >
+                Date
+              </th>
+              <th
+                class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeSmall"
+                scope="col"
+              >
+                Name
+              </th>
+              <th
+                class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeSmall"
+                scope="col"
+              >
+                Ship To
+              </th>
+              <th
+                class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeSmall"
+                scope="col"
+              >
+                Payment Method
+              </th>
+              <th
+                class="MuiTableCell-root MuiTableCell-head MuiTableCell-alignRight MuiTableCell-sizeSmall"
+                scope="col"
+              >
+                Sale Amount
+              </th>
+            </tr>
+          </thead>
+          <tbody
+            class="MuiTableBody-root"
+          >
+            <tr
+              class="MuiTableRow-root"
+            >
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+              >
+                16 Mar, 2019
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+              >
+                Elvis Presley
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+              >
+                Tupelo, MS
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+              >
+                VISA ⠀•••• 3719
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall"
+              >
+                312.44
+              </td>
+            </tr>
+            <tr
+              class="MuiTableRow-root"
+            >
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+              >
+                16 Mar, 2019
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+              >
+                Paul McCartney
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+              >
+                London, UK
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+              >
+                VISA ⠀•••• 2574
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall"
+              >
+                866.99
+              </td>
+            </tr>
+            <tr
+              class="MuiTableRow-root"
+            >
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+              >
+                16 Mar, 2019
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+              >
+                Tom Scholz
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+              >
+                Boston, MA
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+              >
+                MC ⠀•••• 1253
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall"
+              >
+                100.81
+              </td>
+            </tr>
+            <tr
+              class="MuiTableRow-root"
+            >
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+              >
+                16 Mar, 2019
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+              >
+                Michael Jackson
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+              >
+                Gary, IN
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+              >
+                AMEX ⠀•••• 2000
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall"
+              >
+                654.39
+              </td>
+            </tr>
+            <tr
+              class="MuiTableRow-root"
+            >
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+              >
+                15 Mar, 2019
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+              >
+                Bruce Springsteen
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+              >
+                Long Branch, NJ
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+              >
+                VISA ⠀•••• 5919
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall"
+              >
+                212.79
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div
+          class="makeStyles-seeMore-171"
+        >
+          <a
+            class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
+            href="#"
+          >
+            See more orders
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

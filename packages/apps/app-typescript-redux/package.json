@@ -6,6 +6,9 @@
 		"@material-ui/core": "^4.9.11",
 		"@material-ui/icons": "^4.9.1",
 		"@material-ui/styles": "^4.9.1",
+		"@material-ui/lab": "4.0.0-alpha.51",
+		"@ocdlimited/abp.react.theme.shared": "^0.0.4-alpha.0",
+		"@ocdlimited/abp.react.core": "^0.0.4-alpha.0",
 		"@ocdlimited/abp.react.account": "^0.0.4-alpha.0",
 		"@ocdlimited/abp.react.redux": "^0.0.4-alpha.0",
 		"@ocdlimited/react-scripts": "^0.0.4-alpha.0",
@@ -30,10 +33,15 @@
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
 		"react-redux": "^7.2.0",
-		"react-router": "6.0.0-alpha.3",
-		"react-router-dom": "6.0.0-alpha.3",
+		"react-router": "6.0.0-alpha.4",
+		"react-router-dom": "6.0.0-alpha.4",
 		"redux-saga": "1.1.3",
-		"typescript": "~3.8.2"
+		"typescript": "~3.8.2",
+		"react-toast-notifications": "2.4.0",
+		"@types/react-toast-notifications": "2.4.0",
+		"recharts": "1.8.5",
+		"@loadable/component": "5.12.0",
+		"clsx": "1.1.0"
 	},
 	"scripts": {
 		"start": "react-scripts start",
@@ -44,9 +52,12 @@
 		"storybook": "start-storybook -p 9009 -s public",
 		"build-storybook": "build-storybook -s public"
 	},
-	"eslintConfig": {
-		"extends": "react-app"
-	},
+	"eslint.workingDirectories": [
+		{
+			"directory": "src",
+			"changeProcessCWD": true
+		}
+	],
 	"browserslist": {
 		"production": [
 			">0.2%",
