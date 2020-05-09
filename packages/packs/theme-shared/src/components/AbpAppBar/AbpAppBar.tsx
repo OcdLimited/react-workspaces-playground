@@ -47,8 +47,9 @@ const useStyles = makeStyles(theme => ({
 
 interface AbpAppBarProps {
 	open: boolean;
-	onOpen?: any;
+	onOpen?: () => void;
 	noMenu?: boolean;
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	barActions?: any;
 }
 
@@ -56,7 +57,7 @@ export const AbpAppBar = ({ open, onOpen, noMenu, barActions }: AbpAppBarProps) 
 	const classes = useStyles();
 	const appName = useSelector(selectAppName);
 
-	const BarActions = barActions || (() => <React.Fragment />);
+	const BarActions = barActions || (() => <></>);
 
 	return (
 		<AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>

@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
 
 interface MenuDrawerProps {
 	open: boolean;
-	onClose: any;
+	onClose: () => void;
 }
 
 export const MenuDrawer = ({ open, onClose }: MenuDrawerProps) => {

@@ -5,7 +5,7 @@
 	"main:src": "src/index.ts",
 	"scripts": {
 		"test": "react-scripts test",
-		"lint": "eslint ./src/**/*.ts --max-warnings=0 --format=codeframe"
+		"lint": "eslint ./src/**/*.{ts,tsx} ./src/**/**/*.{ts,tsx} ./src/**/**/**/*.{ts,tsx} --max-warnings=0 --format=codeframe"
 	},
 	"dependencies": {
 		"@ocdlimited/abp.react.core": "^0.0.4-alpha.0",

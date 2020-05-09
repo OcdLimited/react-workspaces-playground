@@ -3,8 +3,8 @@ import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 
+import { configureStore, createReducer, combineReducers } from '@reduxjs/toolkit';
 import { StandardWithMenuDrawer } from './StandardWithMenuDrawer';
-import { configureStore, createReducer } from '@reduxjs/toolkit';
 
 const store = {
 	...configureStore({
@@ -16,6 +16,7 @@ const store = {
 	injectedSagas: [],
 	runSaga: () => {},
 	injectedReducers: [],
+	createRootReducer: combineReducers,
 };
 
 it('should render', () => {

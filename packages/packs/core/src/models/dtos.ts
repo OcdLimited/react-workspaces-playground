@@ -1,3 +1,4 @@
+/* eslint-disable */
 export class ListResultDto<T> {
 	items?: T[];
 
@@ -63,6 +64,7 @@ export class EntityDto<TKey = string> {
 
 export class CreationAuditedEntityDto<TPrimaryKey = string> extends EntityDto<TPrimaryKey> {
 	creationTime?: string | Date;
+
 	creatorId?: string;
 
 	constructor(initialValues: Partial<CreationAuditedEntityDto<TPrimaryKey>> = {}) {
@@ -82,6 +84,7 @@ export class CreationAuditedEntityWithUserDto<TUserDto, TPrimaryKey = string> ex
 
 export class AuditedEntityDto<TPrimaryKey = string> extends CreationAuditedEntityDto<TPrimaryKey> {
 	lastModificationTime?: string | Date;
+
 	lastModifierId?: string;
 
 	constructor(initialValues: Partial<AuditedEntityDto<TPrimaryKey>> = {}) {
@@ -91,6 +94,7 @@ export class AuditedEntityDto<TPrimaryKey = string> extends CreationAuditedEntit
 
 export class AuditedEntityWithUserDto<TUserDto, TPrimaryKey = string> extends AuditedEntityDto<TPrimaryKey> {
 	creator?: TUserDto;
+
 	lastModifier?: TUserDto;
 
 	constructor(initialValues: Partial<AuditedEntityWithUserDto<TUserDto, TPrimaryKey>> = {}) {
@@ -100,7 +104,9 @@ export class AuditedEntityWithUserDto<TUserDto, TPrimaryKey = string> extends Au
 
 export class FullAuditedEntityDto<TPrimaryKey = string> extends AuditedEntityDto<TPrimaryKey> {
 	isDeleted?: boolean;
+
 	deleterId?: string;
+
 	deletionTime?: Date | string;
 
 	constructor(initialValues: Partial<FullAuditedEntityDto<TPrimaryKey>> = {}) {
@@ -110,7 +116,9 @@ export class FullAuditedEntityDto<TPrimaryKey = string> extends AuditedEntityDto
 
 export class FullAuditedEntityWithUserDto<TUserDto, TPrimaryKey = string> extends FullAuditedEntityDto<TPrimaryKey> {
 	creator?: TUserDto;
+
 	lastModifier?: TUserDto;
+
 	deleter?: TUserDto;
 
 	constructor(initialValues: Partial<FullAuditedEntityWithUserDto<TUserDto, TPrimaryKey>> = {}) {

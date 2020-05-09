@@ -15,27 +15,25 @@ it('setTenant', () => {
 		reducer(
 			undefined,
 			setTenant({
-					test: {},
+				test: {},
 			}),
 		),
 	).toEqual({ loading: 'loaded', test: {} });
 });
-
 
 it('receiveTenant', () => {
 	expect(
 		reducer(
 			undefined,
 			receiveTenant({
-					data: {test: {}},
+				data: { test: {} },
 			}),
 		),
 	).toEqual({ loading: 'loaded', test: {} });
 });
 
-
 it('selectTenantLoaded', () => {
-	const state = reducer({ loading: 'loaded'}, {});
+	const state = reducer({ loading: 'loaded' }, {});
 	const result = selectTenantLoaded({
 		tenant: state,
 	});
@@ -44,7 +42,7 @@ it('selectTenantLoaded', () => {
 });
 
 it('selectTenantLoading', () => {
-	const state = reducer({ loading: 'loading'}, {});
+	const state = reducer({ loading: 'loading' }, {});
 	const result = selectTenantLoading({
 		tenant: state,
 	});
@@ -52,9 +50,8 @@ it('selectTenantLoading', () => {
 	expect(result).toBeTruthy();
 });
 
-
 it('selectTenantNeedsLoaded', () => {
-	const state = reducer({ loading: 'none'}, {});
+	const state = reducer({ loading: 'none' }, {});
 	const result = selectTenantNeedsLoaded({
 		tenant: state,
 	});

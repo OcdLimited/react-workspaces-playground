@@ -9,16 +9,16 @@ import clsx from 'clsx';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import { Grid, Paper } from '@material-ui/core';
 
-import { StandardWithMenuDrawer } from './StandardWithMenuDrawer';
-import { Chart } from '../components';
-import Link from '@material-ui/core/Link';
+import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { Title } from '../components';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import { Title, Chart } from '../components';
+
+import { StandardWithMenuDrawer } from './StandardWithMenuDrawer';
 
 // Generate Order Data
 function createData(id: number, date: string, name: string, shipTo: string, paymentMethod: string, amount: number) {
@@ -33,10 +33,32 @@ const rows = [
 	createData(4, '15 Mar, 2019', 'Bruce Springsteen', 'Long Branch, NJ', 'VISA ⠀•••• 5919', 212.79),
 ];
 
+function preventDefault(event: SyntheticEvent) {
+	event.preventDefault();
+}
+
+const useStyles = makeStyles((theme: Theme) => ({
+	paper: {
+		padding: theme.spacing(2),
+		display: 'flex',
+		overflow: 'auto',
+		flexDirection: 'column',
+	},
+	fixedHeight: {
+		height: 240,
+	},
+	depositContext: {
+		flex: 1,
+	},
+	seeMore: {
+		marginTop: theme.spacing(3),
+	},
+}));
+
 function Orders() {
 	const classes = useStyles();
 	return (
-		<React.Fragment>
+		<>
 			<Title>Recent Orders</Title>
 			<Table size="small">
 				<TableHead>
@@ -61,41 +83,19 @@ function Orders() {
 				</TableBody>
 			</Table>
 			<div className={classes.seeMore}>
-				<Link color="primary" href="#" onClick={preventDefault}>
+				<Button color="primary" href="#" onClick={preventDefault}>
 					See more orders
-				</Link>
+				</Button>
 			</div>
-		</React.Fragment>
+		</>
 	);
 }
-
-function preventDefault(event: SyntheticEvent) {
-	event.preventDefault();
-}
-
-const useStyles = makeStyles((theme: Theme) => ({
-	paper: {
-		padding: theme.spacing(2),
-		display: 'flex',
-		overflow: 'auto',
-		flexDirection: 'column',
-	},
-	fixedHeight: {
-		height: 240,
-	},
-	depositContext: {
-		flex: 1,
-	},
-	seeMore: {
-		marginTop: theme.spacing(3),
-	},
-}));
 
 function Deposits() {
 	const classes = useStyles();
 
 	return (
-		<React.Fragment>
+		<>
 			<Title>Recent Deposits</Title>
 			<Typography component="p" variant="h4">
 				$3,024.00
@@ -104,11 +104,11 @@ function Deposits() {
 				on 15 March, 2019
 			</Typography>
 			<div>
-				<Link color="primary" href="#" onClick={preventDefault}>
+				<Button color="primary" href="#" onClick={preventDefault}>
 					View balance
-				</Link>
+				</Button>
 			</div>
-		</React.Fragment>
+		</>
 	);
 }
 
@@ -142,7 +142,7 @@ const Demo = () => {
 	const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
 	return (
-		<React.Fragment>
+		<>
 			<Grid container spacing={3}>
 				<Grid item xs={12} md={8} lg={9}>
 					<Paper className={fixedHeightPaper}>
@@ -162,7 +162,7 @@ const Demo = () => {
 					</Paper>
 				</Grid>
 			</Grid>
-		</React.Fragment>
+		</>
 	);
 };
 

@@ -1,6 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, CaseReducer, PayloadAction } from '@reduxjs/toolkit';
 
-interface TenantState {
+type Tenant = {};
+
+interface TenantState extends Tenant {
 	loading: 'none' | 'loaded' | 'loading';
 }
 
@@ -10,7 +12,7 @@ const initialState: TenantState = {
 
 const name = 'tenant';
 
-const setTenantHelper = (state: TenantState, action: { payload: any }) => {
+const setTenantHelper: CaseReducer<TenantState, PayloadAction<Tenant>> = (state, action) => {
 	return {
 		...state,
 		...action.payload,
@@ -23,8 +25,8 @@ export const tenantSlice = createSlice({
 	initialState,
 	reducers: {
 		setTenant: setTenantHelper,
-		receiveTenant: (state, { payload: { data: payload } }) => {
-			return setTenantHelper(state, { payload });
+		receiveTenant: (state, { payload: { data: payload }, type }) => {
+			return setTenantHelper(state, { type, payload });
 		},
 	},
 });

@@ -1,5 +1,5 @@
-import { AuthService } from './authService';
 import ClientOAuth2 from 'client-oauth2';
+import { AuthService } from './authService';
 
 jest.mock('client-oauth2');
 
@@ -8,7 +8,7 @@ beforeEach(() => {
 });
 
 it('error should not be a success', async () => {
-	var auth = new AuthService({
+	const auth = new AuthService({
 		clientId: '',
 		clientSecret: '',
 		accessTokenUri: '',
@@ -23,7 +23,7 @@ it('error should not be a success', async () => {
 });
 
 it('success should be a success', async () => {
-	var auth = new AuthService({
+	const auth = new AuthService({
 		clientId: '',
 		clientSecret: '',
 		accessTokenUri: '',

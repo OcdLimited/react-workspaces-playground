@@ -39,7 +39,9 @@
 		"typescript": "~3.8.2",
 		"react-toast-notifications": "2.4.0",
 		"@types/react-toast-notifications": "2.4.0",
-		"recharts": "1.8.5"
+		"recharts": "1.8.5",
+		"@loadable/component": "5.12.0",
+		"clsx": "1.1.0"
 	},
 	"scripts": {
 		"start": "react-scripts start",
@@ -50,9 +52,12 @@
 		"storybook": "start-storybook -p 9009 -s public",
 		"build-storybook": "build-storybook -s public"
 	},
-	"eslintConfig": {
-		"extends": "react-app"
-	},
+	"eslint.workingDirectories": [
+		{
+			"directory": "src",
+			"changeProcessCWD": true
+		}
+	],
 	"browserslist": {
 		"production": [
 			">0.2%",

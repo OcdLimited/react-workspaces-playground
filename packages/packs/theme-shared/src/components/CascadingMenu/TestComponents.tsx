@@ -1,4 +1,5 @@
 /* istanbul ignore file */
+/* eslint-disable */
 import React from 'react';
 import { MenuItem, Button, Grid } from '@material-ui/core';
 import { PopupState } from 'material-ui-popup-state/hooks';
@@ -69,7 +70,7 @@ export const Children = ({ action }: any) => {
 	};
 
 	return (
-		<React.Fragment>
+		<>
 			<Grid container alignItems="flex-start" justify="flex-end" direction="row">
 				<Grid item xs={3}>
 					<Button variant="contained" onClick={handleOpen}>
@@ -94,7 +95,7 @@ export const Children = ({ action }: any) => {
 					</CascadingMenu>
 				</Grid>
 			</Grid>
-		</React.Fragment>
+		</>
 	);
 };
 
@@ -127,7 +128,7 @@ export const ChildrenFunction = ({ action }: any) => {
 	};
 
 	return (
-		<React.Fragment>
+		<>
 			<Grid container alignItems="flex-start" justify="flex-end" direction="row">
 				<Grid item xs={3}>
 					<Button variant="contained" onClick={handleOpen}>
@@ -160,7 +161,7 @@ export const ChildrenFunction = ({ action }: any) => {
 					</CascadingMenu>
 				</Grid>
 			</Grid>
-		</React.Fragment>
+		</>
 	);
 };
 
@@ -212,21 +213,15 @@ export const Component = ({ action }: any) => {
 	);
 
 	return (
-		<React.Fragment>
+		<>
 			<Grid container alignItems="flex-start" justify="flex-end" direction="row">
 				<Grid item xs={3}>
 					<Button variant="contained" onClick={handleOpen}>
 						Click to open Menu
 					</Button>
-					<CascadingMenu
-						id="demo2"
-						open={open}
-						anchorEl={anchorEl}
-						onClose={handleClose}
-						component={Test}
-					></CascadingMenu>
+					<CascadingMenu id="demo2" open={open} anchorEl={anchorEl} onClose={handleClose} component={Test} />
 				</Grid>
 			</Grid>
-		</React.Fragment>
+		</>
 	);
 };

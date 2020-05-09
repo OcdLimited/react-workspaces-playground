@@ -1,3 +1,3 @@
 export function useTenant() {
-	//throw new Error('useTenant not implemented');
+	// throw new Error('useTenant not implemented');
 }

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { SyntheticEvent } from 'react';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
@@ -17,7 +18,7 @@ const useStyles = makeStyles({
 export default function Deposits() {
 	const classes = useStyles();
 	return (
-		<React.Fragment>
+		<>
 			<Title>Recent Deposits</Title>
 			<Typography component="p" variant="h4">
 				$3,024.00
@@ -30,6 +31,6 @@ export default function Deposits() {
 					View balance
 				</Link>
 			</div>
-		</React.Fragment>
+		</>
 	);
 }

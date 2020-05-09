@@ -1,3 +1,4 @@
+/* eslint-disable */
 import * as ABP from './common';
 
 export interface AppConfigResponse {

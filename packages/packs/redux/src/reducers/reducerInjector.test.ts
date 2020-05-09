@@ -1,23 +1,23 @@
-import { createReducer } from '@reduxjs/toolkit';
+import { createReducer, combineReducers } from '@reduxjs/toolkit';
 
-import useReducerInjector from './reducerInjector';
+import { useReducerInjector } from './reducerInjector';
 import { buildStore } from '../store';
 
 it('should inject', () => {
-	const store = buildStore({
-		empty: createReducer(0, {}),
-	});
-
-	console.log(store.getState());
+	const store = buildStore(
+		{
+			empty: createReducer(0, {}),
+		},
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		(i: any) =>
+			combineReducers({
+				...i,
+				empty: createReducer(0, {}),
+			}),
+	);
 
 	expect(store.getState()).toEqual({
 		empty: 0,
-		api: {
-			inflight: 0,
-		},
-		config: { loaded: false },
-		toast: { notifications: [] },
-		token: { current: {} },
 	});
 
 	const testReducer = createReducer(0, {
@@ -30,12 +30,6 @@ it('should inject', () => {
 	expect(store.getState()).toEqual({
 		empty: 0,
 		test: 0,
-		api: {
-			inflight: 0,
-		},
-		config: { loaded: false },
-		toast: { notifications: [] },
-		token: { current: {} },
 	});
 
 	store.dispatch({
@@ -45,23 +39,11 @@ it('should inject', () => {
 	expect(store.getState()).toEqual({
 		empty: 0,
 		test: 10,
-		api: {
-			inflight: 0,
-		},
-		config: { loaded: false },
-		toast: { notifications: [] },
-		token: { current: {} },
 	});
 
 	useReducerInjector(store).inject('test', testReducer);
 	expect(store.getState()).toEqual({
 		empty: 0,
 		test: 10,
-		api: {
-			inflight: 0,
-		},
-		config: { loaded: false },
-		toast: { notifications: [] },
-		token: { current: {} },
 	});
 });

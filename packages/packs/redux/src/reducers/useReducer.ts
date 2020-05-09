@@ -1,8 +1,10 @@
 /* istanbul ignore file */
+import { EffectCallback, useEffect } from 'react';
 import { useStore } from 'react-redux';
-import { useMountEffect } from '@ocdlimited/abp.react.core';
 import { ReducerDescriptor, useReducerInjector } from './reducerInjector';
-import { InjectableStore } from '../store';
+import { InjectableStore } from '../types';
+
+const useMountEffect = (fun: EffectCallback) => useEffect(fun, []);
 
 export function useReducer(reg: ReducerDescriptor) {
 	const store = useStore();

@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { buildSelectIsAuthenticated } from '../application-configuration';
 import { useEffect } from 'react';
+import { buildSelectIsAuthenticated } from '../application-configuration';
 
 export function useAuthentication(secure: boolean) {
 	const navigate = useNavigate();

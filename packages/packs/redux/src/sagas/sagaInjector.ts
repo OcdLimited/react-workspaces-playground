@@ -1,4 +1,4 @@
-import { InjectableStore } from '../store';
+import { InjectableStore, SagaDescriptor } from '../types';
 
 export const RESTART_ON_REMOUNT = '@@saga-injector/restart-on-remount';
 export const DAEMON = '@@saga-injector/daemon';
@@ -10,14 +10,9 @@ export const Mode = {
 	ONCE_TILL_UNMOUNT,
 };
 
-export interface SagaDescriptor {
-	key: string;
-	mode?: string;
-	saga: any;
-}
-
 export function injectSagaFactory(store: InjectableStore) {
-	return function injectSaga(key: string, descriptor: SagaDescriptor, args?: any) {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	return function injectSaga(key: string, descriptor: SagaDescriptor, ...args: any[]) {
 		const newDescriptor = {
 			...descriptor,
 			mode: descriptor.mode || RESTART_ON_REMOUNT,
@@ -26,11 +21,12 @@ export function injectSagaFactory(store: InjectableStore) {
 
 		let hasSaga = Reflect.has(store.injectedSagas, key);
 
+		/* istanbul ignore else */
 		if (process.env.NODE_ENV !== 'production') {
 			const oldDescriptor = store.injectedSagas[key];
-			// enable hot reloading of daemon and once-till-unmount sagas
-			if (hasSaga && oldDescriptor.saga !== saga) {
-				oldDescriptor.task.cancel();
+			if (hasSaga && oldDescriptor?.saga !== saga) {
+				// enable hot reloading of daemon and once-till-unmount sagas
+				oldDescriptor?.task?.cancel();
 				hasSaga = false;
 			}
 		}
@@ -39,7 +35,7 @@ export function injectSagaFactory(store: InjectableStore) {
 			/* eslint-disable no-param-reassign */
 			store.injectedSagas[key] = {
 				...newDescriptor,
-				task: store.runSaga(saga, args),
+				task: store.runSaga(saga, ...args),
 			};
 			/* eslint-enable no-param-reassign */
 		}
@@ -48,8 +44,15 @@ export function injectSagaFactory(store: InjectableStore) {
 
 export function ejectSagaFactory(store: InjectableStore) {
 	return function ejectSaga(key: string) {
+		/* istanbul ignore else */
 		if (Reflect.has(store.injectedSagas, key)) {
 			const descriptor = store.injectedSagas[key];
+
+			/* istanbul ignore next */
+			if (!descriptor) {
+				return;
+			}
+
 			if (descriptor.mode !== Mode.DAEMON && descriptor.task) {
 				/* istanbul ignore next */
 				if (descriptor.task.isRunning()) {
@@ -60,7 +63,7 @@ export function ejectSagaFactory(store: InjectableStore) {
 				/* istanbul ignore next */
 				if (process.env.NODE_ENV === 'production') {
 					// Need some value to be able to detect `ONCE_TILL_UNMOUNT` sagas in `injectSaga`
-					store.injectedSagas[key] = 'done'; // eslint-disable-line no-param-reassign
+					store.injectedSagas[key] = undefined; // eslint-disable-line no-param-reassign
 				}
 			}
 		}

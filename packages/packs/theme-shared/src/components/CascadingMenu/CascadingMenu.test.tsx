@@ -2,14 +2,51 @@ import React from 'react';
 import { render, act, fireEvent } from '@testing-library/react';
 import { ListItemIcon, ListItemText } from '@material-ui/core';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import { MenuProp, Children, ChildrenFunction, Component } from './TestComponents';
-import CascadingMenu from './CascadingMenu';
+import { MenuProp, Children, ChildrenFunction } from './TestComponents';
+import { CascadingMenu } from './CascadingMenu';
 
 const action = jest.fn();
 
 beforeEach(() => {
 	action.mockClear();
 });
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const runTest = (component: any) => {
+	const { getByText, container } = render(component);
+
+	const openButton = getByText(/Click to open Menu/i);
+
+	expect(openButton).toBeInTheDocument();
+
+	act(() => {
+		fireEvent.click(openButton);
+	});
+
+	const clickMenuOption = getByText(/Death/i);
+
+	expect(clickMenuOption).toBeInTheDocument();
+
+	act(() => {
+		fireEvent.click(clickMenuOption);
+	});
+
+	const hoverMenuOption = getByText(/More Choices/i);
+
+	expect(hoverMenuOption).toBeInTheDocument();
+
+	act(() => {
+		fireEvent.mouseOver(hoverMenuOption);
+		fireEvent.click(hoverMenuOption);
+	});
+
+	const subMenuOption = getByText(/Cheesecake/i);
+
+	act(() => {
+		fireEvent.click(subMenuOption);
+		fireEvent.click(container);
+	});
+};
 
 it('should render with a menu prop', () => {
 	const menu = [
@@ -19,12 +56,12 @@ it('should render with a menu prop', () => {
 		},
 		{
 			text: (
-				<React.Fragment>
+				<>
 					<ListItemIcon>
 						<InboxIcon fontSize="small" />
 					</ListItemIcon>
 					<ListItemText primary="Inbox" />
-				</React.Fragment>
+				</>
 			),
 			onClick: () => action('inbox clicked'),
 		},
@@ -86,42 +123,6 @@ it('should render with a menu prop', () => {
 
 	expect(action).toBeCalledTimes(3);
 });
-
-const runTest = (component: any) => {
-	const { getByText, container } = render(component);
-
-	const openButton = getByText(/Click to open Menu/i);
-
-	expect(openButton).toBeInTheDocument();
-
-	act(() => {
-		fireEvent.click(openButton);
-	});
-
-	const clickMenuOption = getByText(/Death/i);
-
-	expect(clickMenuOption).toBeInTheDocument();
-
-	act(() => {
-		fireEvent.click(clickMenuOption);
-	});
-
-	const hoverMenuOption = getByText(/More Choices/i);
-
-	expect(hoverMenuOption).toBeInTheDocument();
-
-	act(() => {
-		fireEvent.mouseOver(hoverMenuOption);
-		fireEvent.click(hoverMenuOption);
-	});
-
-	const subMenuOption = getByText(/Cheesecake/i);
-
-	act(() => {
-		fireEvent.click(subMenuOption);
-		fireEvent.click(container);
-	});
-};
 
 it('should render with children', () => {
 	runTest(<Children action={() => action} />);

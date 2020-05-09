@@ -1,6 +1,6 @@
-import { createApiMiddleware } from './apiMiddleware';
 import { act } from 'react-dom/test-utils';
 import axios from 'axios';
+import { createApiMiddleware } from './apiMiddleware';
 
 jest.mock('axios');
 

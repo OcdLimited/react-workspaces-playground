@@ -6,7 +6,8 @@ import { MemoryRouter } from 'react-router-dom';
 
 import { LoginContainer, buildOnSubmit } from '.';
 
-var store: any = {};
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let store: any = {};
 
 beforeEach(() => {
 	store = {

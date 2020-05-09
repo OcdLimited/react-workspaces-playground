@@ -136,7 +136,7 @@ it('selectMultiTenancy', () => {
 });
 
 describe('selectSettings', () => {
-	var state = {};
+	let state = {};
 
 	beforeEach(() => {
 		state = reducer(
@@ -217,7 +217,7 @@ it('tenat', () => {
 });
 
 it('selectCurrentCulture', () => {
-	let state = reducer(
+	const state = reducer(
 		undefined,
 		setConfig({
 			localization: {

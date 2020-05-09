@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { AppConfigResponse } from './application-configuration';
 import * as ABP from './common';
 
@@ -32,6 +33,7 @@ export interface Apis {
 }
 
 export interface Requirements {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	layouts: any[];
 }
 

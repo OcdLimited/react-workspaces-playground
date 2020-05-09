@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { createSlice, createSelector } from '@reduxjs/toolkit';
 
 export interface Theme {
@@ -20,7 +21,7 @@ const initialState: UiState = {
 
 const name = 'ui';
 
-const setUiHelper = (state: UiState, action: { payload: any }) => {
+const setUiHelper = (state: UiState, action: { payload: UiState }) => {
 	return {
 		...state,
 		...action.payload,

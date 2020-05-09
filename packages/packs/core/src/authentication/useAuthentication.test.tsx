@@ -3,16 +3,16 @@ import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 
-import { buildStore } from '@ocdlimited/abp.react.redux';
+import { buildStore } from '../store';
 import { useAuthentication } from './useAuthentication';
 
-const ExampleComponent = ({ secure }: any) => {
+const ExampleComponent = ({ secure }: { secure: boolean }) => {
 	useAuthentication(secure);
 
 	return (
-		<React.Fragment>
+		<>
 			<h1>title</h1>
-		</React.Fragment>
+		</>
 	);
 };
 

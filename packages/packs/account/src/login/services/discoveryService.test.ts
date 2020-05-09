@@ -1,5 +1,5 @@
-import { DiscoveryService } from './discoveryService';
 import axios from 'axios';
+import { DiscoveryService } from './discoveryService';
 
 jest.mock('axios');
 
@@ -72,7 +72,7 @@ const data = {
 };
 
 it('should work', async () => {
-	var auth = new DiscoveryService({
+	const auth = new DiscoveryService({
 		issuer: 'https://localhost:44367',
 		scopes: [''],
 		clientId: '',
@@ -96,7 +96,7 @@ it('should work', async () => {
 });
 
 it('no data returns empty', async () => {
-	var auth = new DiscoveryService({
+	const auth = new DiscoveryService({
 		issuer: 'https://localhost:44367',
 		scopes: [''],
 		clientId: '',

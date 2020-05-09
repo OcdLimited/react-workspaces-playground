@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { eLayoutType } from '../enums/common';
 import * as Config from './config';
 

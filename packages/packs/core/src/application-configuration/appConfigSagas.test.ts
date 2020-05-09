@@ -15,7 +15,7 @@ describe('watchCurrentCultureChange', () => {
 	it('should watch', () => {
 		const gen = watchCurrentCultureChange();
 
-		expect(gen.next().value).toEqual(takeEvery(changeCurrentCulture, performCurrentCultureChange));
+		expect(gen.next().value).toEqual(takeEvery(changeCurrentCulture.toString(), performCurrentCultureChange));
 	});
 });
 
@@ -35,7 +35,7 @@ describe('performCurrentCultureChange', () => {
 		});
 		expect(result).toEqual(
 			put(
-				requestAppConfig(undefined, null, null, {
+				requestAppConfig(undefined, undefined, undefined, {
 					'Accept-Language': 'en',
 				}),
 			),

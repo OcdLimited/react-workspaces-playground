@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/indent */
+/* eslint-disable indent */
+/* eslint-disable no-nested-ternary */
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { SyntheticEvent, useEffect } from 'react';
 import Menu from 'material-ui-popup-state/HoverMenu';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
@@ -8,17 +12,15 @@ import { Submenu } from './Submenu';
 import { CascadingHoverMenusProps, MenuItemOptions, Popupbag } from './types';
 import { isEmptyChildren, isFunction } from './utils';
 
-export const ParentPopupState = React.createContext<PopupState | null>(null);
-
 function renderForMenu(menu: MenuItemOptions[], popupState: PopupState) {
-	return menu.map((item: any) => {
+	return menu.map((item: MenuItemOptions) => {
 		if (!item.children) {
 			return (
 				<MenuItem
 					onClick={e => {
 						return item.onClick && item.onClick(e, popupState);
 					}}
-					key={item.key || item.text}
+					key={`${item.key || item.text}`}
 				>
 					{item.text}
 				</MenuItem>
@@ -31,21 +33,15 @@ function renderForMenu(menu: MenuItemOptions[], popupState: PopupState) {
 				key={`${item.key || item.text}submenu`}
 				title={item.text}
 				items={item.children}
-				onClick={(e: SyntheticEvent) => item.onClick && item.onClick(e, popupState)}
+				onClick={(e: React.SyntheticEvent<Element, Event>) => {
+					return item.onClick && item.onClick(e, popupState);
+				}}
 			/>
 		);
 	});
 }
 
-export const CascadingMenu = ({
-	menu,
-	id: popupId,
-	children,
-	component,
-	open,
-	anchorEl,
-	onClose,
-}: CascadingHoverMenusProps) => {
+export const CascadingMenu = ({ menu, id: popupId, children, open, anchorEl, onClose }: CascadingHoverMenusProps) => {
 	const popupState = usePopupState({ popupId, variant: 'popover' });
 
 	const popupbag = {
@@ -61,7 +57,9 @@ export const CascadingMenu = ({
 
 	function handleClickAway(e: React.MouseEvent<Document>) {
 		popupState.close();
-		onClose && onClose(e, 'backdropClick');
+		if (onClose) {
+			onClose(e, 'backdropClick');
+		}
 	}
 
 	return (

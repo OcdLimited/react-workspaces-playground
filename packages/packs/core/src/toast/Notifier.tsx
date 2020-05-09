@@ -2,14 +2,9 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useToasts } from 'react-toast-notifications';
 
-import { selectNotifications, remove } from './toastSlice';
+import { selectNotifications, remove, SnackbarMessage } from './toastSlice';
 
 let displayed: string[] = [];
-
-export interface SnackbarMessage {
-	message: string;
-	key: number;
-}
 
 export interface State {
 	open: boolean;
@@ -31,7 +26,7 @@ export const Notifier = () => {
 	};
 
 	useEffect(() => {
-		notifications.forEach(({ key, message, options = {}, dismissed = false }) => {
+		notifications.forEach(({ key, message, options = { appearance: 'info' }, dismissed = false }) => {
 			if (dismissed) {
 				removeDisplayed(key);
 				removeToast(key);
@@ -41,15 +36,14 @@ export const Notifier = () => {
 			if (displayed.includes(key)) return;
 
 			addToast(message, {
-				id: key,
 				...options,
-				onDismiss: key => {
+				onDismiss: k => {
 					dispatch(
 						remove({
-							key,
+							key: k,
 						}),
 					);
-					removeDisplayed(key);
+					removeDisplayed(k);
 				},
 			});
 			storeDisplayed(key);

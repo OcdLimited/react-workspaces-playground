@@ -10,9 +10,9 @@ const ExampleComponent = () => {
 	useTenant();
 
 	return (
-		<React.Fragment>
+		<>
 			<h1>title</h1>
-		</React.Fragment>
+		</>
 	);
 };
 const store = {

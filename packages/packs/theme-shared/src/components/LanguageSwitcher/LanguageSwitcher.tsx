@@ -1,13 +1,15 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect } from 'react';
 import { IconButton, Badge, Menu, MenuItem, ListItemText } from '@material-ui/core';
 import LanguageIcon from '@material-ui/icons/Language';
 import { bindTrigger, bindMenu } from 'material-ui-popup-state';
 import { usePopupState } from 'material-ui-popup-state/hooks';
+import { Language } from '@ocdlimited/abp.react.core/src/models';
 
 export interface LanguageSwitcherProps {
-	onSelectLanguage: (culture: any) => void;
-	languages: any[];
-	currentCulture: any;
+	onSelectLanguage: (culture: Language) => void;
+	languages: Language[];
+	currentCulture: Language;
 }
 
 export function LanguageSwitcher({
@@ -17,11 +19,14 @@ export function LanguageSwitcher({
 }: LanguageSwitcherProps) {
 	const popupState = usePopupState({ popupId: 'language', variant: 'popover' });
 
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	function handleLanguageClick(e: any) {
 		const cultureName = e.currentTarget.dataset?.language;
-		const currentCulture = languages.find(x => x.cultureName === cultureName);
+		const newCurrentCulture = languages.find(x => x.cultureName === cultureName);
 
-		onLanguageChange(currentCulture);
+		if (newCurrentCulture) {
+			onLanguageChange(newCurrentCulture);
+		}
 	}
 
 	useEffect(() => {
@@ -30,7 +35,7 @@ export function LanguageSwitcher({
 	}, [currentCulture]);
 
 	return (
-		<React.Fragment>
+		<>
 			<IconButton color="inherit" {...bindTrigger(popupState)} data-testid="open-language">
 				<Badge color="secondary">
 					<LanguageIcon />
@@ -53,7 +58,7 @@ export function LanguageSwitcher({
 					</MenuItem>
 				))}
 			</Menu>
-		</React.Fragment>
+		</>
 	);
 }
 

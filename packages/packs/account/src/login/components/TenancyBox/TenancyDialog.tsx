@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -15,14 +15,14 @@ export function TenancyDialog({
 }: {
 	open: boolean;
 	tenantName?: string;
-	onChange: any;
-	onClose: any;
+	onChange: (value: string) => void;
+	onClose: () => void;
 }) {
 	const { t } = useTranslation();
 	const [value, storeValue] = useState('');
 
 	/* istanbul ignore next */
-	function changeValue(e: any) {
+	function changeValue(e: ChangeEvent<HTMLInputElement>) {
 		storeValue(e.currentTarget.value);
 	}
 
