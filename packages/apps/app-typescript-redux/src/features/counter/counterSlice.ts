@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction, createAction } from '@reduxjs/toolkit';
 
 interface CounterState {
@@ -44,7 +45,9 @@ export const incrementAsync = createAction<number>('counter/incrementAsync');
 // };
 
 export type CounerState = {
-	counter: any;
+	counter: {
+		value: 0;
+	};
 };
 
 // The function below is called a selector and allows us to select a value from

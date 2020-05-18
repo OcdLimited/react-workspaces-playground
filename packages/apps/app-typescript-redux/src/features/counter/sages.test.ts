@@ -1,5 +1,6 @@
-import { performIncrementAsync, watchIncrementAsync } from './sagas';
 import { put, takeEvery } from 'redux-saga/effects';
+
+import { performIncrementAsync, watchIncrementAsync } from './sagas';
 import { incrementByAmount, incrementAsync } from './counterSlice';
 
 describe('performIncrementAsync', () => {
