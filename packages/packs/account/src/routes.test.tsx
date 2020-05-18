@@ -33,7 +33,7 @@ it('renders without crashing', () => {
 	expect(queryByText('Password')).toBeNull();
 });
 
-it('renders login without crashing', async () => {
+it('renders login without crashing', () => {
 	const { getByText } = render(
 		<Provider store={store}>
 			<MemoryRouter initialEntries={['/account/login']}>
